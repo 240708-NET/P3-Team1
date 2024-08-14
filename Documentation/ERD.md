@@ -1,5 +1,5 @@
+## Courses
 ```sql
-Courses
 - ID: int
 - Name: varchar
 - Description: varchar(max)
@@ -7,8 +7,8 @@ Courses
 --- Prerequisites (stretch)
 ```
 
+## Sections
 ```sql
-Sections
 - ID: int
 - Course ID: int
 - Professor ID: int
@@ -17,23 +17,23 @@ Sections
 - Day: varchar(5)
 ```
 
+## Professors
 ```sql
-Professors
 - ID: int
 - First Name: varchar(?)
 - Last Name: varchar(?)
 ```
-
+## StudentSections 
 ```sql
-StudentSections -- (Stretch)
+-- (Stretch)
 - ID: int
 - SectionID: int
 - StudentID: int
 --- Grade/ Pass(No Pass) Stretch 
 ```
 
+## Students
 ```sql
-Students
 - ID: int
 - First Name: varchar(?)
 - Last Name: varchar(?)
