@@ -1,0 +1,21 @@
+8/14/2024 Meeting Notes
+-Ned came up with goofy course names, teachers, and students
+
+-Students should be able to add courses to curriculum
+-Courses restricted by time frame
+-Make sure functionality adding, viewing, and removing courses is there before time frame restriction
+
+-Courses will likely have CourseID, CourseName, Prerequisites, Timeframe, maybe CourseDescription
+-Course could be offered at multiple times, linked to Professor's table. Timeframe is also differentiated here (Different professors can teach the same course at different times)
+-Profesor is ID, FirstName, LastName, CoursesTaught
+-Students is ID, FirstName, LastName, and PreviousCourses
+-CourseProfessorTime is sectionID, courseId, cprofessorId, and time
+-StudentSection is SectionID, StudentID, and Grade
+
+-Daniel and Ibrahim on front-end
+-Ned on DevOps
+-Josh on back-end
+
+-Front-end will focus on making wireframe
+-BackEnd will focus on making ERD/DB schema
+-DevOps will suffer together
