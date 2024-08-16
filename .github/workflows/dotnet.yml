@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies 
-      run: dotnet restore University/src
+      run: dotnet restore UniversityAPI/src
     - name: Build
-      run: dotnet build --no-restore University/src
+      run: dotnet build --no-restore UniversityAPI/src
     - name: Test
-      run: dotnet test --no-build --verbosity normal University/src
+      run: dotnet test --no-build --verbosity normal UniversityAPI/src
