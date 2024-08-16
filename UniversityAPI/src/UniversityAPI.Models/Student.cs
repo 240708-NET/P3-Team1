@@ -21,5 +21,16 @@ namespace UniversityAPI.Models
         {
 
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is Student))
+            {
+                return false;
+            }
+            return ((Student)obj).ID == ID &&
+                   ((Student)obj).FirstName == FirstName &&
+                   ((Student)obj).LastName == LastName;
+        }
     }
 }
