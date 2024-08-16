@@ -2,9 +2,9 @@ name: dotnet build and test
 
 on:
   push:
-    branches: [ "main", "BackEnd", repository ]
+    branches: [ "main", "BackEnd", "repository" ]
   pull_request:
-    branches: [ "main", "BackEnd", repository ]
+    branches: [ "main", "BackEnd", "repository" ]
 
 jobs:
   build:
@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Restore dependencies 
+      run: dotnet restore University/src
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore University/src
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal University/src
