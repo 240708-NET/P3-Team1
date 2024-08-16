@@ -1,8 +1,8 @@
 import react from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = "https://localhost:8000/api";
+const API_BASE = "http://localhost:5236/api";
 
 const LoginPage: react.FC = () => {
   const [studentID, setStudentID] = react.useState("");
@@ -13,11 +13,21 @@ const LoginPage: react.FC = () => {
     e.preventDefault();
     console.log(studentID, password);
     axios
-      .post(`${API_BASE}/login`, {
-        studentID: studentID,
-        password: password,
+      .post(`${API_BASE}/Student/login`, {
+        id: studentID,
+        firstName: "first",
+        lastName: "last",
       })
-      .finally(() => nagivate("/"));
+      .then(() => {
+        alert("Logged In");
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === 401) {
+          alert("Unathorized");
+        } else {
+          alert(error.message);
+        }
+      });
   };
 
   const registerUser = () => {};
