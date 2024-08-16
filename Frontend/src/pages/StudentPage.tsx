@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const StudentPage: React.FC = () => {
-
-    return(
-        <>
-        </>
-    )
-}
+  return <h1>Student Page</h1>;
+};
 
 export default StudentPage;
