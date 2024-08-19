@@ -1,8 +1,33 @@
-import React from "react";
+import react from "react";
+import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage: React.FC = () => {
-  const login = (e: React.ChangeEvent<HTMLFormElement>) => {
+const API_BASE = "http://localhost:5236/api";
+
+const LoginPage: react.FC = () => {
+  const [studentID, setStudentID] = react.useState("");
+  const [password, setPassword] = react.useState("");
+  const nagivate = useNavigate();
+
+  const login = (e: react.FormEvent) => {
     e.preventDefault();
+    console.log(studentID, password);
+    axios
+      .post(`${API_BASE}/Student/login`, {
+        id: studentID,
+        firstName: "first",
+        lastName: "last",
+      })
+      .then(() => {
+        alert("Logged In");
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === 401) {
+          alert("Unathorized");
+        } else {
+          alert(error.message);
+        }
+      });
   };
 
   const registerUser = () => {};
@@ -16,22 +41,26 @@ const LoginPage: React.FC = () => {
       <div className="mx-auto w-full max-w-sm mt-14">
         <form onSubmit={login} className="space-y-8">
           <input
+            required
             type="text"
             id="studentID"
             name="studentID"
+            value={studentID}
             placeholder="Student ID"
-            required
             className="w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 placeholder:text-gray-400"
+            onChange={(e) => setStudentID(e.currentTarget.value)}
           />
 
           <div className="mx-auto w-full max-w-sm">
             <input
-              type="text"
+              required
+              type="password"
               id="password"
               name="password"
+              value={password}
               placeholder="Password"
-              required
               className="w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 placeholder:text-gray-400"
+              onChange={(e) => setPassword(e.currentTarget.value)}
             />
           </div>
 
