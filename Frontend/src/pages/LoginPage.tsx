@@ -42,7 +42,7 @@ const LoginPage: react.FC = () => {
       return;
     }
     console.log(fName, lName, password, cPassword);
-    if( password == cPassword ){
+    if( password === cPassword ){
       axios
         .post(`${API_BASE}/Student/register`, {
           firstName: fName,
@@ -100,7 +100,7 @@ const LoginPage: react.FC = () => {
               id="fName"
               name="fName"
               value={fName}
-              placeholder="fName"
+              placeholder="First Name"
               className="w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 placeholder:text-gray-400"
               onChange={(e) => setFName(e.currentTarget.value)}
             />
@@ -113,7 +113,7 @@ const LoginPage: react.FC = () => {
               id="lName"
               name="lName"
               value={lName}
-              placeholder="lName"
+              placeholder="Last Name"
               className="w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 placeholder:text-gray-400"
               onChange={(e) => setLName(e.currentTarget.value)}
             />
