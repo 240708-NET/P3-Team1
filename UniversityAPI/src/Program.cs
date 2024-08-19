@@ -1,3 +1,7 @@
+using UniversityAPI.Services;
+
+namespace UniversityAPI;
+
 public class Program
 {
     public static void Main(string[] args)
@@ -6,6 +10,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
 
+        builder.Services.AddScoped<IStudentServices, FakeStudentSertices>();
         builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
