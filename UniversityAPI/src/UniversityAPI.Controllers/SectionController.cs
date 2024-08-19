@@ -10,13 +10,10 @@ using UniversityAPI.Services;
 [Route("api/[controller]")]
 public class SectionController : ControllerBase, IController<Section>
 {
-
-    private readonly ILogger<SectionController> _logger;
     private readonly ISectionServices _sectionService;
 
-    public SectionController(ILogger<SectionController> logger, ISectionServices studentServices)
+    public SectionController(ISectionServices studentServices)
     {
-        _logger = logger;
         _sectionService = studentServices;
     }
 

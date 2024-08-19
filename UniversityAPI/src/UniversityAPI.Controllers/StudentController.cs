@@ -12,12 +12,10 @@ using UniversityAPI.Services;
 public class StudentController : ControllerBase, IController<Student>
 {
 
-    private readonly ILogger<StudentController> _logger;
     private readonly IStudentServices _studentService;
 
-    public StudentController(ILogger<StudentController> logger, IStudentServices studentServices)
+    public StudentController(IStudentServices studentServices)
     {
-        _logger = logger;
         _studentService = studentServices;
     }
 
