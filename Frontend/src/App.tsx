@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import StudentPage from "./pages/StudentPage";
 import CourseSearchPage from "./pages/CourseSearchPage";
+import MyCoursesPage from "./pages/MyCoursesPage";
+
 
 import "./App.css";
 
@@ -18,6 +20,10 @@ function App() {
     {
       path: "login",
       element: <LoginPage />,
+    },
+    {
+      path: "mycourses",
+      element: <MyCoursesPage />,
     },
   ]);
 
