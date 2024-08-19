@@ -1,5 +1,7 @@
+using UniversityAPI.Models;
+
 namespace UniversityAPI.Services;
 
-public interface ISectionServices{
-
+public interface ISectionServices : IService<Section>{
+    public List<Section> GetAllSections();
 }
