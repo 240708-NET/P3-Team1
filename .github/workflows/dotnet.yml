@@ -2,9 +2,9 @@ name: dotnet build and test
 
 on:
   push:
-    branches: [ "main", "BackEnd", "repository" ]
+    branches: [ "main", "BackEnd", "basic-controller" ]
   pull_request:
-    branches: [ "main", "BackEnd", "repository" ]
+    branches: [ "main", "BackEnd", "basic-controller" ]
 
 jobs:
   build:
