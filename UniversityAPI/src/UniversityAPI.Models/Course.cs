@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;        //For notation like [Key] an
 
 namespace UniversityAPI.Models
 {
-    public class Course
+    public class Course : IIdentified
     {
         //Attributes
         [Key]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema; //For notation like [Foreign
 
 namespace UniversityAPI.Models
 {
-    public class Section
+    public class Section : IIdentified
     {
         //Attributes
         [Key]

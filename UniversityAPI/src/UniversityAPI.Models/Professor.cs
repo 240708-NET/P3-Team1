@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;        //For notation like [Key] an
 
 namespace UniversityAPI.Models
 {
-    public class Professor
+    public class Professor : IIdentified
     {
         //Attributes
         [Key]
@@ -15,6 +15,9 @@ namespace UniversityAPI.Models
         [Required]
         [MaxLength(50)] 
         public string LastName { get; set; }
+
+        [MaxLength(50)] 
+        public string Password { get; set; }
 
         //Constructor
         public Professor()
