@@ -22,6 +22,7 @@ const LoginPage: react.FC = () => {
         id: studentID,
         firstName: "first",
         lastName: "last",
+        password: password
       })
       .then(() => {
         alert("Logged In");
@@ -45,6 +46,7 @@ const LoginPage: react.FC = () => {
     if( password === cPassword ){
       axios
         .post(`${API_BASE}/Student/register`, {
+          id: "",
           firstName: fName,
           lastName: lName,
           password: password
