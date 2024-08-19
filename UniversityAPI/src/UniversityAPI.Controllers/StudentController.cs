@@ -74,4 +74,15 @@ public class StudentController : ControllerBase, IController<Student>
         }
     }
 
+    [HttpGet("{id}/sections")]
+    public List<Section> GetRegisteredSections([FromRoute] int id)
+    {
+        return _studentService.GetRegisteredSections(id);
+    }
+
+    // add section
+    // [Http]
+
+    // remove section
+
 }

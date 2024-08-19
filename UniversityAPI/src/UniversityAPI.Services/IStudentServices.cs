@@ -6,5 +6,6 @@ public interface IStudentServices : IService<Student>
 {
     public Student? Login(Student student);
     public Student? Register(Student student);
+    public List<Section> GetRegisteredSections(int id);
 
 }

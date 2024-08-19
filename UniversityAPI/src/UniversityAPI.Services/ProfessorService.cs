@@ -2,44 +2,40 @@ using UniversityAPI.Models;
 using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
-public class StudentService : IStudentServices
+
+public class ProfessorService : IProfessorServices
 {
-    public List<Student> DeleteAll()
+    public List<Professor> DeleteAll()
     {
         throw new NotImplementedException();
     }
 
-    public Student? DeleteById(int id)
+    public Professor? DeleteById(int id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Student> GetAll()
+    public List<Professor> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public Student? GetById(int id)
+    public Professor? GetById(int id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Section> GetRegisteredSections(int id)
+    public Professor? Login(Professor student)
     {
         throw new NotImplementedException();
     }
 
-    public Student? Login(Student student)
+    public Professor? Register(Professor student)
     {
         throw new NotImplementedException();
     }
 
-    public Student? Register(Student student)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student? Update(Student item)
+    public Professor? Update(Professor item)
     {
         throw new NotImplementedException();
     }
