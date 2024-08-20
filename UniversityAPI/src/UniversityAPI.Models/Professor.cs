@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
 
-namespace UniversityAPI.Models;
+namespace UniversityAPI.Models
 {
     public class Professor : IIdentified
     {
