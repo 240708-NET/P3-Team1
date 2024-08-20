@@ -9,63 +9,22 @@ using UniversityAPI.Services;
 
 [ApiController]
 [Route("api/[controller]")]
-public class StudentController : ControllerBase, IController<Student>
+public class StudentController : Controller<Student>
 {
 
-    private readonly IStudentServices _studentService;
 
-    public StudentController(IStudentServices studentServices)
-    {
-        _studentService = studentServices;
-    }
-
-    [HttpGet("{id}")]
-    public Student? GetById([FromRoute] int id)
-    {
-        return _studentService.GetById(id);
-    }
-
-
-    [HttpGet("")]
-    public List<Student> GetAll()
-    {
-        return _studentService.GetAll();
-    }
-
-    [HttpPost("")]
-    public Student? Insert(Student item)
-    {
-        return _studentService.Insert(item);
-    }
-
-    [HttpPatch("{id}")]
-    public Student? Patch([FromBody] Student item)
-    {
-        return _studentService.Update(item);
-    }
-
-    [HttpDelete("{id}")]
-    public Student? DeleteById([FromRoute] int id)
-    {
-        return _studentService.DeleteById(id);
-    }
-
-    [HttpDelete("")]
-    public List<Student> DeleteAll()
-    {
-        return _studentService.DeleteAll();
-    }
+    public StudentController(IStudentServices studentServices) : base(studentServices) { }
 
     [HttpPost("register")]
     public Student? Register([FromBody] Student student)
     {
-        return _studentService.Register(student);
+        return ((IStudentServices)_service).Register(student);
     }
 
     [HttpPost("login")]
     public Student? Login([FromBody] Student student)
     {
-        Student? s = _studentService.Login(student);
+        Student? s = ((IStudentServices)_service)..Login(student);
 
         if (s == null)
         {

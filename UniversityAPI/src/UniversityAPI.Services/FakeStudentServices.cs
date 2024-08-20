@@ -30,6 +30,11 @@ public class FakeStudentSertices : IStudentServices
         throw new NotImplementedException();
     }
 
+    public Student? Insert(Student item)
+    {
+        throw new NotImplementedException();
+    }
+
     public Student? Login(Student student)
     {
         Student s = new Student
