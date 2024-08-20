@@ -17,7 +17,7 @@ namespace UniversityAPI.Repositories
 
         public virtual async Task<List<TEntity>> Get()
         {
-            return EntitySet.AsNoTracking().ToListAsync();
+            return await EntitySet.AsNoTracking().ToListAsync();
         }
 
         public virtual async Task<TEntity?> GetById(int id)
