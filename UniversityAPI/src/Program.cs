@@ -1,3 +1,4 @@
+using UniversityAPI.Models;
 using UniversityAPI.Services;
 
 namespace UniversityAPI;
@@ -11,6 +12,9 @@ public class Program
 
 
         builder.Services.AddScoped<IStudentServices, FakeStudentSertices>();
+        builder.Services.AddScoped<IProfessorServices, ProfessorService>();
+        builder.Services.AddScoped<ISectionServices, SectionService>();
+        builder.Services.AddScoped<ICourseServices, CourseService>();
         builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
