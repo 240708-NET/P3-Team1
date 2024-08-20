@@ -10,6 +10,5 @@ using UniversityAPI.Services;
 [Route("api/[controller]")]
 public class CourseController : Controller<Course>
 {
-
     public CourseController(ICourseServices courseService) : base(courseService) { }
 }
