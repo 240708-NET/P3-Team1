@@ -4,7 +4,7 @@ namespace UniversityAPI.Repository;
 
 public interface ICourseRepository
 {
-        Course? FindById(int id); // Ensure this method is defined correctly
+        Course? FindById(int id);
         List<Course> GetAll();
         void DeleteAll();
         void Delete(Course course);
