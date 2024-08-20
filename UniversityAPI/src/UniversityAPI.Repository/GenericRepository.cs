@@ -15,7 +15,7 @@ namespace UniversityAPI.Repositories
             EntitySet = context.Set<TEntity>();
         }
 
-        public virtual Task<List<TEntity>> Get()
+        public virtual async Task<List<TEntity>> Get()
         {
             return EntitySet.AsNoTracking().ToListAsync();
         }
