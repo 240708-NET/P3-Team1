@@ -1,4 +1,5 @@
 import React from "react";
+import CourseModal from "./CourseModal";
 
 interface Course {
   id: number;
@@ -17,6 +18,7 @@ const Card: React.FC<CardProps> = ({ course }) => {
       <h3 className="text-xl font-semibold text-orange-600">{course.name}</h3>
       <p className="text-gray-700">{course.description}</p>
       <p className="text-gray-500 text-sm">{course.category}</p>
+      <CourseModal />
     </div>
   );
 };
