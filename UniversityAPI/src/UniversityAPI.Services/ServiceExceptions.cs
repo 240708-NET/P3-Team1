@@ -1,0 +1,4 @@
+namespace Service.Exception
+{
+
+}
