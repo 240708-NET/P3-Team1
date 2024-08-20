@@ -19,32 +19,72 @@ public class SectionController : ControllerBase, IController<Section>
 
     [HttpGet("{id}")]
     public Section? GetById([FromRoute] int id)
+    {try
     {
-        return _sectionService.GetById(id);
+        
+            return _sectionService.GetById(id);
+    }
+    catch (System.Exception)
+    {
+        
+        throw;
+    }
     }
 
     [HttpGet("")]
     public List<Section> GetAll()
+    {try
     {
-        return _sectionService.GetAll();
+        
+            return _sectionService.GetAll();
+    }
+    catch (System.Exception)
+    {
+        
+        throw;
+    }
     }
 
     [HttpPost("")]
-    public Section Insert(Section item)
+    public Section? Insert(Section item)
+    {try
     {
-        return _sectionService.Insert(item);
+        
+            return _sectionService.Insert(item);
+    }
+    catch (System.Exception)
+    {
+        
+        throw;
+    }
     }
 
     [HttpPatch("{id}")]
     public Section? Patch([FromBody] Section item)
+    {try
     {
-        return _sectionService.Update(item);
+        
+            return _sectionService.Update(item);
+    }
+    catch (System.Exception)
+    {
+        
+        throw;
+    }
     }
 
     [HttpDelete("{id}")]
     public Section? DeleteById([FromRoute] int id)
+    {try
     {
-        return _sectionService.DeleteById(id);
+        
+            return _sectionService.DeleteById(id);
+    }
+    catch (System.Exception)
+    {
+        
+        throw;
+    }
     }
 
     [HttpDelete("")]

@@ -21,36 +21,84 @@ public class CourseController : ControllerBase, IController<Course>
     [HttpGet("{id}")]
     public Course? GetById([FromRoute] int id)
     {
-        return _courseService.GetById(id);
+        try
+        {
+            return _courseService.GetById(id);
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return null;
+        }
     }
 
     [HttpGet("")]
     public List<Course> GetAll()
     {
-        return _courseService.GetAll();
+        try
+        {
+            return _courseService.GetAll();
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return new List<Course>();
+        }
     }
 
     [HttpPost("")]
-    public Course Insert(Course item)
+    public Course? Insert(Course item)
     {
-        return _courseService.Insert(item);
+        try
+        {
+            return _courseService.Insert(item);
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return null;
+        }
     }
 
     [HttpPatch("{id}")]
     public Course? Patch([FromBody] Course item)
     {
-        return _courseService.Update(item);
+        try
+        {
+            return _courseService.Update(item);
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return null;
+        }
     }
 
     [HttpDelete("{id}")]
     public Course? DeleteById([FromRoute] int id)
     {
-        return _courseService.DeleteById(id);
+        try
+        {
+            return _courseService.DeleteById(id);
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return null;
+        }
     }
 
     [HttpDelete("")]
     public List<Course> DeleteAll()
     {
-        return _courseService.DeleteAll();
+        try
+        {
+            return _courseService.DeleteAll();
+        }
+        catch (System.Exception)
+        {
+            Response.StatusCode = 500;
+            return new List<Course>();
+        }
     }
 }

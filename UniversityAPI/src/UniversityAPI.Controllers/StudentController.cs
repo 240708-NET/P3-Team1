@@ -33,7 +33,7 @@ public class StudentController : ControllerBase, IController<Student>
     }
 
     [HttpPost("")]
-    public Student Insert(Student item)
+    public Student? Insert(Student item)
     {
         return _studentService.Insert(item);
     }

@@ -25,7 +25,7 @@ public class SectionService : ISectionServices
         throw new NotImplementedException();
     }
 
-    public Section? GetById(int id)
+    public Section GetById(int id)
     {
         throw new NotImplementedException();
     }
