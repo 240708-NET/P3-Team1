@@ -1,3 +1,5 @@
+using UniversityAPI.Models;
+
 namespace UniversityAPI.Repositories
 {
     public interface ICourseRepository : IGenericRepository<Course>
