@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
 
-namespace UniversityAPI.Models
+namespace UniversityAPI.Models;
 {
     public class Professor : IIdentified
     {
@@ -13,16 +13,24 @@ namespace UniversityAPI.Models
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(50)] 
+        [MaxLength(50)]
         public string LastName { get; set; }
+
 
         [MaxLength(50)] 
         public string Password { get; set; }
 
-        //Constructor
+        //Constructors
         public Professor()
         {
+            FirstName = "";
+            LastName = "";
+        }
 
+        public Professor(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }

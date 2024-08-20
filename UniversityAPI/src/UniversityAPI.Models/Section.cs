@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
-using System.ComponentModel.DataAnnotations.Schema; //For notation like [ForeignKey()]
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection; //For notation like [ForeignKey()]
 
-namespace UniversityAPI.Models
+namespace UniversityAPI.Models;
 {
     public class Section : IIdentified
     {
-        //Attributes
         [Key]
         public int ID { get; set; }
 
@@ -28,13 +28,26 @@ namespace UniversityAPI.Models
         public TimeSpan EndTime { get; set; }
 
         [Required]
-        [MaxLength(5)] 
+        [MaxLength(5)]
         public string Day { get; set; }
 
         //Constructor
         public Section()
         {
+            Course = new Course();
+            Professor = new Professor();
+            Day = "";
+        }
 
+        public Section(int courseID, Course course, int professorID, Professor professor, TimeSpan startTime, TimeSpan endTime, string day)
+        {
+            CourseID = courseID;
+            Course = course;
+            ProfessorID = professorID;
+            Professor = professor;
+            StartTime = startTime;
+            EndTime = endTime;
+            Day = day;
         }
     }
 }

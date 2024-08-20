@@ -1,5 +1,3 @@
-using UniversityAPI.Models;
-
 namespace UniversityAPI.Repositories
 {
     public interface IStudentRepository : IGenericRepository<Student>
