@@ -32,6 +32,12 @@ public class ProfessorController : ControllerBase, IController<Professor>
         return _professorService.GetAll();
     }
 
+    [HttpPost("")]
+    public Professor Insert(Professor item)
+    {
+        return _professorService.Insert(item);
+    }
+
     [HttpPatch("{id}")]
     public Professor? Patch([FromBody] Professor item)
     {

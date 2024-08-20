@@ -29,6 +29,11 @@ public class StudentService : IStudentServices
         throw new NotImplementedException();
     }
 
+    public Student? Insert(Student item)
+    {
+        throw new NotImplementedException();
+    }
+
     public Student? Login(Student student)
     {
         throw new NotImplementedException();

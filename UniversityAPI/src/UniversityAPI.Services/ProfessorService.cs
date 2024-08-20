@@ -25,6 +25,11 @@ public class ProfessorService : IProfessorServices
         throw new NotImplementedException();
     }
 
+    public Professor? Insert(Professor item)
+    {
+        throw new NotImplementedException();
+    }
+
     public Professor? Login(Professor student)
     {
         throw new NotImplementedException();

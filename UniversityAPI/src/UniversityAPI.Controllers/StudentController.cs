@@ -32,6 +32,12 @@ public class StudentController : ControllerBase, IController<Student>
         return _studentService.GetAll();
     }
 
+    [HttpPost("")]
+    public Student Insert(Student item)
+    {
+        return _studentService.Insert(item);
+    }
+
     [HttpPatch("{id}")]
     public Student? Patch([FromBody] Student item)
     {

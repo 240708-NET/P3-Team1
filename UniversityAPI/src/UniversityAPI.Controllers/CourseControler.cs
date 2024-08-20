@@ -30,6 +30,12 @@ public class CourseController : ControllerBase, IController<Course>
         return _courseService.GetAll();
     }
 
+    [HttpPost("")]
+    public Course Insert(Course item)
+    {
+        return _courseService.Insert(item);
+    }
+
     [HttpPatch("{id}")]
     public Course? Patch([FromBody] Course item)
     {
@@ -47,5 +53,4 @@ public class CourseController : ControllerBase, IController<Course>
     {
         return _courseService.DeleteAll();
     }
-
 }

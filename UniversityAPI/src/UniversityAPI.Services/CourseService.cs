@@ -25,6 +25,11 @@ public class CourseService : ICourseServices
         throw new NotImplementedException();
     }
 
+    public Course? Insert(Course item)
+    {
+        throw new NotImplementedException();
+    }
+
     public Course? Update(Course item)
     {
         throw new NotImplementedException();

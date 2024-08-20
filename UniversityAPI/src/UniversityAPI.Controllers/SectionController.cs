@@ -29,6 +29,12 @@ public class SectionController : ControllerBase, IController<Section>
         return _sectionService.GetAll();
     }
 
+    [HttpPost("")]
+    public Section Insert(Section item)
+    {
+        return _sectionService.Insert(item);
+    }
+
     [HttpPatch("{id}")]
     public Section? Patch([FromBody] Section item)
     {

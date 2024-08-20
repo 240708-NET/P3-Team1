@@ -30,6 +30,11 @@ public class SectionService : ISectionServices
         throw new NotImplementedException();
     }
 
+    public Section? Insert(Section item)
+    {
+        throw new NotImplementedException();
+    }
+
     public Section? Update(Section item)
     {
         throw new NotImplementedException();
