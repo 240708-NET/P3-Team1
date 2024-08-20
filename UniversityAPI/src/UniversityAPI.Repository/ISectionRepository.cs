@@ -1,6 +1,9 @@
-namespace UniversityAPI.Repository;
+using UniversityAPI.Models;
 
-public interface ISectionRepository
+namespace UniversityAPI.Repositories
 {
-
+    public interface ISectionRepository : IRepository<Section>
+    {
+        Task<List<Section>> GetSectionsByCourseID(int courseID);
+    }
 }

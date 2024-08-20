@@ -1,6 +1,9 @@
-namespace UniversityAPI.Repository;
+using UniversityAPI.Models;
 
-public interface ICourseRepository
+namespace UniversityAPI.Repositories
 {
-
+    public interface ICourseRepository : IRepository<Course>
+    {
+        Task<List<Course>> GetCoursesByCategory(string category);
+    }
 }

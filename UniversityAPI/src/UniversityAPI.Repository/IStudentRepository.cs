@@ -1,6 +1,9 @@
-namespace UniversityAPI.Repository;
+using UniversityAPI.Models;
 
-public interface IStudentRepository
+namespace UniversityAPI.Repositories
 {
-
+    public interface IStudentRepository : IRepository<Student>
+    {
+        Task<List<Student>> GetStudentsByLastName(string lastName);
+    }
 }
