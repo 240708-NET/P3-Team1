@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;        //For notation like [Key] an
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection; //For notation like [ForeignKey()]
 
-namespace UniversityAPI.Models;
+namespace UniversityAPI.Models
 {
     public class Section : IIdentified
     {
