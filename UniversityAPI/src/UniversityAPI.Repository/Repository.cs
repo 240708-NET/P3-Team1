@@ -9,7 +9,7 @@ namespace UniversityAPI.Repositories
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> EntitySet;
 
-        public GenericRepository(DbContext context)
+        public Repository(DbContext context)
         {
             Context = context;
             EntitySet = context.Set<TEntity>();
