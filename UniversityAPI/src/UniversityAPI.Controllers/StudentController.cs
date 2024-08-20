@@ -24,7 +24,7 @@ public class StudentController : Controller<Student>
     [HttpPost("login")]
     public Student? Login([FromBody] Student student)
     {
-        Student? s = ((IStudentServices)_service)..Login(student);
+        Student? s = ((IStudentServices)_service).Login(student);
 
         if (s == null)
         {
@@ -37,15 +37,22 @@ public class StudentController : Controller<Student>
         }
     }
 
-    [HttpGet("{id}/sections")]
+    [HttpGet("{id}/section")]
     public List<Section> GetRegisteredSections([FromRoute] int id)
     {
-        return _studentService.GetRegisteredSections(id);
+        return ((IStudentServices)_service).GetRegisteredSections(id);
     }
 
-    // add section
-    // [Http]
+    [HttpPost("{id}/section")]
+    public Section? AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    {
+        return null;
+    }
 
-    // remove section
+    [HttpDelete("{id}/section")]
+    public Section? DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    {
+        return null;
+    }
 
 }

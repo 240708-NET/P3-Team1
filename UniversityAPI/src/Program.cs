@@ -12,9 +12,10 @@ class Program
         builder.Services.AddDbContext<UniversityContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("AzureCloud")));
 
-        // builder.Services.AddScoped<IProfessorServices, ProfessorService>();
-        // builder.Services.AddScoped<ISectionServices, SectionService>();
+        builder.Services.AddScoped<IProfessorServices, ProfessorService>();
+        builder.Services.AddScoped<ISectionServices, SectionService>();
         builder.Services.AddScoped<ICourseServices, CourseService>();
+        builder.Services.AddScoped<IStudentServices, FakeStudentSertices>();
         builder.Services.AddControllers();
         //You can add other services like Authentication, Swagger, etc., here
 

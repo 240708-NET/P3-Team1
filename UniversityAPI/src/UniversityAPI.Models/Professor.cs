@@ -17,7 +17,7 @@ namespace UniversityAPI.Models
         public string LastName { get; set; }
 
 
-        [MaxLength(50)] 
+        [MaxLength(50)]
         public string Password { get; set; }
 
         //Constructors
@@ -25,12 +25,14 @@ namespace UniversityAPI.Models
         {
             FirstName = "";
             LastName = "";
+            Password = "";
         }
 
-        public Professor(string firstName, string lastName)
+        public Professor(string firstName, string lastName, string password)
         {
             FirstName = firstName;
             LastName = lastName;
+            Password = password;
         }
     }
 }
