@@ -20,14 +20,17 @@ namespace UniversityAPI.Models
         [MaxLength(50)] 
         public string Password { get; set; }
 
+        //Navigation Property for Sections
+        public virtual ICollection<Section> Sections { get; set; }
 
-        //Constructor
+
+        //Constructors
         public Student()
         {
             FirstName = "";
             LastName = "";
+            Sections = new List<Section>();
         }
-
 
         public Student(string firstName, string lastName)
         {

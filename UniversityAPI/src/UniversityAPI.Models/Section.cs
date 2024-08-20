@@ -31,12 +31,16 @@ namespace UniversityAPI.Models
         [MaxLength(5)]
         public string Day { get; set; }
 
+        //Navigation Property for Students
+        public virtual ICollection<Student> Students { get; set; }
+
         //Constructor
         public Section()
         {
             Course = new Course();
             Professor = new Professor();
             Day = "";
+            Students = new List<Student>();
         }
 
         public Section(int courseID, Course course, int professorID, Professor professor, TimeSpan startTime, TimeSpan endTime, string day)
@@ -48,6 +52,7 @@ namespace UniversityAPI.Models
             StartTime = startTime;
             EndTime = endTime;
             Day = day;
+            Students = new List<Student>();
         }
     }
 }
