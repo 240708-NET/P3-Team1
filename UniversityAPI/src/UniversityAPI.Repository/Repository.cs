@@ -3,7 +3,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Repositories
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity>
+    public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class, IIdentified
     {
         protected readonly DbContext Context;

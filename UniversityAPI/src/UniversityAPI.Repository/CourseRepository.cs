@@ -3,7 +3,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Repositories
 {
-    public class CourseRepository : GenericRepository<Course>, ICourseRepository
+    public class CourseRepository : Repository<Course>, ICourseRepository
     {
         protected readonly UniversityContext _context;
 

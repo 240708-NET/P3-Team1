@@ -1,6 +1,6 @@
 namespace UniversityAPI.Repositories;
 
-public interface IGenericRepository<TEntity>
+public interface IRepository<TEntity>
 {
     Task<List<TEntity>> Get();
     Task<TEntity?> GetById(int id);
