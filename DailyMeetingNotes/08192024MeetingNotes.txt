@@ -1,0 +1,8 @@
+8/19/2024 Meeting Notes
+-Daniel finished registration page, added fields to current login page
+-Harold started working on registering for a course page
+-Ibrahim will start working for components of course information
+-Jae will start improvements on styling
+-Josh and Ned will get migrations set up, adding password field as well
+-User story for registering for a class you are already registered for
+-Need to add passwords to DB schema
