@@ -9,6 +9,8 @@ USE ReevatureOnlineEniversity;
 -- TRUNCATE TABLE Students;
 
 
+INSERT INTO Students ([FirstName],[LastName],[password]) VALUES ('Bobson', 'Dugnut','123');
+
 INSERT INTO Courses ([Name],[Description],[Category]) VALUES ('Intro to Existential Dread','The kids these days love screaming into the void. Why is that? Are they crazy? Yeah, probably. We''re looking into that. We just don''t get it, it''s crazy weird, right?','Humanities');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Esoteric Understandment','Do you not understand things? Do you wake up in the morning and be like "Huh? What?? Who the?? Huh???" Well we can probably help you with that. Like, not all the way, but at least you''ll be able to, like, make toast without staring off into the distance for a really long time and then burning your toast. We''re gonna be investigating stuff like "Why are things the way they are?" and, like, "Do summer blockbusters really matter?" We also do a deep dive into 15-16th century alchemy and how hermetic secret societies contributed directly into the development of the Scientific Revolution. You need to buy your own books, we already ate all our copies.','Humanities');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Boardgame Etiquette and its Geopolitical Fallout','In this course we will be investigating the way in which boardgames have shaped the modern world. Everyone plays boardgames. Like, even rich people, right? It''s wild how many people play boardgames, and they totally influence wars. Also, we will be holding Milton Bradley to account for Monopoly. Torches are included, but you will need to bring your own pitchfork.','Humanities');
@@ -30,14 +32,14 @@ INSERT INTO Courses ([name],[description],[category]) VALUES ('The Morality of M
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Infotainment Technology','VVV','Physical Science');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Cruel & Unusual Chemistry','Chemistry is super hard, you guys. You gotta wear, like, special gloves and goggles and junk, and you gotta use these expensive tubes or whatever. One time I spilled a big cartoon beaker of green stuff all over my feet, and my legs melted and now I have these cool cyborg legs. Like, the legs are awesome, but I miss being able to wear Air Jordans. These robot legs can only wear crocs, it''s super lame. Anyway, chemistry is super dangerous and we''re still trying to figure out how to not melt our legs and whatever. Can you help us?','Physical Science');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Eldritch Geometry','In this course, we will be investigating shapes which mankind was not meant to understand. We''re gonna look at some super messed up triangles and, like, illegal squares. One of my hexagons is registered as a biohazard by OSHA, but they can''t stop me from showing it to people. My grandpa said that what I was doing was a "sin against rationality" and that "my hubris would be my undoing" but he''s just jealous that I can draw a perfect star and his stars always have one wonky arm and everyone at the Thanksgiving table laughs at him.','Physical Science');
+INSERT INTO Courses ([name],[description],[category]) VALUES ('Martial Tax Evasion: Blackbelt Level','ROE believes very strongly in the importance in instilling its students with a robust understanding of self defense. This course will instill in you enough experience to hold your own on the New York Stock Exchange floor. Lemme tell you, those accountants can throw a mean left hook when the market goes bear. This course makes sure you know how to dodge those punches. No need to look into it further, don''t worry about it.','Business');
+INSERT INTO Courses ([name],[description],[category]) VALUES ('Underwater Macrame','Remember the 70''s? Disco was all the rage, there definitely wasn''t any political or social upheaval, and indoor decor was at its all time brownest. Ruling over that brownness was macrame, the one true artform. But the greatest weakness of macrame was that you couldn''t do it underwater. Well we aim to change that. Please bring snorkels.','Creative Arts');
 
 INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Physical Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Physical Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Business');
+INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VvVV','Physical Science');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Creative Arts');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Creative Arts');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Creative Arts');
+INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVVv','Creative Arts');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
 
@@ -57,3 +59,238 @@ INSERT INTO Professors ([FirstName],[LastName],[password]) VALUES ('Todd','Bonza
 INSERT INTO Professors ([FirstName],[LastName],[password]) VALUES ('Won''tber','Whateley','123');
 INSERT INTO Professors ([FirstName],[LastName],[password]) VALUES ('Richard','Hawkins','123');
 INSERT INTO Professors ([FirstName],[LastName],[password]) VALUES ('Ulada','Haranina','123');
+
+
+
+---- BOBSON'S SECTIONS
+-- MON
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,1,'08:00:00','10:00:00','Mon'); --- Crudelia Onswitch teaching TV/VCR Repair
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,2,'10:00:00','12:00:00','Mon'); --- Ogden Allthetime teaching Cruel and Unusual Chemistry
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,14,'14:00:00','16:00:00','Mon'); --- Richard teaching Cat Burg
+
+
+-- TUE
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (3,10,'08:00:00','10:00:00','Tue'); --- Dwight Rortugal teaching Boardgame Etiquette
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (4,8,'10:00:00','12:00:00','Tue'); --- Grandma Dustice teaching Lace Making
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (19,9,'15:00:00','17:00:00','Tue'); --- Melma Trukstuff teaching Infotainment Technology
+
+
+-- WED
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,7,'08:00:00','10:00:00','Wed'); --- Sleve McBichael teaching Cracking Wise
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,11,'10:00:00','12:00:00','Wed'); --- Squedge Sernandez teaching Color Theory
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (21,13,'14:00:00','16:00:00','Wed'); --- Whateley teaching Eldritch Geometry
+
+
+-- THU
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,15,'08:00:00','10:00:00','Thu'); --- Ulada teaching Esoteric Understandment
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (14,3,'10:00:00','12:00:00','Thu'); --- Bewilderforce teaching A Cry for Help
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,4,'14:00:00','16:00:00','Thu'); --- Samantha Bevelhead teaching the Morality of Minerals
+
+
+-- FRI
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (5,6,'08:00:00','10:00:00','Fri'); --- Merci Marquis teaching Western Clown Orthodoxy
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,5,'10:00:00','12:00:00','Fri'); --- Norman Humanman teaching Human Weaknesses
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,12,'15:00:00','17:00:00','Fri'); --- Todd Bonzalez teaching Marriage Apothecary
+
+
+
+
+--- MON 8-10
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (23,1,'08:00:00','10:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,2,'08:00:00','10:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (4,3,'08:00:00','10:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (5,4,'08:00:00','10:00:00','Mon');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,1,'08:00:00','10:00:00','Mon'); --- Crudelia Onswitch teaching TV/VCR Repair
+
+--- MON 10-12
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (10,6,'10:00:00','12:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,7,'10:00:00','12:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (8,8,'10:00:00','12:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (9,9,'10:00:00','12:00:00','Mon');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,2,'10:00:00','12:00:00','Mon'); --- Ogden Allthetime teaching Cruel and Unusual Chemistry
+
+--- MON 14-16
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (21,12,'14:00:00','16:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,11,'14:00:00','16:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (15,13,'14:00:00','16:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,15,'14:00:00','16:00:00','Mon');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,14,'14:00:00','16:00:00','Mon'); --- Richard teaching Cat Burg
+
+
+--- MON 15-17
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (1,6,'15:00:00','17:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,4,'15:00:00','17:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (3,5,'15:00:00','17:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,10,'15:00:00','17:00:00','Mon');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (10,1,'15:00:00','17:00:00','Mon');
+
+
+
+
+
+
+--- TUE 8-10
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (5,4,'08:00:00','10:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,5,'08:00:00','10:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,6,'08:00:00','10:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (8,7,'08:00:00','10:00:00','Tue');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (3,10,'08:00:00','10:00:00','Tue'); --- Dwight Rortugal teaching Boardgame Etiquette
+
+
+--- TUE 10-12
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (9,1,'10:00:00','12:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (10,3,'10:00:00','12:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (11,2,'10:00:00','12:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,14,'10:00:00','12:00:00','Tue');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (4,8,'10:00:00','12:00:00','Tue'); --- Grandma Dustice teaching Lace Making
+
+--- TUE 14-16
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,10,'14:00:00','16:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (14,11,'14:00:00','16:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (15,12,'14:00:00','16:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,13,'14:00:00','16:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,14,'14:00:00','16:00:00','Tue');
+
+--- TUE 15-17
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,15,'15:00:00','17:00:00','Tue');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (19,9,'15:00:00','17:00:00','Tue'); --- Melma Trukstuff teaching Infotainment Technology
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,1,'15:00:00','17:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (1,2,'15:00:00','17:00:00','Tue');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,3,'15:00:00','17:00:00','Tue');
+
+
+
+
+
+--- WED 8-10
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (5,2,'08:00:00','10:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,3,'08:00:00','10:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,4,'08:00:00','10:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (8,5,'08:00:00','10:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (9,6,'08:00:00','10:00:00','Wed');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,7,'08:00:00','10:00:00','Wed'); --- Sleve McBichael teaching Cracking Wise
+
+--- WED 10-12
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (10,1,'10:00:00','12:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (11,15,'10:00:00','12:00:00','Wed');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,11,'10:00:00','12:00:00','Wed'); --- Squedge Sernandez teaching Color Theory
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (14,8,'10:00:00','12:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (15,9,'10:00:00','12:00:00','Wed');
+
+--- WED 14-16
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,10,'14:00:00','16:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,10,'14:00:00','16:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,14,'14:00:00','16:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (19,15,'14:00:00','16:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,1,'14:00:00','16:00:00','Wed');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (21,13,'14:00:00','16:00:00','Wed'); --- Whateley teaching Eldritch Geometry
+
+--- WED 15-17
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (23,6,'15:00:00','17:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (1,3,'15:00:00','17:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,9,'15:00:00','17:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (3,6,'15:00:00','17:00:00','Wed');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (4,2,'15:00:00','17:00:00','Wed');
+
+
+
+
+
+
+--- THU 8-10
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (21,5,'08:00:00','10:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (22,6,'08:00:00','10:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (23,7,'08:00:00','10:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (1,8,'08:00:00','10:00:00','Thu');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,15,'08:00:00','10:00:00','Thu'); --- Ulada teaching Esoteric Understandment
+
+--- THU 10-12
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,9,'10:00:00','12:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (7,10,'10:00:00','12:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (8,11,'10:00:00','12:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (9,12,'10:00:00','12:00:00','Thu');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (14,3,'10:00:00','12:00:00','Thu'); --- Bewilderforce teaching A Cry for Help
+
+--- THU 14-16
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (11,14,'14:00:00','16:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,1,'14:00:00','16:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,2,'14:00:00','16:00:00','Thu');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,4,'14:00:00','16:00:00','Thu'); --- Samantha Bevelhead teaching the Morality of Minerals
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (15,9,'14:00:00','16:00:00','Thu');
+
+--- THU 15-17
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,7,'15:00:00','17:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,12,'15:00:00','17:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,11,'15:00:00','17:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (19,6,'15:00:00','17:00:00','Thu');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,5,'15:00:00','17:00:00','Thu');
+
+
+
+
+
+
+--- FRI 8-10
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (1,12,'08:00:00','10:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (2,13,'08:00:00','10:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (3,14,'08:00:00','10:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (4,15,'08:00:00','10:00:00','Fri');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (5,6,'08:00:00','10:00:00','Fri'); --- Merci Marquis teaching Western Clown Orthodoxy
+
+--- FRI 10-12
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (10,1,'10:00:00','12:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (11,2,'10:00:00','12:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (12,3,'10:00:00','12:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (13,4,'10:00:00','12:00:00','Fri');
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (6,5,'10:00:00','12:00:00','Fri'); --- Norman Humanman teaching Human Weaknesses
+
+--- FRI 14-16
+
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (14,13,'14:00:00','16:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (15,12,'14:00:00','16:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (16,14,'14:00:00','16:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (18,6,'14:00:00','16:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (19,7,'14:00:00','16:00:00','Fri');
+
+--- FRI 15-17
+
+-- INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (17,12,'15:00:00','17:00:00','Fri'); --- Todd Bonzalez teaching Marriage Apothecary
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (20,8,'15:00:00','17:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (21,9,'15:00:00','17:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (22,10,'15:00:00','17:00:00','Fri');
+INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALUES (23,11,'15:00:00','17:00:00','Fri');
+
+
+
+
+
+--- Bobson's Sections
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (6,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (7,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (8,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (9,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (10,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (11,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (12,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (13,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (14,1);
+INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (15,1);
+
