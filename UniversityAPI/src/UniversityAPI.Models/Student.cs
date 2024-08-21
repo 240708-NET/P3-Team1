@@ -20,13 +20,17 @@ namespace UniversityAPI.Models
         [MaxLength(50)]
         public string Password { get; set; }
 
+        //Navigation Property for Sections
+        public virtual ICollection<Section> Sections { get; set; }
 
-        //Constructor
+
+        //Constructors
         public Student()
         {
             FirstName = "";
             LastName = "";
             Password = "";
+            Sections = new List<Section>();
         }
 
 
@@ -35,6 +39,7 @@ namespace UniversityAPI.Models
             FirstName = firstName;
             LastName = lastName;
             Password = password;
+            Sections = new List<Section>();
         }
 
         public override bool Equals(object? obj)
