@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection; //For notation like [ForeignKey()]
+using System.ComponentModel.DataAnnotations.Schema; //For notation like [ForeignKey()]
 
 namespace UniversityAPI.Models
 {
@@ -22,14 +21,17 @@ namespace UniversityAPI.Models
         public virtual Professor Professor { get; set; }
 
         [Required]
-        public TimeSpan StartTime { get; set; }
+        public TimeOnly StartTime { get; set; }
 
         [Required]
-        public TimeSpan EndTime { get; set; }
+        public TimeOnly EndTime { get; set; }
 
         [Required]
         [MaxLength(5)]
         public string Day { get; set; }
+
+        //Navigation Property for Students
+        public virtual ICollection<Student> Students { get; set; }
 
         //Constructor
         public Section()
@@ -37,9 +39,10 @@ namespace UniversityAPI.Models
             Course = new Course();
             Professor = new Professor();
             Day = "";
+            Students = new List<Student>();
         }
 
-        public Section(int courseID, Course course, int professorID, Professor professor, TimeSpan startTime, TimeSpan endTime, string day)
+        public Section(int courseID, Course course, int professorID, Professor professor, TimeOnly startTime, TimeOnly endTime, string day)
         {
             CourseID = courseID;
             Course = course;
@@ -48,6 +51,7 @@ namespace UniversityAPI.Models
             StartTime = startTime;
             EndTime = endTime;
             Day = day;
+            Students = new List<Student>();
         }
     }
 }

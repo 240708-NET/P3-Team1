@@ -1,0 +1,9 @@
+8/21/2024 Meeting Notes
+-Ned got database populated
+-Josh working on repository pattern
+-Robert working on service layer
+-Nick mostly got controllers laid out
+-Ibrahim just need endpoints for more progress on my courses page
+-Daniel working on navbar, added login and logout buttons
+-Harold working on registering for courses, pushed his progress
+-Jae worked on CSS, moved on to pop-up courses
