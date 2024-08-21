@@ -1,32 +1,103 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
+using UniversityAPI.Repository;
 
 namespace UniversityAPI.Services;
 public class StudentService : IStudentServices
 {
+
+    private readonly IStudentRepository _studentRepository;
+
+    public StudentService(IStudentRepository studentRepository)
+    {
+        _studentRepository = studentRepository;
+    }
+
     public List<Student> DeleteAll()
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _studentRepository.DeleteAllStudents();
+        }
+        catch (Exception)
+        {
+            throw new InvalidOperationException("An error occurred while deleting all students.");
+        }
     }
 
     public Student? DeleteById(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Student? student = _studentRepository.GetStudentById(id);
+            if (student == null)
+            {
+                throw new KeyNotFoundException("Student with the specified ID does not exist.");
+            }
+
+            return _studentRepository.DeleteStudentById(id);
+        }
+        catch (KeyNotFoundException)
+        {
+            throw;
+        }
+        catch (Exception)
+        {
+            throw new InvalidOperationException("An error occurred while deleting the student.");
+        }
     }
 
     public List<Student> GetAll()
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _studentRepository.GetAllStudents();
+        }
+        catch (Exception)
+        {
+            throw new InvalidOperationException("An error occurred while retrieving all students.");
+        }
     }
 
     public Student? GetById(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Student? student = _studentRepository.GetStudentById(id);
+            if (student == null)
+            {
+                throw new KeyNotFoundException("Student with the specified ID does not exist.");
+            }
+            return student;
+        }
+        catch (KeyNotFoundException)
+        {
+            throw;
+        }
+        catch (Exception)
+        {
+            throw new InvalidOperationException("An error occurred while retrieving the student.");
+        }
     }
 
     public List<Section> GetRegisteredSections(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Student? student = _studentRepository.GetStudentById(id);
+            if (student == null)
+            {
+                throw new KeyNotFoundException("Student with the specified ID does not exist.");
+            }
+            return _studentRepository.GetRegisteredSectionsByStudentId(id);
+        }
+        catch (KeyNotFoundException)
+        {
+            throw;
+        }
+        catch (Exception)
+        {
+            throw new InvalidOperationException("An error occurred while retrieving registered sections.");
+        }
     }
 
     public Student? Login(Student student)
