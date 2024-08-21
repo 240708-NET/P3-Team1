@@ -12,7 +12,7 @@ public class SectionController : Controller<Section>
 {
     public SectionController(ISectionServices sectionServices) : base(sectionServices) { }
 
-    [HttpGet("{id}/student")]
+    [HttpGet("{sectionId}/student")]
     public ActionResult<List<Student>> GetRegisteredStudents([FromRoute] int id)
     {
         try
@@ -25,7 +25,7 @@ public class SectionController : Controller<Section>
         }
     }
 
-    [HttpPost("{id}/student")]
+    [HttpPost("{sectionId}/student")]
     public ActionResult<Student> AddStudentToSection([FromRoute] int sectionId, [FromBody] int studentId)
     {
         try
@@ -38,7 +38,7 @@ public class SectionController : Controller<Section>
         }
     }
 
-    [HttpDelete("{id}/student")]
+    [HttpDelete("{sectionId}/student")]
     public ActionResult<Student> DeleteStudentFromSection([FromRoute] int sectionId, [FromBody] int studentId)
     {
         try

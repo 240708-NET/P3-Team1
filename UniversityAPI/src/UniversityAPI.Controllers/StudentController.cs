@@ -36,7 +36,7 @@ public class StudentController : Controller<Student>
         }
     }
 
-    [HttpGet("{id}/section")]
+    [HttpGet("{studentId}/section")]
     public ActionResult<List<Section>> GetRegisteredSections([FromRoute] int id)
     {
         try
@@ -49,7 +49,7 @@ public class StudentController : Controller<Student>
         }
     }
 
-    [HttpPost("{id}/section")]
+    [HttpPost("{studentId}/section")]
     public ActionResult<Student> AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
         try
@@ -62,7 +62,7 @@ public class StudentController : Controller<Student>
         }
     }
 
-    [HttpDelete("{id}/section")]
+    [HttpDelete("{studentId}/section")]
     public ActionResult<Student> DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
         try
