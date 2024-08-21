@@ -1,47 +1,54 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
 
-namespace UniversityAPI.Models;
-
-public class Student
+namespace UniversityAPI.Models
 {
-    //Attributes
-    [Key]
-    public int ID { get; set; }
-
-    [Required]
-    [MaxLength(50)]
-    public string FirstName { get; set; }
-
-    [Required]
-    [MaxLength(50)]
-    public string LastName { get; set; }
-
-    //Constructor
-    public Student()
+    public class Student : IIdentified
     {
-        FirstName = "";
-        LastName = "";
-    }
+        //Attributes
+        [Key]
+        public int ID { get; set; }
 
-    public Student(string firstName, string lastName)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-    }
+        [Required]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj == null || !(obj is Student))
+        [Required]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+
+        [MaxLength(50)] 
+        public string Password { get; set; }
+
+
+        //Constructor
+        public Student()
         {
-            return false;
+            FirstName = "";
+            LastName = "";
         }
-        return ((Student)obj).ID == ID &&
-               ((Student)obj).FirstName == FirstName &&
-               ((Student)obj).LastName == LastName;
-    }
 
-    public override int GetHashCode()
-    {
-        return ID;
+
+        public Student(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (!(obj is Student))
+            {
+                return false;
+            }
+            return ((Student)obj).ID == ID &&
+                   ((Student)obj).FirstName == FirstName &&
+                   ((Student)obj).LastName == LastName;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 }

@@ -1,34 +1,35 @@
 using System.ComponentModel.DataAnnotations;        //For notation like [Key] and [Required]
 
-namespace UniversityAPI.Models;
-
-public class Course
+namespace UniversityAPI.Models
 {
-    //Attributes
-    [Key]
-    public int ID { get; set; }
-
-    [Required]
-    [MaxLength(50)]
-    public string Name { get; set; }
-
-    public string Description { get; set; }
-
-    [MaxLength(50)]
-    public string Category { get; set; }
-
-    //Constructor
-    public Course()
+    public class Course : IIdentified
     {
-        Name = "";
-        Description = "";
-        Category = "";
-    }
+        //Attributes
+        [Key]
+        public int ID { get; set; }
 
-    public Course(string name, string description, string category)
-    {
-        Name = name;
-        Description = description;
-        Category = category;
+        [Required]
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        [MaxLength(50)]
+        public string Category { get; set; }
+
+        //Constructors
+        public Course()
+        {
+            Name = "";
+            Description = "";
+            Category = "";
+        }
+
+        public Course(string name, string description, string category)
+        {
+            Name = name;
+            Description = description;
+            Category = category;
+        }
     }
 }
