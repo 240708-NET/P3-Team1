@@ -1,6 +1,8 @@
+using UniversityAPI.Models;
+
 namespace UniversityAPI.Services;
 
-public interface ICourseServices
+public interface ICourseServices : IService<Course>
 {
 
 }

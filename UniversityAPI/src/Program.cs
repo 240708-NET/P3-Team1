@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UniversityAPI.Models;
+using UniversityAPI.Services;
 
 class Program
 {
@@ -11,15 +12,23 @@ class Program
         builder.Services.AddDbContext<UniversityContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("AzureCloud")));
 
+        builder.Services.AddScoped<IProfessorServices, ProfessorService>();
+        builder.Services.AddScoped<ISectionServices, SectionService>();
+        builder.Services.AddScoped<ICourseServices, CourseService>();
+        builder.Services.AddScoped<IStudentServices, FakeStudentSertices>();
         builder.Services.AddControllers();
         //You can add other services like Authentication, Swagger, etc., here
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
         //Configure the HTTP request pipeline
         if (app.Environment.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();
