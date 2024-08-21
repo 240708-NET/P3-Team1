@@ -1,5 +1,5 @@
 using UniversityAPI.Models;
-using UniversityAPI.Repository;
+using UniversityAPI.Repositories;
 
 namespace UniversityAPI.Services;
 public class StudentService : IStudentServices
