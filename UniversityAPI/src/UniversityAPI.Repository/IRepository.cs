@@ -1,6 +1,8 @@
+using UniversityAPI.Models;
+
 namespace UniversityAPI.Repositories;
 
-public interface IRepository<TEntity>
+public interface IRepository<TEntity> where TEntity : IIdentified
 {
     Task<List<TEntity>> Get();
     Task<TEntity?> GetById(int id);

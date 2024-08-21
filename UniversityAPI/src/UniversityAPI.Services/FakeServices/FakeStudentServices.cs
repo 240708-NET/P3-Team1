@@ -1,16 +1,25 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
 
 public class FakeStudentSertices : IStudentServices
 {
+    public Student AddSectionToStudent(int studentId, int sectionId)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<Student> DeleteAll()
     {
         throw new NotImplementedException();
     }
 
-    public Student? DeleteById(int id)
+    public Student DeleteById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Student DeleteSectionFromStudent(int studentId, int sectionId)
     {
         throw new NotImplementedException();
     }
@@ -20,7 +29,7 @@ public class FakeStudentSertices : IStudentServices
         throw new NotImplementedException();
     }
 
-    public Student? GetById(int id)
+    public Student GetById(int id)
     {
         throw new NotImplementedException();
     }
@@ -30,18 +39,19 @@ public class FakeStudentSertices : IStudentServices
         throw new NotImplementedException();
     }
 
-    public Student? Insert(Student item)
+    public Student Insert(Student item)
     {
         throw new NotImplementedException();
     }
 
-    public Student? Login(Student student)
+    public Student Login(Student student)
     {
         Student s = new Student
         {
             ID = 123,
             FirstName = "first",
             LastName = "last",
+            Password = "string"
         };
 
         if (s.Equals(student))
@@ -50,16 +60,16 @@ public class FakeStudentSertices : IStudentServices
         }
         else
         {
-            return null;
+            throw new InvalidDataException("");
         }
     }
 
-    public Student? Register(Student student)
+    public Student Register(Student student)
     {
         throw new NotImplementedException();
     }
 
-    public Student? Update(Student item)
+    public Student Update(Student item)
     {
         throw new NotImplementedException();
     }

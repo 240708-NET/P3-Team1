@@ -4,6 +4,6 @@ namespace UniversityAPI.Services;
 
 public interface IProfessorServices : IService<Professor>
 {
-    public Professor? Login(Professor student);
-    public Professor? Register(Professor student);
+    public Professor Login(Professor student);
+    public Professor Register(Professor student);
 }

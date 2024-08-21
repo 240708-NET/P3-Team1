@@ -1,9 +1,7 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
-
-public class ProfessorService : IProfessorServices
+public class FakeProfessorServices : IProfessorServices
 {
     public List<Professor> DeleteAll()
     {

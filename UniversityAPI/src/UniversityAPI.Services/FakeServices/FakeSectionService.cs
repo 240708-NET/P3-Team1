@@ -1,9 +1,8 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
 
-public class SectionService : ISectionServices
+public class FakeSectionServices : ISectionServices
 {
     public Student AddSectionToStudent(int sectionId, int studentId)
     {

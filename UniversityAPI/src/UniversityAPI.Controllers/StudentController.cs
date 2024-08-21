@@ -12,47 +12,68 @@ using UniversityAPI.Services;
 public class StudentController : Controller<Student>
 {
 
-
     public StudentController(IStudentServices studentServices) : base(studentServices) { }
 
     [HttpPost("register")]
-    public Student? Register([FromBody] Student student)
+    public ActionResult<Student> Register([FromBody] Student student)
     {
-        return ((IStudentServices)_service).Register(student);
+        return Ok(((IStudentServices)_service).Register(student));
     }
 
     [HttpPost("login")]
-    public Student? Login([FromBody] Student student)
+    public ActionResult<Student> Login([FromBody] Student student)
     {
-        Student? s = ((IStudentServices)_service).Login(student);
 
-        if (s == null)
+        try
         {
-            Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            return null;
+            return Ok(((IStudentServices)_service).Login(student));
         }
-        else
+        catch (InvalidDataException)
         {
-            return s;
+            return Unauthorized();
+        }catch(System.Exception){
+            return StatusCode(500);
         }
     }
 
     [HttpGet("{id}/section")]
-    public List<Section> GetRegisteredSections([FromRoute] int id)
+    public ActionResult<List<Section>> GetRegisteredSections([FromRoute] int id)
     {
-        return ((IStudentServices)_service).GetRegisteredSections(id);
+        try
+        {
+            return Ok(((IStudentServices)_service).GetRegisteredSections(id));
+        }
+        catch (System.Exception)
+        {
+           return StatusCode(500);
+        }
     }
 
     [HttpPost("{id}/section")]
-    public Section? AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    public ActionResult<Student> AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
-        return null;
+        try
+        {
+            return Ok(((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
+        }
+        catch (System.Exception)
+        {
+            return StatusCode(500);
+        }
     }
 
     [HttpDelete("{id}/section")]
-    public Section? DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    public ActionResult<Student> DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
-        return null;
+        try
+        {
+            return Ok(((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
+        }
+        catch (System.Exception)
+        {
+            return StatusCode(500);
+        }
     }
+
 
 }

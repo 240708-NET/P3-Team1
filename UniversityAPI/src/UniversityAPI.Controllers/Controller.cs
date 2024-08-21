@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using UniversityAPI.Models;
 using UniversityAPI.Services;
 
 namespace UniversityAPI.Controllers;
@@ -6,7 +7,7 @@ namespace UniversityAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class Controller<T> : ControllerBase
+public class Controller<T> : ControllerBase where T : IIdentified
 {
     protected readonly IService<T> _service;
 
@@ -16,88 +17,83 @@ public class Controller<T> : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public T? GetById(int id)
+    public ActionResult<List<T>> GetById(int id)
     {
         try
         {
-            return _service.GetById(id);
+            return Ok(_service.GetById(id));
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return default(T);
+            return StatusCode(500);
         }
     }
 
 
     [HttpGet("")]
-    public List<T> GetAll()
+    public ActionResult<List<T>> GetAll()
     {
         try
         {
-            return _service.GetAll();
+            return Ok(_service.GetAll());
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return new List<T>();
+            return StatusCode(500);
         }
     }
 
 
     [HttpPost("")]
-    public T? Insert(T item)
+    public ActionResult<T> Insert(T item)
     {
         try
         {
-            return _service.Insert(item);
+            T createdItem = _service.Insert(item);
+            return CreatedAtAction(new Uri($"{Request.Path}/{createdItem.ID}").ToString(), createdItem);
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return default(T);
+            return StatusCode(500);
         }
     }
 
-    [HttpPatch("{id}")]
-    public T? Patch([FromBody] T item)
+    [HttpPut("{id}")]
+    public ActionResult<T> Put([FromBody] T item)
     {
         try
         {
-            return _service.Update(item);
+            return Ok(_service.Update(item));
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return default(T);
+            return StatusCode(500);
         }
     }
 
     [HttpDelete("{id}")]
-    public T? DeleteById([FromRoute] int id)
+    public ActionResult<T> DeleteById([FromRoute] int id)
     {
         try
         {
-            return _service.DeleteById(id);
+            return Ok(_service.DeleteById(id));
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return default(T);
+            return StatusCode(500);
         }
     }
 
     [HttpDelete("")]
-    public List<T> DeleteAll()
+    public ActionResult<List<T>> DeleteAll()
     {
         try
         {
-            return _service.DeleteAll();
+            return Ok(_service.DeleteAll());
         }
         catch (System.Exception)
         {
-            Response.StatusCode = 500;
-            return new List<T>();
+            return StatusCode(500);
         }
     }
 }
