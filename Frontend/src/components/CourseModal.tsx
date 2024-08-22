@@ -1,39 +1,44 @@
-import { useState } from "react";
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
+  DialogBackdrop,
 } from "@headlessui/react";
 
-export default function CourseModal() {
-  let [isOpen, setIsOpen] = useState(false);
+import { Course } from "../types";
 
+interface CourseModalProps {
+  course: Course;
+  open: boolean;
+  onClose: () => void;
+}
+
+function CourseModal({ course, open, onClose }: CourseModalProps) {
   return (
-    <>
-      <button onClick={() => setIsOpen(true)}>Open dialog</button>
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        className="relative z-50"
-      >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <DialogTitle className="font-bold">Deactivate account</DialogTitle>
-            <Description>
-              This will permanently deactivate your account
-            </Description>
-            <p>
-              Are you sure you want to deactivate your account? All of your data
-              will be permanently removed.
-            </p>
-            <div className="flex gap-4">
-              <button onClick={() => setIsOpen(false)}>Cancel</button>
-              <button onClick={() => setIsOpen(false)}>Deactivate</button>
+    <Dialog open={open} onClose={onClose} className="relative z-10">
+      <DialogBackdrop
+        transition
+        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+      />
+
+      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="flex min-h-full items-end justify-center p-4 text-center items-center">
+          <DialogPanel
+            transition
+            className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[closed]:translate-y-0 data-[closed]:scale-95 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in my-8 w-full max-w-lg"
+          >
+            <div className="m-8 flex flex-col space-y-4">
+              <DialogTitle className="text-lg font-semibold leading-6 text-gray-900 flex space-x-3">
+                <div>{course.id}</div>
+                <div>{course.name}</div>
+              </DialogTitle>
+              <p className="text-base text-gray-500">{course.description}</p>
             </div>
           </DialogPanel>
         </div>
-      </Dialog>
-    </>
+      </div>
+    </Dialog>
   );
 }
+
+export default CourseModal;
