@@ -1,8 +1,8 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
-public class StudentService : IStudentServices
+
+public class FakeStudentSertices : IStudentServices
 {
     public Student AddSectionToStudent(int studentId, int sectionId)
     {
@@ -46,7 +46,22 @@ public class StudentService : IStudentServices
 
     public Student Login(Student student)
     {
-        throw new NotImplementedException();
+        Student s = new Student
+        {
+            ID = 123,
+            FirstName = "first",
+            LastName = "last",
+            Password = "string"
+        };
+
+        if (s.Equals(student))
+        {
+            return student;
+        }
+        else
+        {
+            throw new InvalidDataException("");
+        }
     }
 
     public Student Register(Student student)
