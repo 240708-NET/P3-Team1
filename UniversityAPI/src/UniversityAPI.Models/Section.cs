@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema; //For notation like [Foreign
 
 namespace UniversityAPI.Models
 {
-    public class Section : IIdentified
+    public class Section : Identified
     {
-        [Key]
-        public int ID { get; set; }
-
         [Required]
         [ForeignKey("Course")]
         public int CourseID { get; set; }

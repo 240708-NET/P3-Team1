@@ -1,8 +1,11 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using UniversityAPI.Models;
+using UniversityAPI.Repositories;
 using UniversityAPI.Services;
 
-class Program
+namespace UniversityAPI;
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -10,15 +13,25 @@ class Program
 
         //Adding connection string
         builder.Services.AddDbContext<UniversityContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("AzureCloud")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("UniversityDB")));
+
+        builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
+        builder.Services.AddScoped<ISectionRepository, SectionRepository>();
+        builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+        builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
         builder.Services.AddScoped<IProfessorServices, ProfessorService>();
         builder.Services.AddScoped<ISectionServices, SectionService>();
         builder.Services.AddScoped<ICourseServices, CourseService>();
         builder.Services.AddScoped<IStudentServices, StudentService>();
-
         builder.Services.AddControllers();
         //You can add other services like Authentication, Swagger, etc., here
+
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
+
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

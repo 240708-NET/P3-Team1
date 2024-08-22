@@ -4,7 +4,7 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>
-        where TEntity : class, IIdentified
+        where TEntity : Identified
     {
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> EntitySet;
@@ -41,7 +41,7 @@ namespace UniversityAPI.Repositories
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EntitySet.Any(e => e.ID == entity.ID))
+                if (!await EntitySet.AnyAsync(e => e.ID == entity.ID))
                     return null;
                 throw;
             }

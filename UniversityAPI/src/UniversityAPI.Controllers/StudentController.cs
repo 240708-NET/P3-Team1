@@ -15,46 +15,59 @@ public class StudentController : Controller<Student>
     public StudentController(IStudentServices studentServices) : base(studentServices) { }
 
     [HttpPost("register")]
-    public ActionResult<Student> Register([FromBody] Student student)
+    public async Task<ActionResult<Student>> Register([FromBody] Student student)
     {
-        return Ok(((IStudentServices)_service).Register(student));
+        try
+        {
+            return Ok(await ((IStudentServices)_service).Register(student));
+        }
+        catch (RegistrationFailedException)
+        {
+            return StatusCode(500);
+        }
+        catch (System.Exception)
+        {
+            return StatusCode(500);
+        }
     }
 
     [HttpPost("login")]
-    public ActionResult<Student> Login([FromBody] Student student)
+    public async Task<ActionResult<Student>> Login([FromBody] Student student)
     {
 
         try
         {
-            return Ok(((IStudentServices)_service).Login(student));
+            return Ok(await ((IStudentServices)_service).Login(student));
         }
-        catch (InvalidDataException)
+        catch (InvalidLoginException)
         {
             return Unauthorized();
-        }catch(System.Exception){
+        }
+        catch (System.Exception)
+        {
             return StatusCode(500);
         }
     }
 
     [HttpGet("{studentId}/section")]
-    public ActionResult<List<Section>> GetRegisteredSections([FromRoute] int id)
+    public async Task<ActionResult<List<Section>>> GetRegisteredSections([FromRoute] int id)
     {
         try
         {
-            return Ok(((IStudentServices)_service).GetRegisteredSections(id));
+            return Ok(await ((IStudentServices)_service).GetRegisteredSections(id));
         }
         catch (System.Exception)
         {
-           return StatusCode(500);
+            return StatusCode(500);
         }
     }
 
     [HttpPost("{studentId}/section")]
-    public ActionResult<Student> AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    public async Task<ActionResult<Student>> AddSectionToStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
         try
         {
-            return Ok(((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
+            return Ok(await ((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
         }
         catch (System.Exception)
         {
@@ -63,11 +76,11 @@ public class StudentController : Controller<Student>
     }
 
     [HttpDelete("{studentId}/section")]
-    public ActionResult<Student> DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    public async Task<ActionResult<Student>> DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
     {
         try
         {
-            return Ok(((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
+            return Ok(await ((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
         }
         catch (System.Exception)
         {

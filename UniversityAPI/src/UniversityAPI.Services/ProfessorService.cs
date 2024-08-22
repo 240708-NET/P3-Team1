@@ -6,7 +6,7 @@ namespace UniversityAPI.Services;
 
 public class ProfessorService : Service<Professor>, IProfessorServices
 {
-    public ProfessorService(IRepository<Professor> repository) : base(repository)
+    public ProfessorService(IProfessorRepository repository) : base(repository)
     {
     }
 
