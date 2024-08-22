@@ -3,7 +3,7 @@ using UniversityAPI.Repositories;
 
 namespace UniversityAPI.Services;
 
-public interface IService<T> where T : IIdentified
+public interface IService<T> where T : Identified
 {
     public Task<T> GetById(int id);
     public Task<List<T>> GetAll();

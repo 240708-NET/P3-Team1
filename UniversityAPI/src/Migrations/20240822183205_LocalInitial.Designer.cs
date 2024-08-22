@@ -12,8 +12,8 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20240821205604_TimeOnly")]
-    partial class TimeOnly
+    [Migration("20240822183205_LocalInitial")]
+    partial class LocalInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

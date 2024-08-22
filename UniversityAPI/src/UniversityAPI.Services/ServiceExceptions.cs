@@ -6,7 +6,13 @@ namespace UniversityAPI.Services
         public ServiceException(string message) : base(message) { }
     }
 
-    public class StudentNotFoundException : ServiceException
+    public class ResourceNotFoundException : ServiceException
+    {
+        public ResourceNotFoundException() : base() { }
+        public ResourceNotFoundException(string message) : base(message) { }
+    }
+
+    public class StudentNotFoundException : ResourceNotFoundException
     {
         public StudentNotFoundException() : base() { }
         public StudentNotFoundException(string message) : base(message) { }
@@ -24,7 +30,7 @@ namespace UniversityAPI.Services
         public RegistrationFailedException(string message) : base(message) { }
     }
 
-    public class SectionNotFoundException : ServiceException
+    public class SectionNotFoundException : ResourceNotFoundException
     {
         public SectionNotFoundException() : base() { }
         public SectionNotFoundException(string message) : base(message) { }

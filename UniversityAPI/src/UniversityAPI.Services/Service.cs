@@ -3,7 +3,7 @@ using UniversityAPI.Repositories;
 
 namespace UniversityAPI.Services;
 
-public class Service<T> : IService<T>  where T : IIdentified
+public class Service<T> : IService<T> where T : Identified
 {
     protected readonly IRepository<T> _repository;
 

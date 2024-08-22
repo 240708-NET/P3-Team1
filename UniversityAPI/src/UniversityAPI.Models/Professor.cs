@@ -2,12 +2,8 @@ using System.ComponentModel.DataAnnotations;        //For notation like [Key] an
 
 namespace UniversityAPI.Models
 {
-    public class Professor : IIdentified
+    public class Professor : Identified
     {
-        //Attributes
-        [Key]
-        public int ID { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
