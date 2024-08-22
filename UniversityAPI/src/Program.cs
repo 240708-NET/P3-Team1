@@ -15,7 +15,7 @@ class Program
         builder.Services.AddScoped<IProfessorServices, ProfessorService>();
         builder.Services.AddScoped<ISectionServices, SectionService>();
         builder.Services.AddScoped<ICourseServices, CourseService>();
-        builder.Services.AddScoped<IStudentServices, FakeStudentSertices>();
+        builder.Services.AddScoped<IStudentServices, StudentService>();
         builder.Services.AddControllers();
         //You can add other services like Authentication, Swagger, etc., here
 
