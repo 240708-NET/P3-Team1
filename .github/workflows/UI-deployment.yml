@@ -1,4 +1,4 @@
-name: API Build and Deploy
+name: UI Build and Deploy
 
 #triggers
 on:
@@ -60,5 +60,5 @@ jobs:
       with:
         app-name: 'roe-api'
         slot-name: 'production'
-        publish-profile: ${{ secrets.ROE_API_PUBLISHSETTINGS }}
+        publish-profile: ${{ secrets.ROE_UI_PUBLISHSETTINGS }}
         images: 'index.docker.io/nedturner613/roe-api:${{ github.sha }}'

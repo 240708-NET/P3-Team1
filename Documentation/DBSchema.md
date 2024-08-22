@@ -1,40 +1,47 @@
 ## Courses
+
 ```sql
 - ID: int
 - Name: varchar
-- Description: varchar(max)
-- Category: varchar(?)
+- Description: text
+- Category: varchar(50)
 --- Prerequisites (stretch)
 ```
 
 ## Sections
+
 ```sql
 - ID: int
-- Course ID: int
-- Professor ID: int
-- Start-Time: time
-- End-Time: time
+- CourseID: int
+- ProfessorID: int
+- StartTime: time
+- EndTime: time
 - Day: varchar(5)
 ```
 
 ## Professors
+
 ```sql
 - ID: int
-- First Name: varchar(?)
-- Last Name: varchar(?)
+- FirstName: varchar(50)
+- LastName: varchar(50)
+- Password: varchar(50)
 ```
-## StudentSections 
+
+## StudentSections
+
 ```sql
--- (Stretch)
 - ID: int
 - SectionID: int
 - StudentID: int
---- Grade/ Pass(No Pass) Stretch 
+--- Grade/ Pass(No Pass) Stretch
 ```
 
 ## Students
+
 ```sql
 - ID: int
-- First Name: varchar(?)
-- Last Name: varchar(?)
+- FirstName: varchar(50)
+- LastName: varchar(50)
+- Password: varchar(50)
 ```
