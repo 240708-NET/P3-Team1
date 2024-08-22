@@ -4,7 +4,7 @@ import StudentPage from "./pages/StudentPage";
 import CourseSearchPage from "./pages/CourseSearchPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import SignUpPage from "./pages/SignUpPage";
-
+import UserProvider from "./context/UserContext";
 import "./App.css";
 
 function App() {
@@ -31,7 +31,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider> 
+  );
 }
 
 export default App;

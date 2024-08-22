@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
 
 interface Section {
     id: number;
@@ -183,102 +184,105 @@ const CourseSearchPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-100 p-10">
-            <div className="max-w-4xl mx-auto bg-white p-6 rounded-md shadow-lg">
-                <header className="flex justify-between items-center mb-8">
-                    <h1 className="text-2xl font-semibold text-gray-900">Register a Course</h1>
-                </header>
+        <div>
+            <Navbar />
+            <div className="min-h-screen bg-slate-100 p-10">
+                <div className="max-w-4xl mx-auto bg-white p-6 rounded-md shadow-lg">
+                    <header className="flex justify-between items-center mb-8">
+                        <h1 className="text-2xl font-semibold text-gray-900">Register a Course</h1>
+                    </header>
 
-                <div className="mb-6 flex flex-col gap-4 md:flex-row md:gap-6">
-                    <div className="flex items-center">
-                        <label className="mr-2 text-gray-700">Search:</label>
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400"
-                        />
+                    <div className="mb-6 flex flex-col gap-4 md:flex-row md:gap-6">
+                        <div className="flex items-center">
+                            <label className="mr-2 text-gray-700">Search:</label>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400"
+                            />
+                        </div>
+                        <div className="flex items-center">
+                            <label className="mr-2 text-gray-700">Category:</label>
+                            <select
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400"
+                            >
+                                <option value="">All</option>
+                                {categories.map((category) => (
+                                    <option key={category} value={category}>{category}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
-                    <div className="flex items-center">
-                        <label className="mr-2 text-gray-700">Category:</label>
-                        <select
-                            value={selectedCategory}
-                            onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400"
-                        >
-                            <option value="">All</option>
-                            {categories.map((category) => (
-                                <option key={category} value={category}>{category}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
 
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr>
-                            <th className="px-4 py-2 border bg-gray-200">ID</th>
-                            <th className="px-4 py-2 border bg-gray-200">Course</th>
-                            <th className="px-4 py-2 border bg-gray-200">Professor</th>
-                            <th className="px-4 py-2 border bg-gray-200">Times</th>
-                            <th className="px-4 py-2 border bg-gray-200">Select</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredSections.length > 0 ? (
-                            filteredSections.map((section) => (
-                                <tr key={section.id}>
-                                    <td className="px-4 py-2 border">{section.id}</td>
-                                    <td className="px-4 py-2 border">
-                                        <button
-                                            onClick={() => handleCourseClick(section.course)}
-                                            className="text-indigo-600 underline hover:text-indigo-500"
-                                        >
-                                            {section.course.name}
-                                        </button>
-                                    </td>
-                                    <td className="px-4 py-2 border">
-                                        {section.professor.firstName} {section.professor.lastName}
-                                    </td>
-                                    <td className="px-4 py-2 border">
-                                        <span className="font-bold text-gray-800">{section.day}</span> {section.startTime}-{section.endTime}
-                                    </td>
-                                    <td className="px-4 py-2 border text-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedCourses.has(section.id)}
-                                            onChange={() => handleCheckboxChange(section.id)}
-                                            className="h-4 w-4 text-indigo-600"
-                                        />
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th className="px-4 py-2 border bg-gray-200">ID</th>
+                                <th className="px-4 py-2 border bg-gray-200">Course</th>
+                                <th className="px-4 py-2 border bg-gray-200">Professor</th>
+                                <th className="px-4 py-2 border bg-gray-200">Times</th>
+                                <th className="px-4 py-2 border bg-gray-200">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredSections.length > 0 ? (
+                                filteredSections.map((section) => (
+                                    <tr key={section.id}>
+                                        <td className="px-4 py-2 border">{section.id}</td>
+                                        <td className="px-4 py-2 border">
+                                            <button
+                                                onClick={() => handleCourseClick(section.course)}
+                                                className="text-indigo-600 underline hover:text-indigo-500"
+                                            >
+                                                {section.course.name}
+                                            </button>
+                                        </td>
+                                        <td className="px-4 py-2 border">
+                                            {section.professor.firstName} {section.professor.lastName}
+                                        </td>
+                                        <td className="px-4 py-2 border">
+                                            <span className="font-bold text-gray-800">{section.day}</span> {section.startTime}-{section.endTime}
+                                        </td>
+                                        <td className="px-4 py-2 border text-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedCourses.has(section.id)}
+                                                onChange={() => handleCheckboxChange(section.id)}
+                                                className="h-4 w-4 text-indigo-600"
+                                            />
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={5} className="text-center py-4 text-gray-700">
+                                        No sections available.
                                     </td>
                                 </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan={5} className="text-center py-4 text-gray-700">
-                                    No sections available.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                            )}
+                        </tbody>
+                    </table>
 
-                {selectedCourse && (
-                    <div className="mt-6 p-4 bg-gray-200 rounded-md">
-                        <h2 className="text-xl font-semibold text-gray-900">
-                            {selectedCourse.name} Description:
-                        </h2>
-                        <p className="text-gray-700">{selectedCourse.description}</p>
+                    {selectedCourse && (
+                        <div className="mt-6 p-4 bg-gray-200 rounded-md">
+                            <h2 className="text-xl font-semibold text-gray-900">
+                                {selectedCourse.name} Description:
+                            </h2>
+                            <p className="text-gray-700">{selectedCourse.description}</p>
+                        </div>
+                    )}
+
+                    <div className="mt-6 flex justify-end">
+                        <button
+                            onClick={handleRegister}
+                            className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        >
+                            Register
+                        </button>
                     </div>
-                )}
-
-                <div className="mt-6 flex justify-end">
-                    <button
-                        onClick={handleRegister}
-                        className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                    >
-                        Register
-                    </button>
                 </div>
             </div>
         </div>

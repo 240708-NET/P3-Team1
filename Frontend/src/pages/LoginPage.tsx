@@ -1,35 +1,33 @@
 import react, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
-export default function LoginPage() {
+export default function LoginPage() {  
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useUser();
 
-  function login(e: react.FormEvent) {
+  function userLogin(e: react.FormEvent) {
     e.preventDefault();
-    console.log(studentID, password);
-    axios
-      .post(`${API_BASE}/Student/login`, {
-        id: studentID,
-        firstName: "first",
-        lastName: "last",
-        password: password,
-      })
-      .then(() => {
-        alert("Logged In");
-        navigate("/");
-      })
-      .catch((error: AxiosError) => {
-        if (error.response?.status === 401) {
-          alert("Unathorized");
-        } else {
-          alert(error.message);
-        }
-      });
+    // console.log(studentID, password);
+    login({
+      id: studentID,
+      firstName: "first",
+      lastName: "last",
+      password: password,
+    }).then(() => {
+      navigate("/");
+    }).catch((error: AxiosError) => {
+      if (error.response?.status === 401) {
+        alert("Unathorized");
+      } else {
+        alert(error.message);
+      }
+    })
   }
 
   return (
@@ -40,7 +38,7 @@ export default function LoginPage() {
       </h2>
 
       <div className="my-16 mx-auto w-full max-w-sm">
-        <form onSubmit={login} className="space-y-8">
+        <form onSubmit={userLogin} className="space-y-8">
           <input
             required
             type="text"
