@@ -5,7 +5,7 @@ namespace UniversityAPI.Services;
 
 public class CourseService : Service<Course>, ICourseServices
 {
-    public CourseService(IRepository<Course> repository) : base(repository)
+    public CourseService(ICourseRepository repository) : base(repository)
     {
     }
 }

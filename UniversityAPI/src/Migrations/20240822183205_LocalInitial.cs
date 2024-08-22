@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UniversityAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class LocalInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,8 +64,8 @@ namespace UniversityAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CourseID = table.Column<int>(type: "int", nullable: false),
                     ProfessorID = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    EndTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    StartTime = table.Column<TimeOnly>(type: "time", nullable: false),
+                    EndTime = table.Column<TimeOnly>(type: "time", nullable: false),
                     Day = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false)
                 },
                 constraints: table =>
@@ -85,6 +85,30 @@ namespace UniversityAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SectionStudent",
+                columns: table => new
+                {
+                    SectionsID = table.Column<int>(type: "int", nullable: false),
+                    StudentsID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SectionStudent", x => new { x.SectionsID, x.StudentsID });
+                    table.ForeignKey(
+                        name: "FK_SectionStudent_Sections_SectionsID",
+                        column: x => x.SectionsID,
+                        principalTable: "Sections",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SectionStudent_Students_StudentsID",
+                        column: x => x.StudentsID,
+                        principalTable: "Students",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Sections_CourseID",
                 table: "Sections",
@@ -94,11 +118,19 @@ namespace UniversityAPI.Migrations
                 name: "IX_Sections_ProfessorID",
                 table: "Sections",
                 column: "ProfessorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SectionStudent_StudentsID",
+                table: "SectionStudent",
+                column: "StudentsID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "SectionStudent");
+
             migrationBuilder.DropTable(
                 name: "Sections");
 

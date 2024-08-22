@@ -2,7 +2,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Repositories;
 
-public interface IRepository<TEntity> where TEntity : IIdentified
+public interface IRepository<TEntity> where TEntity : Identified
 {
     Task<List<TEntity>> GetAll();
     Task<TEntity?> GetById(int id);

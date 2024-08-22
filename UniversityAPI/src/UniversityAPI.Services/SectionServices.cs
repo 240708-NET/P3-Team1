@@ -6,7 +6,7 @@ namespace UniversityAPI.Services;
 
 public class SectionService : Service<Section>, ISectionServices
 {
-    public SectionService(IRepository<Section> repository) : base(repository)
+    public SectionService(ISectionRepository repository) : base(repository)
     {
     }
 

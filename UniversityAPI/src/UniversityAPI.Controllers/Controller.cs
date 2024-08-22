@@ -7,7 +7,7 @@ namespace UniversityAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class Controller<T> : ControllerBase where T : IIdentified
+public class Controller<T> : ControllerBase where T : Identified
 {
     protected readonly IService<T> _service;
 
@@ -22,6 +22,10 @@ public class Controller<T> : ControllerBase where T : IIdentified
         try
         {
             return Ok(await _service.GetById(id));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
@@ -50,7 +54,8 @@ public class Controller<T> : ControllerBase where T : IIdentified
         try
         {
             T createdItem = await _service.Insert(item);
-            return CreatedAtAction(new Uri($"{Request.Path}/{createdItem.ID}").ToString(), createdItem);
+            string requestPath = Request != null ? $"{Request.Path}/{createdItem.ID}" : "/api";
+            return CreatedAtAction(new Uri(requestPath).ToString(), createdItem);
         }
         catch (System.Exception)
         {
@@ -59,11 +64,16 @@ public class Controller<T> : ControllerBase where T : IIdentified
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<T>> Put([FromBody] T item)
+    public async Task<ActionResult<T>> Put([FromRoute] int id, [FromBody] T item)
     {
         try
         {
+            item.ID = id;
             return Ok(await _service.Update(item));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
@@ -77,6 +87,10 @@ public class Controller<T> : ControllerBase where T : IIdentified
         try
         {
             return Ok(await _service.DeleteById(id));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
