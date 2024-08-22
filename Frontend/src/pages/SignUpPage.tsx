@@ -1,8 +1,9 @@
 import { useState, FormEvent } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+// const API_BASE = import.meta.env.VITE_API_BASE;
 
 export default function SignUpPage() {
   const [firstName, setFirstName] = useState("");
@@ -12,25 +13,32 @@ export default function SignUpPage() {
   const [formError, setFormError] = useState("");
   const navigate = useNavigate();
 
+  const userContext = useUser();
+
+  if( !userContext ){
+    return <div>Loading...</div>;
+  }
+
+  const { register } = userContext;
+
   function signup(e: FormEvent) {
     e.preventDefault();
     if (password != confirmPassword) {
       setFormError("Password fields do not match.");
-    }
-    axios
-      .post(`${API_BASE}/Student/register`, {
-        id: "",
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-      })
-      .then(() => {
-        alert(`Welcome ${firstName} ${lastName}!`);
-        navigate("/");
-      })
-      .catch((error: AxiosError) => {
-        alert(error.message);
+    } else {
+      register({
+          id: -1,
+          firstName: firstName,
+          lastName: lastName,
+          password: password,
+        }).then(() => {
+          alert(`Welcome ${firstName} ${lastName}!`);
+          navigate("/");
+        })
+        .catch((error: AxiosError) => {
+          alert(error.message);
       });
+    }
   }
 
   return (

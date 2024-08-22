@@ -1,21 +1,26 @@
 import react, { useState } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+// const API_BASE = import.meta.env.VITE_API_BASE;
 
 export default function LoginPage() {  
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { login } = useUser();
+  const userContext = useUser();
+
+  if( !userContext ){
+    return <div>Loading...</div>;
+  }
+
+  const { login } = userContext;
 
   function userLogin(e: react.FormEvent) {
     e.preventDefault();
-    // console.log(studentID, password);
     login({
-      id: studentID,
+      id: parseInt(studentID),
       firstName: "first",
       lastName: "last",
       password: password,
