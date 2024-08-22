@@ -16,6 +16,7 @@ export default function SignUpPage() {
     e.preventDefault();
     if (password != confirmPassword) {
       setFormError("Password fields do not match.");
+      return;
     }
     axios
       .post(`${API_BASE}/Student/register`, {
