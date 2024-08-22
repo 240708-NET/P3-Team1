@@ -1,37 +1,11 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
+using UniversityAPI.Repositories;
 
 namespace UniversityAPI.Services;
 
-public class CourseService : ICourseServices
+public class CourseService : Service<Course>, ICourseServices
 {
-    public List<Course> DeleteAll()
+    public CourseService(IRepository<Course> repository) : base(repository)
     {
-        throw new NotImplementedException();
-    }
-
-    public Course DeleteById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Course> GetAll()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Course GetById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Course Insert(Course item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Course Update(Course item)
-    {
-        throw new NotImplementedException();
     }
 }

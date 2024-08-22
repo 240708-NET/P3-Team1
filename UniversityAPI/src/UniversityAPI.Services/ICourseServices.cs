@@ -4,5 +4,4 @@ namespace UniversityAPI.Services;
 
 public interface ICourseServices : IService<Course>
 {
-
 }

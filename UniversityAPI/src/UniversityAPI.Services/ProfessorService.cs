@@ -1,33 +1,13 @@
 using UniversityAPI.Models;
+using UniversityAPI.Repositories;
 using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
 
-public class ProfessorService : IProfessorServices
+public class ProfessorService : Service<Professor>, IProfessorServices
 {
-    public List<Professor> DeleteAll()
+    public ProfessorService(IRepository<Professor> repository) : base(repository)
     {
-        throw new NotImplementedException();
-    }
-
-    public Professor DeleteById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Professor> GetAll()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Professor GetById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Professor Insert(Professor item)
-    {
-        throw new NotImplementedException();
     }
 
     public Professor Login(Professor student)
@@ -36,11 +16,6 @@ public class ProfessorService : IProfessorServices
     }
 
     public Professor Register(Professor student)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Professor Update(Professor item)
     {
         throw new NotImplementedException();
     }

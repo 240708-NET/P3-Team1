@@ -2,7 +2,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Services;
 
-public class FakeStudentSertices : IStudentServices
+public class FakeStudentSertices
 {
     public Student AddSectionToStudent(int studentId, int sectionId)
     {
@@ -73,4 +73,5 @@ public class FakeStudentSertices : IStudentServices
     {
         throw new NotImplementedException();
     }
+
 }
