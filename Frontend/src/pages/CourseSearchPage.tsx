@@ -1,150 +1,63 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+// Define the Section type with data types
 interface Section {
     id: number;
+    courseID: number; 
     course: {
+        id: number; 
         name: string;
-        category: string;
-        description?: string;
+        description?: string; 
+        category?: string; 
     };
+    professorID: number; 
     professor: {
+        id: number; 
         firstName: string;
         lastName: string;
     };
-    day: string;
-    startTime: string;
-    endTime: string;
+    startTime: string; 
+    endTime: string; 
+    day: string; 
 }
 
-const CourseSearchPage: React.FC = () => {
-    // Hardcoded sections
-    const mockSections: Section[] = [
-        {
-            id: 1,
-            course: {
-                name: "Algebra 1",
-                category: "Mathematics",
-                description: "Learn basic algebra."
-            },
-            professor: {
-                firstName: "John",
-                lastName: "Doe"
-            },
-            day: "Mon",
-            startTime: "09:00",
-            endTime: "10:30"
-        },
-        {
-            id: 2,
-            course: {
-                name: "Calculus 1",
-                category: "Mathematics",
-                description: "A study of differential and integral calculus."
-            },
-            professor: {
-                firstName: "Jane",
-                lastName: "Smith"
-            },
-            day: "Tue",
-            startTime: "11:00",
-            endTime: "12:30"
-        },
-        {
-            id: 3,
-            course: {
-                name: "World History",
-                category: "History",
-                description: "Explore major events in world history."
-            },
-            professor: {
-                firstName: "Emily",
-                lastName: "Johnson"
-            },
-            day: "Wed",
-            startTime: "13:00",
-            endTime: "14:30"
-        },
-        {
-            id: 4,
-            course: {
-                name: "Biology 101",
-                category: "Science",
-                description: "Introduction to biological principles and concepts."
-            },
-            professor: {
-                firstName: "Michael",
-                lastName: "Brown"
-            },
-            day: "Thu",
-            startTime: "08:00",
-            endTime: "09:30"
-        },
-        {
-            id: 5,
-            course: {
-                name: "Advanced Algebra",
-                category: "Mathematics",
-                description: "Deep dive into advanced algebraic concepts."
-            },
-            professor: {
-                firstName: "Linda",
-                lastName: "Wilson"
-            },
-            day: "Fri",
-            startTime: "10:00",
-            endTime: "11:30"
-        },
-        {
-            id: 6,
-            course: {
-                name: "Introduction to Philosophy",
-                category: "Humanities",
-                description: "Explore fundamental questions and theories in philosophy."
-            },
-            professor: {
-                firstName: "Robert",
-                lastName: "Davis"
-            },
-            day: "Mon, Wed",
-            startTime: "15:00",
-            endTime: "16:30"
-        },
-        {
-            id: 7,
-            course: {
-                name: "Introduction to Economics",
-                category: "Economics",
-                description: "Basic principles of economics and their application."
-            },
-            professor: {
-                firstName: "Susan",
-                lastName: "Martinez"
-            },
-            day: "Wed",
-            startTime: "09:00",
-            endTime: "10:30"
-        }
-    ];
+const API_BASE = "http://localhost:5236/api";
 
-    const [sections, setSections] = useState<Section[]>(mockSections);
-    const [filteredSections, setFilteredSections] = useState<Section[]>(mockSections);
+const CourseSearchPage: React.FC = () => {
+    // States for sections, categories, and search queries
+    const [sections, setSections] = useState<Section[]>([]);
+    const [filteredSections, setFilteredSections] = useState<Section[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedCourses, setSelectedCourses] = useState<Set<number>>(new Set());
     const [selectedCourse, setSelectedCourse] = useState<Section["course"] | null>(null);
 
-    //Get the unique categories for courses for the dropdown options .
+    // Fetch sections from the API.
     useEffect(() => {
-        const uniqueCategories: string[] = Array.from(
-            new Set(sections.map((section) => section.course.category))
-        );
-        setCategories(uniqueCategories);
+        axios
+            .get<Section[]>(`${API_BASE}/Section`)
+            .then((response) => {
+                const sectionData = response.data;
+                setSections(sectionData);
 
-        setFilteredSections(sections);
-    }, [sections]);
+                // Extract unique categories for the dropdown
+                const uniqueCategories: string[] = Array.from(
+                    new Set(sectionData.map((section) => section.course.category || ""))
+                );
+                setCategories(uniqueCategories);
 
-    // Search and filter courses based on the courses name.
+                // Set initial filtered sections
+                setFilteredSections(sectionData);
+            })
+            .catch((error) => {
+                console.error("Error fetching sections:", error);
+                alert("Failed to fetch sections");
+            });
+    }, []);
+
+    // Search and filter courses based on the course name and category
     useEffect(() => {
         const filtered = sections.filter(
             (section) =>
@@ -168,24 +81,38 @@ const CourseSearchPage: React.FC = () => {
         });
     };
 
-    // Clicking on a course name will display its description.
+    // Clicking on a course name will display its description
     const handleCourseClick = (course: Section["course"]) => {
         setSelectedCourse(course);
     };
 
-    // Register button will display the selected courses in the console output for testing. 
+    // Register button will display the Sections in the console for now.
     const handleRegister = () => {
         const selectedSections = sections.filter(section => selectedCourses.has(section.id));
         console.log("Selected sections:");
         selectedSections.forEach(section => {
-            console.log(`Course: ${section.course.name}, Professor: ${section.professor.firstName} ${section.professor.lastName}`);
+            console.log(section);
         });
     };
 
+    // Function to format time by excluding seconds and converting to 12-hour format with AM/PM
+    const formatTime = (time: string) => {
+        const [hours, minutes] = time.split(':').map(Number);
+        const period = hours >= 12 ? 'PM' : 'AM';
+        const adjustedHours = hours % 12 || 12; 
+        return `${adjustedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+    };
+
+    // Function to get the first three letters of the day or days
+    const getShortDay = (day: string) => {
+        // Convert multiple days to their short forms
+        return day.split(',').map(d => d.trim().slice(0, 3)).join(', ');
+    };
+
     return (
-        <div className="min-h-screen bg-slate-100 p-10">
+        <div className="min-h-screen bg-orange-300 p-10">
             <div className="max-w-4xl mx-auto bg-white p-6 rounded-md shadow-lg">
-                <header className="flex justify-between items-center mb-8">
+                <header className="text-center mb-8">
                     <h1 className="text-2xl font-semibold text-gray-900">Register a Course</h1>
                 </header>
 
@@ -217,7 +144,7 @@ const CourseSearchPage: React.FC = () => {
                 <table className="w-full text-left border-collapse">
                     <thead>
                         <tr>
-                            <th className="px-4 py-2 border bg-gray-200">ID</th>
+                            <th className="px-4 py-2 border bg-gray-200">Course ID</th>
                             <th className="px-4 py-2 border bg-gray-200">Course</th>
                             <th className="px-4 py-2 border bg-gray-200">Professor</th>
                             <th className="px-4 py-2 border bg-gray-200">Times</th>
@@ -227,8 +154,8 @@ const CourseSearchPage: React.FC = () => {
                     <tbody>
                         {filteredSections.length > 0 ? (
                             filteredSections.map((section) => (
-                                <tr key={section.id}>
-                                    <td className="px-4 py-2 border">{section.id}</td>
+                                <tr key={section.course.id}>
+                                    <td className="px-4 py-2 border">{section.course.id}</td>
                                     <td className="px-4 py-2 border">
                                         <button
                                             onClick={() => handleCourseClick(section.course)}
@@ -241,7 +168,7 @@ const CourseSearchPage: React.FC = () => {
                                         {section.professor.firstName} {section.professor.lastName}
                                     </td>
                                     <td className="px-4 py-2 border">
-                                        <span className="font-bold text-gray-800">{section.day}</span> {section.startTime}-{section.endTime}
+                                        <span className="font-bold text-gray-800">{getShortDay(section.day)}</span> {formatTime(section.startTime)}-{formatTime(section.endTime)}
                                     </td>
                                     <td className="px-4 py-2 border text-center">
                                         <input
