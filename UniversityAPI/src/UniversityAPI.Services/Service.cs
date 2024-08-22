@@ -15,7 +15,7 @@ public class Service<T> : IService<T>  where T : IIdentified
     public async Task<T> GetById(int id)
     {
         var item = await _repository.GetById(id);
-        if (Equals(item, default(T)))
+        if (item == null)
         {
             throw new KeyNotFoundException("Student with the specified ID does not exist.");
         }
