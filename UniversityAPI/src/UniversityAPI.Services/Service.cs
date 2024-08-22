@@ -12,7 +12,7 @@ public class Service<T> : IService<T>  where T : IIdentified
         _repository = repository;
     }
 
-    public async Task<T?> GetById(int id)
+    public async Task<T> GetById(int id)
     {
         var item = await _repository.GetById(id);
         if (Equals(item, default(T)))
@@ -27,7 +27,7 @@ public class Service<T> : IService<T>  where T : IIdentified
         return await _repository.GetAll();
     }
 
-    public async Task<T?> Insert(T item)
+    public async Task<T> Insert(T item)
     {
         T? insertedItem = await _repository.Insert(item);
         if (insertedItem == null)
@@ -37,7 +37,7 @@ public class Service<T> : IService<T>  where T : IIdentified
         return insertedItem;
     }
 
-    public async Task<T?> Update(T item)
+    public async Task<T> Update(T item)
     {
         T? updatedItem = await _repository.Update(item);
         if (updatedItem == null)
