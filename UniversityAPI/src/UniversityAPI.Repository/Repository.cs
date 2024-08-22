@@ -15,7 +15,7 @@ namespace UniversityAPI.Repositories
             EntitySet = context.Set<TEntity>();
         }
 
-        public virtual async Task<List<TEntity>> Get()
+        public virtual async Task<List<TEntity>> GetAll()
         {
             return await EntitySet.AsNoTracking().ToListAsync();
         }
@@ -25,15 +25,16 @@ namespace UniversityAPI.Repositories
             return await EntitySet.AsNoTracking().SingleOrDefaultAsync(e => e.ID == id);
         }
 
-        public virtual async Task Insert(TEntity entity)
+        public virtual async Task<TEntity?> Insert(TEntity entity)
         {
-            await Context.AddAsync(entity);
+            var item = await Context.AddAsync(entity);
             await Context.SaveChangesAsync();
+            return item.Entity;
         }
 
-        public virtual async Task<bool> Update(TEntity entity)
+        public virtual async Task<TEntity?> Update(TEntity entity)
         {
-            Context.Update(entity);
+            var item = Context.Update(entity);
             try
             {
                 await Context.SaveChangesAsync();
@@ -41,20 +42,28 @@ namespace UniversityAPI.Repositories
             catch (DbUpdateConcurrencyException)
             {
                 if (!EntitySet.Any(e => e.ID == entity.ID))
-                    return false;
+                    return null;
                 throw;
             }
-            return true;
+            return item.Entity;
         }
 
-        public virtual async Task<bool> DeleteById(object id)
+        public virtual async Task<TEntity?> DeleteById(object id)
         {
             var entity = await EntitySet.FindAsync(id);
-            if (entity == null) return false;
-            
+            if (entity == null) return null;
+
             Context.Remove(entity);
             await Context.SaveChangesAsync();
-            return true;
+            return entity;
+        }
+
+        public virtual async Task<List<TEntity>> DeleteAll()
+        {
+            var items = await EntitySet.AsNoTracking().ToListAsync();
+            EntitySet.RemoveRange(items);
+            await Context.SaveChangesAsync();
+            return items;
         }
     }
 }
