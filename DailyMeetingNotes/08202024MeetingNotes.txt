@@ -1,0 +1,5 @@
+8/20/2024 Meeting Notes
+-Went over everyone's progress (seems good)
+-Josh will resolve his own conflicts for pull request
+-Josh will experiment with Entity framework models and DB
+-All members will keep working on their respective tasks/fields
