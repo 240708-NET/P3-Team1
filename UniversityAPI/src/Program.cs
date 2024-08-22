@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using UniversityAPI.Models;
 using UniversityAPI.Repositories;
 using UniversityAPI.Services;
 
-class Program
+namespace UniversityAPI;
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -24,6 +26,12 @@ class Program
         builder.Services.AddScoped<IStudentServices, StudentService>();
         builder.Services.AddControllers();
         //You can add other services like Authentication, Swagger, etc., here
+
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
+
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

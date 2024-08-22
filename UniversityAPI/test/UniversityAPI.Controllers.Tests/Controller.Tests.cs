@@ -21,10 +21,10 @@ public class ControllerTests
     }
 
     // [Fact]
-    // public void GetAllWhenNoEntityExistsReturnsEmptyListAnd200()
+    // public async void GetAllWhenNoEntityExistsReturnsEmptyListAnd200()
     // {
     //     _mockService.Setup(service => service.GetAll()).Returns(new List<IIdentified>() { });
-    //     var result = _controller.GetAll().Result as OkObjectResult;
+    //     var result = await _controller.GetAll().Result as OkObjectResult;
     //     Assert.NotNull(result);
     //     Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
     //     var list = result.Value as List<IIdentified>;
