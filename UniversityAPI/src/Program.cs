@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UniversityAPI.Models;
+using UniversityAPI.Repositories;
 using UniversityAPI.Services;
 
 class Program
@@ -11,6 +12,11 @@ class Program
         //Adding connection string
         builder.Services.AddDbContext<UniversityContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("AzureCloud")));
+
+        builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
+        builder.Services.AddScoped<ISectionRepository, SectionRepository>();
+        builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+        builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
         builder.Services.AddScoped<IProfessorServices, ProfessorService>();
         builder.Services.AddScoped<ISectionServices, SectionService>();
