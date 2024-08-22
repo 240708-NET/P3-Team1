@@ -1,60 +1,47 @@
 using UniversityAPI.Models;
-using UniversityAPI.Services;
+using UniversityAPI.Repositories;
 
 namespace UniversityAPI.Services;
-public class StudentService : IStudentServices
+public class StudentService : Service<Student>, IStudentServices
 {
-    public Student AddSectionToStudent(int studentId, int sectionId)
+    public StudentService(IStudentRepository repository) : base(repository)
+    {
+    }
+
+    public async Task<Student?> DeleteSectionFromStudent(int studentId, int sectionId)
+    {
+        Student? student = await ((IStudentRepository)_repository).GetById(studentId);
+        if (student == null)
+        {
+            throw new KeyNotFoundException("Student with the specified ID does not exist.");
+        }
+
+        return await _repository.DeleteById(studentId);
+    }
+
+    public async Task<List<Section>?> GetRegisteredSections(int id)
+    {
+        Student? student = await ((IStudentRepository)_repository).GetById(id);
+        if (student == null)
+        {
+            throw new KeyNotFoundException("Student with the specified ID does not exist.");
+        }
+        // return _studentRepository.GetRegisteredSectionsByStudentId(id);
+        return null;
+
+    }
+
+    public Task<Student> Login(Student student)
     {
         throw new NotImplementedException();
     }
 
-    public List<Student> DeleteAll()
+    public Task<Student> Register(Student student)
     {
         throw new NotImplementedException();
     }
 
-    public Student DeleteById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student DeleteSectionFromStudent(int studentId, int sectionId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Student> GetAll()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student GetById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Section> GetRegisteredSections(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student Insert(Student item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student Login(Student student)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student Register(Student student)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Student Update(Student item)
+    Task<Student> IStudentServices.AddSectionToStudent(int studentId, int sectionId)
     {
         throw new NotImplementedException();
     }

@@ -17,11 +17,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
     }
 
     [HttpGet("{id}")]
-    public ActionResult<List<T>> GetById(int id)
+    public async Task<ActionResult<List<T>>> GetById(int id)
     {
         try
         {
-            return Ok(_service.GetById(id));
+            return Ok(await _service.GetById(id));
         }
         catch (System.Exception)
         {
@@ -31,11 +31,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
 
 
     [HttpGet("")]
-    public ActionResult<List<T>> GetAll()
+    public async Task<ActionResult<List<T>>> GetAll()
     {
         try
         {
-            return Ok(_service.GetAll());
+            return Ok(await _service.GetAll());
         }
         catch (System.Exception)
         {
@@ -45,11 +45,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
 
 
     [HttpPost("")]
-    public ActionResult<T> Insert(T item)
+    public async Task<ActionResult<T>> Insert(T item)
     {
         try
         {
-            T createdItem = _service.Insert(item);
+            T createdItem = await _service.Insert(item);
             return CreatedAtAction(new Uri($"{Request.Path}/{createdItem.ID}").ToString(), createdItem);
         }
         catch (System.Exception)
@@ -59,11 +59,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
     }
 
     [HttpPut("{id}")]
-    public ActionResult<T> Put([FromBody] T item)
+    public async Task<ActionResult<T>> Put([FromBody] T item)
     {
         try
         {
-            return Ok(_service.Update(item));
+            return Ok(await _service.Update(item));
         }
         catch (System.Exception)
         {
@@ -72,11 +72,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
     }
 
     [HttpDelete("{id}")]
-    public ActionResult<T> DeleteById([FromRoute] int id)
+    public async Task<ActionResult<T>> DeleteById([FromRoute] int id)
     {
         try
         {
-            return Ok(_service.DeleteById(id));
+            return Ok(await _service.DeleteById(id));
         }
         catch (System.Exception)
         {
@@ -85,11 +85,11 @@ public class Controller<T> : ControllerBase where T : IIdentified
     }
 
     [HttpDelete("")]
-    public ActionResult<List<T>> DeleteAll()
+    public async Task<ActionResult<List<T>>> DeleteAll()
     {
         try
         {
-            return Ok(_service.DeleteAll());
+            return Ok(await _service.DeleteAll());
         }
         catch (System.Exception)
         {

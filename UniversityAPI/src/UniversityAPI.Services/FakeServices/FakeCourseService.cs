@@ -2,7 +2,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Services;
 
-public class FakeCourseServices : ICourseServices
+public class FakeCourseServices
 {
     public List<Course> DeleteAll()
     {

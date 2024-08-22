@@ -2,7 +2,7 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Services;
 
-public class FakeSectionServices : ISectionServices
+public class FakeSectionServices
 {
     public Student AddSectionToStudent(int sectionId, int studentId)
     {
