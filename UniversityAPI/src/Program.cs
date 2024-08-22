@@ -13,7 +13,7 @@ public static class Program
 
         //Adding connection string
         builder.Services.AddDbContext<UniversityContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("UniversityDB")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("AzureCloud")));
 
         builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
         builder.Services.AddScoped<ISectionRepository, SectionRepository>();
