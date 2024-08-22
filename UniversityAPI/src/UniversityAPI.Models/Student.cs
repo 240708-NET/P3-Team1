@@ -2,12 +2,8 @@ using System.ComponentModel.DataAnnotations;        //For notation like [Key] an
 
 namespace UniversityAPI.Models
 {
-    public class Student : IIdentified
+    public class Student : Identified
     {
-        //Attributes
-        [Key]
-        public int ID { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -17,22 +13,29 @@ namespace UniversityAPI.Models
         public string LastName { get; set; }
 
 
-        [MaxLength(50)] 
+        [MaxLength(50)]
         public string Password { get; set; }
 
+        //Navigation Property for Sections
+        public virtual ICollection<Section> Sections { get; set; }
 
-        //Constructor
+
+        //Constructors
         public Student()
         {
             FirstName = "";
             LastName = "";
+            Password = "";
+            Sections = new List<Section>();
         }
 
 
-        public Student(string firstName, string lastName)
+        public Student(string firstName, string lastName, string password)
         {
             FirstName = firstName;
             LastName = lastName;
+            Password = password;
+            Sections = new List<Section>();
         }
 
         public override bool Equals(object? obj)
@@ -43,7 +46,8 @@ namespace UniversityAPI.Models
             }
             return ((Student)obj).ID == ID &&
                    ((Student)obj).FirstName == FirstName &&
-                   ((Student)obj).LastName == LastName;
+                   ((Student)obj).LastName == LastName &&
+                   ((Student)obj).Password == Password;
         }
 
         public override int GetHashCode()

@@ -12,8 +12,8 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20240819231733_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240822183205_LocalInitial")]
+    partial class LocalInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace UniversityAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SectionStudent", b =>
+                {
+                    b.Property<int>("SectionsID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SectionsID", "StudentsID");
+
+                    b.HasIndex("StudentsID");
+
+                    b.ToTable("SectionStudent");
+                });
 
             modelBuilder.Entity("UniversityAPI.Models.Course", b =>
                 {
@@ -96,13 +111,13 @@ namespace UniversityAPI.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<TimeSpan>("EndTime")
+                    b.Property<TimeOnly>("EndTime")
                         .HasColumnType("time");
 
                     b.Property<int>("ProfessorID")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("StartTime")
+                    b.Property<TimeOnly>("StartTime")
                         .HasColumnType("time");
 
                     b.HasKey("ID");
@@ -140,6 +155,21 @@ namespace UniversityAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("SectionStudent", b =>
+                {
+                    b.HasOne("UniversityAPI.Models.Section", null)
+                        .WithMany()
+                        .HasForeignKey("SectionsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UniversityAPI.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UniversityAPI.Models.Section", b =>
