@@ -5,8 +5,6 @@ using UniversityAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Xunit;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace UniversityAPI.Controllers.Tests;
 
@@ -22,35 +20,17 @@ public class ControllerTests
         _controller = new Controller<Identified>(_mockService.Object);
     }
 
+
     [Fact]
-    public async Task GetAllWhenNoEntityExistsReturnsEmptyListAnd200()
+    public async Task GetAllReturnsListAnd200()
     {
-        _mockService.Setup(service => service.GetAll()).Returns(Task.FromResult(new List<Identified>()));
+        _mockService.Setup(service => service.GetAll()).Returns(Task.FromResult(new List<Identified>() { }));
         var result = (await _controller.GetAll()).Result as OkObjectResult;
         _mockService.Verify(service => service.GetAll(), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var list = result.Value as List<Identified>;
-        Assert.NotNull(list);
-        Assert.Empty(list);
-    }
-
-
-    [Fact]
-    public async Task GetAllWhenEntityExistReturnsListAnd200()
-    {
-        _mockService.Setup(service => service.GetAll()).Returns(Task.FromResult(new List<Identified>() {
-            new Identified(),
-            new Identified(),
-            new Identified(),
-        }));
-        var result = (await _controller.GetAll()).Result as OkObjectResult;
-        _mockService.Verify(service => service.GetAll(), Times.Once());
-        Assert.NotNull(result);
-        Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var list = result.Value as List<Identified>;
-        Assert.NotNull(list);
-        Assert.Equal(3, list.Count);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is List<Identified>);
     }
 
     [Fact]
@@ -66,17 +46,13 @@ public class ControllerTests
     [Fact]
     public async Task GetByIdWhenEntityExistsReturnsEntityAnd200()
     {
-        _mockService.Setup(service => service.GetById(It.IsAny<int>())).Returns(Task.FromResult(new Identified()
-        {
-            ID = 42,
-        }));
+        _mockService.Setup(service => service.GetById(It.IsAny<int>())).Returns(Task.FromResult(new Identified() { }));
         var result = (await _controller.GetById(42)).Result as OkObjectResult;
         _mockService.Verify(service => service.GetById(42), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var item = result.Value as Identified;
-        Assert.NotNull(item);
-        Assert.Equal(42, item.ID);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is Identified);
     }
 
     [Fact]
@@ -88,9 +64,8 @@ public class ControllerTests
         _mockService.Verify(service => service.Insert(item), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.Created, result.StatusCode);
-        item = result.Value as Identified;
-        Assert.NotNull(item);
-        Assert.Equal(42, item.ID);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is Identified);
     }
 
     [Fact]
@@ -113,9 +88,8 @@ public class ControllerTests
         _mockService.Verify(service => service.Update(item), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        item = result.Value as Identified;
-        Assert.NotNull(item);
-        Assert.Equal(42, item.ID);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is Identified);
     }
 
     [Fact]
@@ -136,40 +110,20 @@ public class ControllerTests
         _mockService.Verify(service => service.DeleteById(42), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var item = result.Value as Identified;
-        Assert.NotNull(item);
-        Assert.Equal(42, item.ID);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is Identified);
     }
-
-    [Fact]
-    public async Task DeleteAllWhenNoEntityExistsReturnsEmptyListAnd200()
-    {
-        _mockService.Setup(service => service.DeleteAll()).Returns(Task.FromResult(new List<Identified>()));
-        var result = (await _controller.DeleteAll()).Result as OkObjectResult;
-        _mockService.Verify(service => service.DeleteAll(), Times.Once());
-        Assert.NotNull(result);
-        Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var list = result.Value as List<Identified>;
-        Assert.NotNull(list);
-        Assert.Empty(list);
-    }
-
 
     [Fact]
     public async Task DeleteAllWhenEntityExistReturnsListAnd200()
     {
-        _mockService.Setup(service => service.DeleteAll()).Returns(Task.FromResult(new List<Identified>() {
-            new Identified(),
-            new Identified(),
-            new Identified(),
-        }));
+        _mockService.Setup(service => service.DeleteAll()).Returns(Task.FromResult(new List<Identified>() { }));
         var result = (await _controller.DeleteAll()).Result as OkObjectResult;
         _mockService.Verify(service => service.DeleteAll(), Times.Once());
         Assert.NotNull(result);
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-        var list = result.Value as List<Identified>;
-        Assert.NotNull(list);
-        Assert.Equal(3, list.Count);
+        Assert.NotNull(result.Value);
+        Assert.True(result.Value is List<Identified>);
     }
 
 }

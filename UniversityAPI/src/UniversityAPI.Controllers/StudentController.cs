@@ -19,7 +19,9 @@ public class StudentController : Controller<Student>
     {
         try
         {
-            return Ok(await ((IStudentServices)_service).Register(student));
+            Student registeredStudent = await ((IStudentServices)_service).Register(student);
+            string requestPath = Request != null ? $"{Request.Path}/{registeredStudent.ID}" : "/api";
+            return CreatedAtAction(new Uri(requestPath).ToString(), registeredStudent);
         }
         catch (RegistrationFailedException)
         {
@@ -39,6 +41,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).Login(student));
         }
+        catch (StudentNotFoundException)
+        {
+            return Unauthorized();
+        }
         catch (InvalidLoginException)
         {
             return Unauthorized();
@@ -56,6 +62,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).GetRegisteredSections(id));
         }
+        catch (StudentNotFoundException)
+        {
+            return NotFound();
+        }
         catch (System.Exception)
         {
             return StatusCode(500);
@@ -69,6 +79,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
         }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
+        }
         catch (System.Exception)
         {
             return StatusCode(500);
@@ -81,6 +95,10 @@ public class StudentController : Controller<Student>
         try
         {
             return Ok(await ((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
