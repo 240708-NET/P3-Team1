@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/CourseCard";
+import Navbar from "../components/Navbar";
 
 interface Course {
   id: number;
@@ -99,20 +100,23 @@ const MyCoursesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-orange-300">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-orange-600">
-          My Courses
-        </h2>
-        <div className="space-y-4">
-          {courses.map((course) => (
-            <Card
-              key={course.id}
-              course={course}
-              onRegister={handleRegister}
-              onDrop={handleDrop}
-            />
-          ))}
+    <div>
+      <Navbar />
+      <div className="min-h-screen flex items-center justify-center bg-orange-300">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-center text-orange-600">
+            My Courses
+          </h2>
+          <div className="space-y-4">
+            {courses.map((course) => (
+              <Card
+                key={course.id}
+                course={course}
+                onRegister={handleRegister}
+                onDrop={handleDrop}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

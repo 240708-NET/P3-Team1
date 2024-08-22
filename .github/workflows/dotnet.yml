@@ -2,9 +2,9 @@ name: dotnet build and test
 
 on:
   push:
-    branches: [ "main", "BackEnd", "basic-controller" ]
+    branches: [ "main", "BackEnd"]
   pull_request:
-    branches: [ "main", "BackEnd", "basic-controller" ]
+    branches: [ "main", "BackEnd"]
 
 jobs:
   build:
@@ -20,6 +20,6 @@ jobs:
     - name: Restore dependencies 
       run: dotnet restore UniversityAPI/src
     - name: Build
-      run: dotnet build --no-restore UniversityAPI/src
+      run: dotnet build --no-restore UniversityAPI/src --property:TreatWarningsAsErrors=true
     - name: Test
       run: dotnet test --no-build --verbosity normal UniversityAPI/src

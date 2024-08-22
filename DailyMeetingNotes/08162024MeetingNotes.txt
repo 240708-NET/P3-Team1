@@ -1,0 +1,3 @@
+8/16/2024 Meeting Notes
+-Front-end set up routes and basic login
+-Back-end set up models
