@@ -12,6 +12,24 @@ namespace UniversityAPI.Services
         public ResourceNotFoundException(string message) : base(message) { }
     }
 
+    public class ResourceCreationFailedException : ServiceException
+    {
+        public ResourceCreationFailedException() : base() { }
+        public ResourceCreationFailedException(string message) : base(message) { }
+    }
+
+    public class ResourceUpdateFailedException : ServiceException
+    {
+        public ResourceUpdateFailedException() : base() { }
+        public ResourceUpdateFailedException(string message) : base(message) { }
+    }
+
+    public class ResourceDeletionFailedException : ServiceException
+    {
+        public ResourceDeletionFailedException() : base() { }
+        public ResourceDeletionFailedException(string message) : base(message) { }
+    }
+
     public class StudentNotFoundException : ResourceNotFoundException
     {
         public StudentNotFoundException() : base() { }
@@ -40,18 +58,6 @@ namespace UniversityAPI.Services
     {
         public StudentAlreadyRegisteredException() : base() { }
         public StudentAlreadyRegisteredException(string message) : base(message) { }
-    }
-
-    public class UpdateFailedException : ServiceException
-    {
-        public UpdateFailedException() : base() { }
-        public UpdateFailedException(string message) : base(message) { }
-    }
-
-    public class DeleteFailedException : ServiceException
-    {
-        public DeleteFailedException() : base() { }
-        public DeleteFailedException(string message) : base(message) { }
     }
 
     public class RepositoryException : ServiceException

@@ -17,7 +17,7 @@ public class Service<T> : IService<T> where T : Identified
         var item = await _repository.GetById(id);
         if (item == null)
         {
-            throw new KeyNotFoundException("Student with the specified ID does not exist.");
+            throw new ResourceNotFoundException();
         }
         return item;
     }
@@ -32,27 +32,37 @@ public class Service<T> : IService<T> where T : Identified
         T? insertedItem = await _repository.Insert(item);
         if (insertedItem == null)
         {
-            throw new Exception("Failed to insert.");
+            throw new ResourceCreationFailedException();
         }
         return insertedItem;
     }
 
     public async Task<T> Update(T item)
     {
+        T? foundItem = await _repository.GetById(item.ID);
+        if (foundItem == null)
+        {
+            throw new ResourceNotFoundException();
+        }
         T? updatedItem = await _repository.Update(item);
         if (updatedItem == null)
         {
-            throw new Exception("Failed to update the item.");
+            throw new ResourceUpdateFailedException();
         }
         return updatedItem;
     }
 
     public async Task<T> DeleteById(int id)
     {
+        T? foundItem = await _repository.GetById(id);
+        if (foundItem == null)
+        {
+            throw new ResourceNotFoundException();
+        }
         T? deletedItem = await _repository.DeleteById(id);
         if (deletedItem == null)
         {
-            throw new KeyNotFoundException("The student or section with the specified ID does not exist.");
+            throw new ResourceDeletionFailedException();
         }
         return deletedItem;
     }
