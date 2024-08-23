@@ -20,8 +20,8 @@ services:
       - target: 443
         published: 4443
         protocol: tcp
-      - target: 80
-        published: 8080
+      - target: 3000
+        published: 80
         protocol: tcp
 
   api:
