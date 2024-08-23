@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/CourseCard";
 import Navbar from "../components/Navbar";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 interface Course {
   id: number;
@@ -13,8 +15,23 @@ interface Course {
 
 const MyCoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+  const navigate = useNavigate();
+  const userContext = useUser();
+
+  if( !userContext ){
+    return <div>Loading...</div>;
+  }
+
+  const { user } = userContext;
 
   useEffect(() => {
+    if( !user ) {
+      navigate("/login");
+    }
+  }, [ user ])
+
+  useEffect(() => {
+    if( !user ) return;
     // Fetch the courses from the backend when the component mounts
     // Replace with actual endpoint to fetch courses the student is registered in
     fetch("http://localhost:5236/api/student/courses")

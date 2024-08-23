@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
                     Search Courses
                 </button>
             </Link>
-            <Link to={"/mycourses"}>
+            <Link to={"/"}>
                 {<button
                     type="button"
                     value="signup"
