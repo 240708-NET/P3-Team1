@@ -20,7 +20,6 @@ on:
 #the tasks to complete
 jobs:
   dockerize:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
