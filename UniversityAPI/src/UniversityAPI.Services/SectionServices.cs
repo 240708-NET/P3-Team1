@@ -1,6 +1,5 @@
 using UniversityAPI.Models;
 using UniversityAPI.Repositories;
-using UniversityAPI.Services;
 
 namespace UniversityAPI.Services;
 

@@ -12,6 +12,17 @@ namespace UniversityAPI.Repositories
             _context = context;
         }
 
+        public override async Task<Section?> GetById(int id)
+        {
+            //Include the related entities
+            return await _context.Sections
+                .Include(section => section.Course)  
+                .Include(section => section.Professor)  
+                .Include(section => section.Students)  
+                .AsNoTracking()
+                .SingleOrDefaultAsync(section => section.ID == id);
+        }
+
         public async Task<List<Section>> GetSectionsByCourseID(int courseID)
         {
             return await _context.Sections

@@ -19,9 +19,9 @@ public class StudentService : Service<Student>, IStudentServices
         return await _repository.DeleteById(studentId);
     }
 
-    public async Task<List<Section>?> GetRegisteredSections(int id)
+    /*public async Task<List<Section>?> GetRegisteredSections(int studentId)
     {
-        Student? student = await ((IStudentRepository)_repository).GetById(id);
+        Student? student = await ((IStudentRepository)_repository).GetById(studentId);
         if (student == null)
         {
             throw new StudentNotFoundException();
@@ -29,7 +29,20 @@ public class StudentService : Service<Student>, IStudentServices
         // return _studentRepository.GetRegisteredSectionsByStudentId(id);
         return null;
 
+    }*/
+
+    public async Task<List<Section>?> GetRegisteredSections(int studentId)
+{
+    //Fetch the student along with their sections
+    var student = await _repository.GetById(studentId);
+    if (student == null)
+    {
+        throw new StudentNotFoundException();
     }
+
+    //Return the sections that the student is registered in
+    return student.Sections.ToList();
+}
 
     public async Task<Student> Login(Student student)
     {

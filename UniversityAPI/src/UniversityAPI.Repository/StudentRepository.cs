@@ -12,6 +12,18 @@ namespace UniversityAPI.Repositories
             _context = context;
         }
 
+        public override async Task<Student?> GetById(int studentId)
+        {
+            //Include related entities
+            return await _context.Students
+                         .Include(s => s.Sections)
+                         .ThenInclude(section => section.Course)
+                         .Include(s => s.Sections)
+                         .ThenInclude(section => section.Professor) 
+                         .AsNoTracking()
+                         .SingleOrDefaultAsync(s => s.ID == studentId);
+        }
+
         public async Task<List<Student>> GetStudentsByLastName(string lastName)
         {
             return await _context.Students
