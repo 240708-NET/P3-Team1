@@ -19,13 +19,13 @@ const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
     setIsModalOpen(false);
   }
 
-  const handleRegister: MouseEventHandler = (e) => {
-    e.stopPropagation();
+  const handleRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     onRegister(course.id);
   };
 
-  const handleDrop: MouseEventHandler = (e) => {
-    e.stopPropagation();
+  const handleDrop = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     if (course.sectionID) {
       onDrop(course.sectionID);
     }
