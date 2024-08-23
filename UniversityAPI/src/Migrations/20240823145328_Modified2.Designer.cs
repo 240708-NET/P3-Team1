@@ -12,8 +12,8 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20240822183205_LocalInitial")]
-    partial class LocalInitial
+    [Migration("20240823145328_Modified2")]
+    partial class Modified2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,10 +122,6 @@ namespace UniversityAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CourseID");
-
-                    b.HasIndex("ProfessorID");
-
                     b.ToTable("Sections");
                 });
 
@@ -170,25 +166,6 @@ namespace UniversityAPI.Migrations
                         .HasForeignKey("StudentsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("UniversityAPI.Models.Section", b =>
-                {
-                    b.HasOne("UniversityAPI.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UniversityAPI.Models.Professor", "Professor")
-                        .WithMany()
-                        .HasForeignKey("ProfessorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Professor");
                 });
 #pragma warning restore 612, 618
         }

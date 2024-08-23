@@ -56,11 +56,11 @@ public class StudentController : Controller<Student>
     }
 
     [HttpGet("{studentId}/section")]
-    public async Task<ActionResult<List<Section>>> GetRegisteredSections([FromRoute] int id)
+    public async Task<ActionResult<List<Section>>> GetRegisteredSections([FromRoute] int studentId)
     {
         try
         {
-            return Ok(await ((IStudentServices)_service).GetRegisteredSections(id));
+            return Ok(await ((IStudentServices)_service).GetRegisteredSections(studentId));
         }
         catch (StudentNotFoundException)
         {
