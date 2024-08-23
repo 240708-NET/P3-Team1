@@ -40,6 +40,6 @@ services:
         delay: 5s
         max_attempts: 3
     ports:
-      - target: 80
+      - target: 8080
         published: 7262
         protocol: tcp
