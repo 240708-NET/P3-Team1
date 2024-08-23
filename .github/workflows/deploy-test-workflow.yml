@@ -1,4 +1,4 @@
-name: Deploy to Azure Test
+name: UI Build and Deploy
 
 #triggers
 on:
@@ -9,12 +9,12 @@ on:
       - devops/deploy
     #limit to changes in this folder...
     paths:
-      - UniversityAPI/**
+      - Frontend/**
   pull_request:    
     branches:
       - devops/deploy
     paths:
-      - UniversityAPI/**
+      - Frontend/**
   workflow_dispatch:
 
 #the tasks to complete
@@ -42,7 +42,7 @@ jobs:
     - name: Build and Push to dockerhub
       uses: docker/build-push-action@v5
       with:
-        context: ./UniversityAPI/
+        context: ./Frontend/
         push: true
         tags: nedturner613/roe-test:${{ github.sha }} 
 
