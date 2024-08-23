@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ui:
-    build: ./Frontend/Dockerfile-run-dev
+    build: ./Frontend
     deploy:
       replicas: 1
       resources:
@@ -40,6 +40,6 @@ services:
         delay: 5s
         max_attempts: 3
     ports:
-      - target: 8080
+      - target: 80
         published: 7262
         protocol: tcp
