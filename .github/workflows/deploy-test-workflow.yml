@@ -1,4 +1,4 @@
-name: API Build and Deploy
+name: Deploy to Azure Test
 
 #triggers
 on:
