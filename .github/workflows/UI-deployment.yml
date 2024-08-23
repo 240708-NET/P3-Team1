@@ -44,7 +44,7 @@ jobs:
       with:
         context: ./Frontend/
         push: true
-        tags: nedturner613/roe-api:${{ github.sha }} 
+        tags: nedturner613/roe-ui:${{ github.sha }} 
 
   deploy:
     #this job needs to be finished before this one starts
@@ -58,7 +58,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'roe-api'
+        app-name: 'roe-ui'
         slot-name: 'production'
         publish-profile: ${{ secrets.ROE_UI_PUBLISHSETTINGS }}
-        images: 'index.docker.io/nedturner613/roe-api:${{ github.sha }}'
+        images: 'index.docker.io/nedturner613/roe-ui:${{ github.sha }}'
