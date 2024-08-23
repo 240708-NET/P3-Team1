@@ -4,31 +4,21 @@ using UniversityAPI.Repositories;
 namespace UniversityAPI.Services;
 public class StudentService : Service<Student>, IStudentServices
 {
-    public StudentService(IStudentRepository repository) : base(repository)
-    {
-    }
+    public StudentService(IStudentRepository repository) : base(repository) { }
 
-    public async Task<Student?> DeleteSectionFromStudent(int studentId, int sectionId)
-    {
-        Student? student = await ((IStudentRepository)_repository).GetById(studentId);
-        if (student == null)
-        {
-            throw new StudentNotFoundException();
-        }
-
-        return await _repository.DeleteById(studentId);
-    }
-
-    public async Task<List<Section>?> GetRegisteredSections(int id)
+    public async Task<List<Section>> GetRegisteredSections(int id)
     {
         Student? student = await ((IStudentRepository)_repository).GetById(id);
         if (student == null)
         {
             throw new StudentNotFoundException();
         }
-        // return _studentRepository.GetRegisteredSectionsByStudentId(id);
-        return null;
-
+        List<Section>? sections = await ((IStudentRepository)_repository).GetRegisteredSections(id);
+        if (sections == null)
+        {
+            throw new RepositoryException();
+        }
+        return sections;
     }
 
     public async Task<Student> Login(Student student)
@@ -55,8 +45,23 @@ public class StudentService : Service<Student>, IStudentServices
         return registeredStudent;
     }
 
-    Task<Student> IStudentServices.AddSectionToStudent(int studentId, int sectionId)
+    public async Task<Student> AddSectionToStudent(int studentId, int sectionId)
     {
-        throw new NotImplementedException();
+        Student? student = await ((IStudentRepository)_repository).AddSectionToStudent(studentId, sectionId);
+        if (student == null)
+        {
+            throw new ResourceNotFoundException();
+        }
+        return student;
+    }
+
+    public async Task<Student> DeleteSectionFromStudent(int studentId, int sectionId)
+    {
+        Student? student = await ((IStudentRepository)_repository).DeleteSectionFromStudent(studentId, sectionId);
+        if (student == null)
+        {
+            throw new ResourceNotFoundException();
+        }
+        return student;
     }
 }
