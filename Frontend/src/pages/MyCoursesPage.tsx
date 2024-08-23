@@ -34,10 +34,10 @@ const MyCoursesPage: React.FC = () => {
     if( !user ) return;
     // Fetch the courses from the backend when the component mounts
     // Replace with actual endpoint to fetch courses the student is registered in
-    fetch("http://localhost:5236/api/student/courses")
-      .then((response) => response.json())
-      .then((data) => setCourses(data))
-      .catch((error) => console.error("Error fetching courses:", error));
+    // fetch("http://localhost:5236/api/student/courses")
+    //   .then((response) => response.json())
+    //   .then((data) => setCourses(data))
+    //   .catch((error) => console.error("Error fetching courses:", error));
 
     // Use dummy data before merging backend branch
     setCourses([
@@ -58,7 +58,7 @@ const MyCoursesPage: React.FC = () => {
       },
       {
         id: 2,
-        name: "Introduction to Data Analytics",
+        name: "Introduction to Statistic",
         description:
           "In our digital world, data-driven decision-making is becoming more common and more expected. Effective \
           leadership and communication, therefore, often hinges on the ability to acquire, manage, analyze, and display \
@@ -67,6 +67,14 @@ const MyCoursesPage: React.FC = () => {
           range of applications using the programming language R. Students complete the course with a clear understanding \
           of how to utilize quantitative data in real-time problem identification, decision-making, and problem-solving. \
           No prerequisites in statistics or math are required.",
+        category: "Data Analytics",
+        isRegistered: false,
+        sectionID: 1002,
+      },
+      {
+        id: 3,
+        name: "Introduction to Statistic",
+        description: "...",
         category: "Data Analytics",
         isRegistered: false,
         sectionID: 1002,
@@ -117,23 +125,21 @@ const MyCoursesPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen h-full flex flex-col">
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-orange-300">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-6 text-center text-orange-600">
-            My Courses
-          </h2>
-          <div className="space-y-4">
-            {courses.map((course) => (
-              <Card
-                key={course.id}
-                course={course}
-                onRegister={handleRegister}
-                onDrop={handleDrop}
-              />
-            ))}
-          </div>
+      <div className="mx-8 mb-8 h-full shadow-xl rounded-2xl px-16 py-6 bg-white grow">
+        <div className="py-12 text-center text-3xl font-medium leading-normal tracking-tight text-gray-900">
+          My Courses
+        </div>
+        <div className="mx-auto max-w-3xl bg-gray-50">
+          {courses.map((course) => (
+            <Card
+              key={course.id}
+              course={course}
+              onRegister={handleRegister}
+              onDrop={handleDrop}
+            />
+          ))}
         </div>
       </div>
     </div>
