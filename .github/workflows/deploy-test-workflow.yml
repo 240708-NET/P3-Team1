@@ -1,4 +1,4 @@
-name: UI Build and Deploy
+name: Deploy Test UI
 
 #triggers
 on:
