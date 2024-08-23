@@ -1,4 +1,4 @@
-name: Deploy to Azure Test
+name: Deploy Test UI
 
 #triggers
 on:
@@ -9,12 +9,12 @@ on:
       - devops/deploy
     #limit to changes in this folder...
     paths:
-      - UniversityAPI/**
+      - Frontend/**
   pull_request:    
     branches:
       - devops/deploy
     paths:
-      - UniversityAPI/**
+      - Frontend/**
   workflow_dispatch:
 
 #the tasks to complete
@@ -42,9 +42,9 @@ jobs:
     - name: Build and Push to dockerhub
       uses: docker/build-push-action@v5
       with:
-        context: ./UniversityAPI/
+        context: ./Frontend/
         push: true
-        tags: nedturner613/roe-test:${{ github.sha }} 
+        tags: nedturner613/roe-test-ui:${{ github.sha }} 
 
   deploy:
     #this job needs to be finished before this one starts
@@ -58,7 +58,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'roe-test'
+        app-name: 'roe-test-ui'
         slot-name: 'production'
         publish-profile: ${{ secrets.ROE_TEST_PUBLISHSETTINGS }}
-        images: 'index.docker.io/nedturner613/roe-test:${{ github.sha }}'
+        images: 'index.docker.io/nedturner613/roe-test-ui:${{ github.sha }}'
