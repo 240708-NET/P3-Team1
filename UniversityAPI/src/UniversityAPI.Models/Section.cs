@@ -8,13 +8,13 @@ namespace UniversityAPI.Models
         [Required]
         [ForeignKey("Course")]
         public int CourseID { get; set; }
-        //Navigation property with lazy loading
+        //Navigation property
         public Course Course { get; set; }
 
         [Required]
         [ForeignKey("Professor")]
         public int ProfessorID { get; set; }
-        //Navigation property with lazy loading
+        //Navigation property
         public Professor Professor { get; set; }
 
         [Required]
