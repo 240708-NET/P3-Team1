@@ -1,0 +1,4 @@
+8/22/2024 Meeting Notes
+-Robert merged all conflicts
+-Back-end and front-end people partnering up to try to get user stories functional
+-Ned is getting docker compose and DevOps stuff set up

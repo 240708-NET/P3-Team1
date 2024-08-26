@@ -13,11 +13,15 @@ public class SectionController : Controller<Section>
     public SectionController(ISectionServices sectionServices) : base(sectionServices) { }
 
     [HttpGet("{sectionId}/student")]
-    public ActionResult<List<Student>> GetRegisteredStudents([FromRoute] int id)
+    public async Task<ActionResult<List<Student>>> GetRegisteredStudents([FromRoute] int sectionId)
     {
         try
         {
-            return Ok(((ISectionServices)_service).GetRegisteredSections(id));
+            return Ok(await ((ISectionServices)_service).GetRegisteredStudents(sectionId));
+        }
+        catch (SectionNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
@@ -26,11 +30,15 @@ public class SectionController : Controller<Section>
     }
 
     [HttpPost("{sectionId}/student")]
-    public ActionResult<Student> AddStudentToSection([FromRoute] int sectionId, [FromBody] int studentId)
+    public async Task<ActionResult<Student>> AddStudentToSection([FromRoute] int sectionId, [FromBody] int studentId)
     {
         try
         {
-            return Ok(((ISectionServices)_service).AddSectionToStudent(sectionId, studentId));
+            return Ok(await ((ISectionServices)_service).AddStudentToSection(sectionId, studentId));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
@@ -39,11 +47,15 @@ public class SectionController : Controller<Section>
     }
 
     [HttpDelete("{sectionId}/student")]
-    public ActionResult<Student> DeleteStudentFromSection([FromRoute] int sectionId, [FromBody] int studentId)
+    public async Task<ActionResult<Student>> DeleteStudentFromSection([FromRoute] int sectionId, [FromBody] int studentId)
     {
         try
         {
-            return Ok(((ISectionServices)_service).DeleteSectionFromStudent(sectionId, studentId));
+            return Ok(await ((ISectionServices)_service).DeleteStudentFromSection(sectionId, studentId));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {

@@ -8,14 +8,14 @@ namespace UniversityAPI.Models
         [Required]
         [ForeignKey("Course")]
         public int CourseID { get; set; }
-        //Navigation property with lazy loading
-        public virtual Course Course { get; set; }
+        //Navigation property
+        public Course Course { get; set; }
 
         [Required]
         [ForeignKey("Professor")]
         public int ProfessorID { get; set; }
-        //Navigation property with lazy loading
-        public virtual Professor Professor { get; set; }
+        //Navigation property
+        public Professor Professor { get; set; }
 
         [Required]
         public TimeOnly StartTime { get; set; }
@@ -28,7 +28,7 @@ namespace UniversityAPI.Models
         public string Day { get; set; }
 
         //Navigation Property for Students
-        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
 
         //Constructor
         public Section()
@@ -36,18 +36,6 @@ namespace UniversityAPI.Models
             Course = new Course();
             Professor = new Professor();
             Day = "";
-            Students = new List<Student>();
-        }
-
-        public Section(int courseID, Course course, int professorID, Professor professor, TimeOnly startTime, TimeOnly endTime, string day)
-        {
-            CourseID = courseID;
-            Course = course;
-            ProfessorID = professorID;
-            Professor = professor;
-            StartTime = startTime;
-            EndTime = endTime;
-            Day = day;
             Students = new List<Student>();
         }
     }

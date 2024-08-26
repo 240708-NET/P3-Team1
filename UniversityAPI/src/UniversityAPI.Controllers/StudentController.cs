@@ -2,7 +2,6 @@ namespace UniversityAPI.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Net;
 
 using UniversityAPI.Models;
 using UniversityAPI.Services;
@@ -19,11 +18,8 @@ public class StudentController : Controller<Student>
     {
         try
         {
-            return Ok(await ((IStudentServices)_service).Register(student));
-        }
-        catch (RegistrationFailedException)
-        {
-            return StatusCode(500);
+            Student registeredStudent = await ((IStudentServices)_service).Register(student);
+            return CreatedAtAction("Register", registeredStudent);
         }
         catch (System.Exception)
         {
@@ -39,6 +35,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).Login(student));
         }
+        catch (StudentNotFoundException)
+        {
+            return Unauthorized();
+        }
         catch (InvalidLoginException)
         {
             return Unauthorized();
@@ -50,11 +50,15 @@ public class StudentController : Controller<Student>
     }
 
     [HttpGet("{studentId}/section")]
-    public async Task<ActionResult<List<Section>>> GetRegisteredSections([FromRoute] int id)
+    public async Task<ActionResult<List<Section>>> GetRegisteredSections([FromRoute] int studentId)
     {
         try
         {
-            return Ok(await ((IStudentServices)_service).GetRegisteredSections(id));
+            return Ok(await ((IStudentServices)_service).GetRegisteredSections(studentId));
+        }
+        catch (StudentNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
@@ -69,6 +73,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
         }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
+        }
         catch (System.Exception)
         {
             return StatusCode(500);
@@ -81,6 +89,10 @@ public class StudentController : Controller<Student>
         try
         {
             return Ok(await ((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
+        }
+        catch (ResourceNotFoundException)
+        {
+            return NotFound();
         }
         catch (System.Exception)
         {
