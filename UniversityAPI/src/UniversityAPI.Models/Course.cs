@@ -21,12 +21,5 @@ namespace UniversityAPI.Models
             Description = "";
             Category = "";
         }
-
-        public Course(string name, string description, string category)
-        {
-            Name = name;
-            Description = description;
-            Category = category;
-        }
     }
 }

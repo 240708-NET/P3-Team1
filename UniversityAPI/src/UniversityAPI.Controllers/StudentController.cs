@@ -19,12 +19,7 @@ public class StudentController : Controller<Student>
         try
         {
             Student registeredStudent = await ((IStudentServices)_service).Register(student);
-            string requestPath = Request != null ? $"{Request.Path}/{registeredStudent.ID}" : "/api";
-            return CreatedAtAction(new Uri(requestPath).ToString(), registeredStudent);
-        }
-        catch (RegistrationFailedException)
-        {
-            return StatusCode(500);
+            return CreatedAtAction("Register", registeredStudent);
         }
         catch (System.Exception)
         {

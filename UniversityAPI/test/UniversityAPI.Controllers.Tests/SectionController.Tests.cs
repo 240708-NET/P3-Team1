@@ -45,6 +45,16 @@ public class SectionControllerTests
     }
 
     [Fact]
+    public async Task GetRegisteredStudentsWhenErrorReturns500()
+    {
+        _mockService.Setup(service => service.GetRegisteredStudents(It.IsAny<int>())).Throws<Exception>();
+        var result = (await _controller.GetRegisteredStudents(42)).Result as StatusCodeResult;
+        _mockService.Verify(service => service.GetRegisteredStudents(42), Times.Once());
+        Assert.NotNull(result);
+        Assert.Equal(500, result.StatusCode);
+    }
+
+    [Fact]
     public async Task AddSectionToStudentWhenStudentOrSectionDoesNotExistReturns404()
     {
         _mockService.Setup(service => service.AddStudentToSection(It.IsAny<int>(), It.IsAny<int>())).Throws<ResourceNotFoundException>();
@@ -55,7 +65,7 @@ public class SectionControllerTests
     }
 
     [Fact]
-    public async Task AddSectionToStudentWhenStudentAndSectionExistsReturnsStudentAnd200()
+    public async Task AddStudentToSectionWhenStudentAndSectionExistsReturnsStudentAnd200()
     {
         _mockService.Setup(service => service.AddStudentToSection(It.IsAny<int>(), It.IsAny<int>())).Returns(Task.FromResult(new Section()));
         var result = (await _controller.AddStudentToSection(42, 42)).Result as OkObjectResult;
@@ -67,7 +77,17 @@ public class SectionControllerTests
     }
 
     [Fact]
-    public async Task DeleteSectionFromStudentWhenStudentOrSectionDoesNotExistReturns404()
+    public async Task AddStudentToSectionWhenErrorReturns500()
+    {
+        _mockService.Setup(service => service.AddStudentToSection(It.IsAny<int>(), It.IsAny<int>())).Throws<Exception>();
+        var result = (await _controller.AddStudentToSection(42, 42)).Result as StatusCodeResult;
+        _mockService.Verify(service => service.AddStudentToSection(42, 42), Times.Once());
+        Assert.NotNull(result);
+        Assert.Equal(500, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task DeleteStudentFromSectionWhenStudentOrSectionDoesNotExistReturns404()
     {
         _mockService.Setup(service => service.DeleteStudentFromSection(It.IsAny<int>(), It.IsAny<int>())).Throws<ResourceNotFoundException>();
         var result = (await _controller.DeleteStudentFromSection(42, 42)).Result as NotFoundResult;
@@ -77,7 +97,7 @@ public class SectionControllerTests
     }
 
     [Fact]
-    public async Task DeleteSectionFromStudentWhenStudentAndSectionExistsReturnsStudentAnd200()
+    public async Task DeleteStudentFromSectionWhenStudentAndSectionExistsReturnsStudentAnd200()
     {
         _mockService.Setup(service => service.DeleteStudentFromSection(It.IsAny<int>(), It.IsAny<int>())).Returns(Task.FromResult(new Section()));
         var result = (await _controller.DeleteStudentFromSection(42, 42)).Result as OkObjectResult;
@@ -86,6 +106,16 @@ public class SectionControllerTests
         Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
         Assert.NotNull(result.Value);
         Assert.True(result.Value is Section);
+    }
+
+    [Fact]
+    public async Task DeleteStudentFromSectionWhenErrorReturns500()
+    {
+        _mockService.Setup(service => service.DeleteStudentFromSection(It.IsAny<int>(), It.IsAny<int>())).Throws<Exception>();
+        var result = (await _controller.DeleteStudentFromSection(42, 42)).Result as StatusCodeResult;
+        _mockService.Verify(service => service.DeleteStudentFromSection(42, 42), Times.Once());
+        Assert.NotNull(result);
+        Assert.Equal(500, result.StatusCode);
     }
 
 }

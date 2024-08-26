@@ -38,17 +38,5 @@ namespace UniversityAPI.Models
             Day = "";
             Students = new List<Student>();
         }
-
-        public Section(int courseID, Course course, int professorID, Professor professor, TimeOnly startTime, TimeOnly endTime, string day)
-        {
-            CourseID = courseID;
-            Course = course;
-            ProfessorID = professorID;
-            Professor = professor;
-            StartTime = startTime;
-            EndTime = endTime;
-            Day = day;
-            Students = new List<Student>();
-        }
     }
 }
