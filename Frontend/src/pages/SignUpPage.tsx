@@ -22,19 +22,23 @@ export default function SignUpPage() {
     e.preventDefault();
     if (password != confirmPassword) {
       setFormError("Password fields do not match.");
+      setPassword("");
+      setConfirmPassword("");
     } else {
       register({
-        id: -1,
+        id: 0,
         firstName: firstName,
         lastName: lastName,
         password: password,
       })
-        .then(() => {
-          alert(`Welcome ${firstName} ${lastName}!`);
+        .then((user) => {
+          alert(
+            `Welcome, ${firstName} ${lastName}!\nYour student ID is ${user.id}.`
+          );
           navigate("/");
         })
         .catch((error: AxiosError) => {
-          alert(error.message);
+          setFormError(error.message);
         });
     }
   }
@@ -48,6 +52,13 @@ export default function SignUpPage() {
         <div className="px-4 py-4 mx-auto w-full max-w-sm">
           <form onSubmit={signup} className="flex flex-col gap-8">
             <div className="text-center text-2xl">Create an Account</div>
+            {formError && (
+              <div className="mx-auto w-full max-w-sm">
+                <p className="w-full rounded-md border-0 shadow-sm ring-2 px-3 py-2 ring-rose-400 bg-red-200">
+                  {formError}
+                </p>
+              </div>
+            )}
             <input
               required
               type="text"
@@ -73,11 +84,11 @@ export default function SignUpPage() {
               value={password}
               placeholder="Password"
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm leading-6"
-              onChange={(e) => setLastName(e.currentTarget.value)}
+              onChange={(e) => setPassword(e.currentTarget.value)}
             />
             <input
               required
-              type="text"
+              type="password"
               name="confirmPassword"
               value={confirmPassword}
               placeholder="Confirm Password"

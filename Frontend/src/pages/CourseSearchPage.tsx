@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Navbar from '../components/Navbar';
-import { useNavigate } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 // Define the Section type with data types
 interface Section {
@@ -40,24 +40,24 @@ const CourseSearchPage: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<
     Section["course"] | null
   >(null);
-    const navigate = useNavigate();
-    const userContext = useUser();
+  const navigate = useNavigate();
+  const userContext = useUser();
 
-    if( !userContext ){
-        return <div>Loading...</div>;
+  if (!userContext) {
+    return <div>Loading...</div>;
+  }
+
+  const { user } = userContext;
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
     }
-
-    const { user } = userContext;
-
-    useEffect(() => {
-        if( !user ) {
-            navigate("/login");
-        }
-    }, [ user ])
+  }, [user]);
 
   // Fetch sections from the API.
   useEffect(() => {
-        if ( !user ) return;
+    if (!user) return;
     axios
       .get<Section[]>(`${API_BASE}/Section`)
       .then((response) => {
@@ -81,7 +81,7 @@ const CourseSearchPage: React.FC = () => {
 
   // Search and filter courses based on the course name and category
   useEffect(() => {
-        if ( !user ) return;
+    if (!user) return;
     const filtered = sections.filter(
       (section) =>
         (section.course.name
@@ -166,15 +166,11 @@ const CourseSearchPage: React.FC = () => {
               className="border border-gray-300 w-full rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400 "
             >
               <option value="">All</option>
-              {/* 
-              Comment this part to prevent showing an empty option. 
-              TODO: uncomment after connect to backend API
-
               {categories.map((category) => (
                 <option key={category} value={category}>
                   {category}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
         </div>
