@@ -17,7 +17,7 @@ namespace UniversityAPI.Models
         public string Password { get; set; }
 
         //Navigation Property for Sections
-        public ICollection<Section> Sections { get; set; } = new List<Section>();
+        public ICollection<Section> Sections { get; set; }
 
 
         //Constructors
