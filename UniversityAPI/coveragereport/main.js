@@ -226,28 +226,22 @@ var assemblies = [
       { "name": "UniversityAPI.Controllers.ProfessorController", "rp": "UniversityAPI_ProfessorController.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Controllers.SectionController", "rp": "UniversityAPI_SectionController.html", "cl": 31, "ucl": 0, "cal": 31, "tl": 65, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Controllers.StudentController", "rp": "UniversityAPI_StudentController.html", "cl": 52, "ucl": 0, "cal": 52, "tl": 104, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.Modified", "rp": "UniversityAPI_Modified.html", "cl": 0, "ucl": 284, "cal": 284, "tl": 343, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.Modified2", "rp": "UniversityAPI_Modified2.html", "cl": 0, "ucl": 181, "cal": 181, "tl": 233, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.NickChangeMaybe", "rp": "UniversityAPI_NickChangeMaybe.html", "cl": 0, "ucl": 169, "cal": 169, "tl": 218, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.NoVirtual", "rp": "UniversityAPI_NoVirtual.html", "cl": 0, "ucl": 169, "cal": 169, "tl": 218, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.NoVirtual2", "rp": "UniversityAPI_NoVirtual2.html", "cl": 0, "ucl": 169, "cal": 169, "tl": 218, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Migrations.UniversityContextModelSnapshot", "rp": "UniversityAPI_UniversityContextModelSnapshot.html", "cl": 0, "ucl": 143, "cal": 143, "tl": 170, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Models.Course", "rp": "UniversityAPI_Course.html", "cl": 9, "ucl": 6, "cal": 15, "tl": 32, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Models.Course", "rp": "UniversityAPI_Course.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Models.Identified", "rp": "UniversityAPI_Identified.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Models.Professor", "rp": "UniversityAPI_Professor.html", "cl": 9, "ucl": 6, "cal": 15, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Models.Section", "rp": "UniversityAPI_Section.html", "cl": 15, "ucl": 11, "cal": 26, "tl": 54, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Models.Student", "rp": "UniversityAPI_Student.html", "cl": 18, "ucl": 12, "cal": 30, "tl": 58, "cb": 4, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Models.Professor", "rp": "UniversityAPI_Professor.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Models.Section", "rp": "UniversityAPI_Section.html", "cl": 15, "ucl": 0, "cal": 15, "tl": 42, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Models.Student", "rp": "UniversityAPI_Student.html", "cl": 11, "ucl": 0, "cal": 11, "tl": 32, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Models.UniversityContext", "rp": "UniversityAPI_UniversityContext.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 19, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Repositories.CourseRepository", "rp": "UniversityAPI_CourseRepository.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 22, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Repositories.ProfessorRepository", "rp": "UniversityAPI_ProfessorRepository.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Repositories.Repository<T>", "rp": "UniversityAPI_Repository_1.html", "cl": 36, "ucl": 5, "cal": 41, "tl": 69, "cb": 1, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Repositories.SectionRepository", "rp": "UniversityAPI_SectionRepository.html", "cl": 38, "ucl": 6, "cal": 44, "tl": 69, "cb": 5, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Repositories.SectionRepository", "rp": "UniversityAPI_SectionRepository.html", "cl": 39, "ucl": 6, "cal": 45, "tl": 73, "cb": 6, "tb": 12, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Repositories.StudentRepository", "rp": "UniversityAPI_StudentRepository.html", "cl": 39, "ucl": 6, "cal": 45, "tl": 70, "cb": 5, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Services.CourseService", "rp": "UniversityAPI_CourseService.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Services.ProfessorService", "rp": "UniversityAPI_ProfessorService.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 22, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Services.SectionService", "rp": "UniversityAPI_SectionService.html", "cl": 0, "ucl": 28, "cal": 28, "tl": 47, "cb": 0, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "UniversityAPI.Services.Service<T>", "rp": "UniversityAPI_Service_1.html", "cl": 0, "ucl": 47, "cal": 47, "tl": 74, "cb": 0, "tb": 12, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "UniversityAPI.Services.StudentService", "rp": "UniversityAPI_StudentService.html", "cl": 0, "ucl": 39, "cal": 39, "tl": 77, "cb": 0, "tb": 12, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "UniversityAPI.Services.StudentService", "rp": "UniversityAPI_StudentService.html", "cl": 0, "ucl": 39, "cal": 39, "tl": 66, "cb": 0, "tb": 16, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -256,9 +250,17 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
+      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
+      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
+  {
+    "assembly": "UniversityAPI", "class": "UniversityAPI.Services.StudentService", "reportPath": "UniversityAPI_StudentService.html", "methodName": "GetRegisteredSections()", "methodShortName": "GetRegisteredSections()", "fileIndex": 0, "line": 10,
+    "metrics": [
+      { "value": 42, "exceeded": true },
+      { "value": 6, "exceeded": false },
+    ]},
 ];
 
 var branchCoverageAvailable = true;
