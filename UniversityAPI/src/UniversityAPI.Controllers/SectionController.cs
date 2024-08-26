@@ -23,10 +23,6 @@ public class SectionController : Controller<Section>
         {
             return NotFound();
         }
-        catch (RepositoryException)
-        {
-            return StatusCode(500);
-        }
         catch (System.Exception)
         {
             return StatusCode(500);

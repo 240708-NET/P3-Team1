@@ -2,7 +2,8 @@ import React, { createContext, useState, ReactNode, useContext } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { User } from "../types";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+// const API_BASE = import.meta.env.VITE_API_BASE;
+const API_BASE = "https://roe-api.azurewebsites.net";
 
 interface UserContextProps {
   user: User | undefined;
@@ -26,6 +27,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   });
 
   const login = async (user: User) => {
+    console.log(API_BASE);
     await axios
       .post(`${API_BASE}/Student/login`, user)
       .then((res: AxiosResponse) => {
