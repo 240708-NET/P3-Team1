@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import StudentPage from "./pages/StudentPage";
 import CourseSearchPage from "./pages/CourseSearchPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -12,7 +11,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <StudentPage />,
+      element: <MyCoursesPage />,
     },
     {
       path: "search",
@@ -26,16 +25,14 @@ function App() {
       path: "signup",
       element: <SignUpPage />,
     },
-    {
-      path: "mycourses",
-      element: <MyCoursesPage />,
-    },
   ]);
 
   return (
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider> 
+    <div className="bg-sky-200">
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </div>
   );
 }
 
