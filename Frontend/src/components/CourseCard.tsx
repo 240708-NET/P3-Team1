@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import CourseModal from "./CourseModal";
 import { Course } from "../types";
 
@@ -8,7 +8,7 @@ interface CardProps {
   onDrop: (sectionID: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
+const Card: React.FC<CardProps> = ({ course, onDrop }) => { //onRegister,
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleClick() {
@@ -19,10 +19,10 @@ const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
     setIsModalOpen(false);
   }
 
-  const handleRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onRegister(course.id);
-  };
+  // const handleRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   event.stopPropagation();
+  //   onRegister(course.id);
+  // };
 
   const handleDrop = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();

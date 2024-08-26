@@ -45,6 +45,11 @@ export default function SignUpPage() {
         <h2 className="text-center text-3xl font-medium leading-normal tracking-tight text-gray-900">
           Reevature Online Eniversity
         </h2>
+        { formError != "" && 
+          <div className="px-4 py-2 bg-red-500 text-white rounded">
+            {formError}
+          </div> 
+        }
         <div className="px-4 py-4 mx-auto w-full max-w-sm">
           <form onSubmit={signup} className="flex flex-col gap-8">
             <div className="text-center text-2xl">Create an Account</div>
@@ -73,11 +78,11 @@ export default function SignUpPage() {
               value={password}
               placeholder="Password"
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm leading-6"
-              onChange={(e) => setLastName(e.currentTarget.value)}
+              onChange={(e) => setPassword(e.currentTarget.value)}
             />
             <input
               required
-              type="text"
+              type="password"
               name="confirmPassword"
               value={confirmPassword}
               placeholder="Confirm Password"

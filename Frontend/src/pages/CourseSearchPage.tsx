@@ -166,15 +166,12 @@ const CourseSearchPage: React.FC = () => {
               className="border border-gray-300 w-full rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400 "
             >
               <option value="">All</option>
-              {/* 
-              Comment this part to prevent showing an empty option. 
-              TODO: uncomment after connect to backend API
 
               {categories.map((category) => (
                 <option key={category} value={category}>
                   {category}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
         </div>
