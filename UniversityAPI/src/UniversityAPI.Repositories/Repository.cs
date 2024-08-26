@@ -15,24 +15,24 @@ namespace UniversityAPI.Repositories
             EntitySet = context.Set<TEntity>();
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public virtual async Task<List<TEntity>> GetAll()
         {
             return await EntitySet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<TEntity?> GetById(int id)
+        public virtual async Task<TEntity?> GetById(int id)
         {
             return await EntitySet.AsNoTracking().SingleOrDefaultAsync(e => e.ID == id);
         }
 
-        public async Task<TEntity?> Insert(TEntity entity)
+        public virtual async Task<TEntity?> Insert(TEntity entity)
         {
             var item = await Context.AddAsync(entity);
             await Context.SaveChangesAsync();
             return item.Entity;
         }
 
-        public async Task<TEntity?> Update(TEntity entity)
+        public virtual async Task<TEntity?> Update(TEntity entity)
         {
             var item = Context.Update(entity);
             try
@@ -48,7 +48,7 @@ namespace UniversityAPI.Repositories
             return item.Entity;
         }
 
-        public async Task<TEntity?> DeleteById(object id)
+        public virtual async Task<TEntity?> DeleteById(object id)
         {
             var entity = await EntitySet.FindAsync(id);
             if (entity == null) return null;
@@ -58,7 +58,7 @@ namespace UniversityAPI.Repositories
             return entity;
         }
 
-        public async Task<List<TEntity>> DeleteAll()
+        public virtual async Task<List<TEntity>> DeleteAll()
         {
             var items = await EntitySet.AsNoTracking().ToListAsync();
             EntitySet.RemoveRange(items);

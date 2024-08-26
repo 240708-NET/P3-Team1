@@ -8,10 +8,14 @@ namespace UniversityAPI.Models
         [Required]
         [ForeignKey("Course")]
         public int CourseID { get; set; }
+        //Navigation property with lazy loading
+        public Course Course { get; set; }
 
         [Required]
         [ForeignKey("Professor")]
         public int ProfessorID { get; set; }
+        //Navigation property with lazy loading
+        public Professor Professor { get; set; }
 
         [Required]
         public TimeOnly StartTime { get; set; }
@@ -29,6 +33,8 @@ namespace UniversityAPI.Models
         //Constructor
         public Section()
         {
+            Course = new Course();
+            Professor = new Professor();
             Day = "";
             Students = new List<Student>();
         }
@@ -36,7 +42,9 @@ namespace UniversityAPI.Models
         public Section(int courseID, Course course, int professorID, Professor professor, TimeOnly startTime, TimeOnly endTime, string day)
         {
             CourseID = courseID;
+            Course = course;
             ProfessorID = professorID;
+            Professor = professor;
             StartTime = startTime;
             EndTime = endTime;
             Day = day;
