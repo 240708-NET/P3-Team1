@@ -12,20 +12,25 @@ namespace UniversityAPI.Repositories
             _context = context;
         }
 
-
-        public async Task<List<Section>?> GetSectionsByCourseID(int courseID)
+        public override async Task<Section?> GetById(int id)
         {
-            Course? course = await _context.Courses.FirstOrDefaultAsync(c => c.ID == courseID);
-            if (course == null)
-            {
-                return null;
-            }
+            //Include the related entities
+            return await _context.Sections
+                .Include(section => section.Course)  
+                .Include(section => section.Professor)  
+                .Include(section => section.Students)  
+                .AsNoTracking()
+                .SingleOrDefaultAsync(section => section.ID == id);
+        }
+
+        public async Task<List<Section>> GetSectionsByCourseID(int courseID)
+        {
             return await _context.Sections
                                  .Where(section => section.CourseID == courseID)
                                  .ToListAsync();
         }
 
-        public async Task<List<Student>?> GetRegisteredStudents(int id)
+                public async Task<List<Student>?> GetRegisteredStudents(int id)
         {
             Section? section = await _context.Sections.FirstOrDefaultAsync(s => s.ID == id);
             if (section == null)
@@ -60,6 +65,5 @@ namespace UniversityAPI.Repositories
             await _context.SaveChangesAsync();
             return section;
         }
-
     }
 }
