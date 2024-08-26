@@ -28,31 +28,5 @@ namespace UniversityAPI.Models
             Password = "";
             Sections = new List<Section>();
         }
-
-
-        public Student(string firstName, string lastName, string password)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Password = password;
-            Sections = new List<Section>();
-        }
-
-        public override bool Equals(object? obj)
-        {
-            if (!(obj is Student))
-            {
-                return false;
-            }
-            return ((Student)obj).ID == ID &&
-                   ((Student)obj).FirstName == FirstName &&
-                   ((Student)obj).LastName == LastName &&
-                   ((Student)obj).Password == Password;
-        }
-
-        public override int GetHashCode()
-        {
-            return ID;
-        }
     }
 }
