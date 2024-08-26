@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { Navigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 // Define the Section type with data types
 interface Section {
@@ -38,6 +40,11 @@ const CourseSearchPage: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<
     Section["course"] | null
   >(null);
+  const userContext = useUser();
+
+  if( !userContext?.user ){
+    return <Navigate to="/login"/>;
+  }
 
   // Fetch sections from the API.
   useEffect(() => {
@@ -148,15 +155,11 @@ const CourseSearchPage: React.FC = () => {
               className="border border-gray-300 w-full rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400 "
             >
               <option value="">All</option>
-              {/* 
-              Comment this part to prevent showing an empty option. 
-              TODO: uncomment after connect to backend API
-
               {categories.map((category) => (
                 <option key={category} value={category}>
                   {category}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
         </div>
