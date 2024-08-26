@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityAPI.Models;
 
@@ -11,9 +12,11 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    partial class UniversityContextModelSnapshot : ModelSnapshot
+    [Migration("20240823160029_NoVirtual")]
+    partial class NoVirtual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +122,10 @@ namespace UniversityAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("ProfessorID");
+
                     b.ToTable("Sections");
                 });
 
@@ -163,6 +170,25 @@ namespace UniversityAPI.Migrations
                         .HasForeignKey("StudentsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UniversityAPI.Models.Section", b =>
+                {
+                    b.HasOne("UniversityAPI.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UniversityAPI.Models.Professor", "Professor")
+                        .WithMany()
+                        .HasForeignKey("ProfessorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Professor");
                 });
 #pragma warning restore 612, 618
         }

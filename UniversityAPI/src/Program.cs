@@ -10,6 +10,8 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.WebHost.UseUrls("http://[::]:80");
+        Console.WriteLine("Yo.");
 
         //Adding connection string
         builder.Services.AddDbContext<UniversityContext>(options =>
@@ -44,7 +46,7 @@ public static class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        
+
         //Handle CORS
         app.UseCors(options => options.AllowAnyHeader()
                     .SetIsOriginAllowed(hostName => true)
@@ -52,7 +54,7 @@ public static class Program
                     .AllowCredentials()
                     );
 
-        app.UseHttpsRedirection();
+        // app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
