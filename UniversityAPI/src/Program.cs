@@ -46,7 +46,7 @@ public static class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        
+
         //Handle CORS
         app.UseCors(options => options.AllowAnyHeader()
                     .SetIsOriginAllowed(hostName => true)

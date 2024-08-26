@@ -29,7 +29,7 @@ function CourseModal({ course, open, onClose }: CourseModalProps) {
           >
             <div className="m-8 flex flex-col gap-4">
               <DialogTitle className="text-lg font-semibold leading-6 text-gray-900 flex gap-3">
-                <div>{course.sectionID}</div>
+                <div>{course.id}</div>
                 <div>{course.name}</div>
               </DialogTitle>
               <p className="text-base text-gray-500 indent-8">

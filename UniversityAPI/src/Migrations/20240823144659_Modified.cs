@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UniversityAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class LocalInitial : Migration
+    public partial class Modified : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
