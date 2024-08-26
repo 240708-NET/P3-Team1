@@ -1,9 +1,9 @@
 import { useState, FormEvent } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+// const API_BASE = import.meta.env.VITE_API_BASE; 
 
 export default function SignUpPage() {
   const [firstName, setFirstName] = useState("");
