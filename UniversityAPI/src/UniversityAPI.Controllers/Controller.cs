@@ -54,8 +54,7 @@ public class Controller<T> : ControllerBase where T : Identified
         try
         {
             T createdItem = await _service.Insert(item);
-            string requestPath = Request != null ? $"{Request.Path}/{createdItem.ID}" : "/api";
-            return CreatedAtAction(new Uri(requestPath).ToString(), createdItem);
+            return CreatedAtAction("Insert", createdItem);
         }
         catch (System.Exception)
         {
