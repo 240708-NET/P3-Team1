@@ -11,7 +11,7 @@ const MyCoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const userContext = useUser();
 
-  if( !userContext || !userContext.user ){
+  if( !userContext?.user ){
     return <Navigate to="/login"/>;
   }
 

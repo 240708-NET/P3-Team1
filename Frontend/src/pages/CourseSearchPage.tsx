@@ -42,7 +42,7 @@ const CourseSearchPage: React.FC = () => {
   >(null);
   const userContext = useUser();
 
-  if( !userContext || !userContext.user ){
+  if( !userContext?.user ){
     return <Navigate to="/login"/>;
   }
 
