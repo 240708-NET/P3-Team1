@@ -1,0 +1,5 @@
+8/23/2024 Meeting Notes
+-Getting ready for today's quick demo
+-Josh will check out virtual keyword to see if that's causing endpoint problems (GET/api/Section/{id}), (api/student/section), deleting from SectionStudent
+-Repository tests
+-Over weekend if members choose, front-end will continue progress, Ned and Robert will work on docker related trouble, Josh and Nick will work on unit tests 
