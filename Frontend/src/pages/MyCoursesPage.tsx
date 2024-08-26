@@ -2,30 +2,22 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/CourseCard";
 import Navbar from "../components/Navbar";
 import { useUser } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Course } from "../types";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 const MyCoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
-  const navigate = useNavigate();
   const userContext = useUser();
 
-  if (!userContext) {
-    return <div>Loading...</div>;
+  if( !userContext?.user ){
+    return <Navigate to="/login"/>;
   }
 
   const { user } = userContext;
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user]);
-
   async function fetchCourse() {
-    if (!user) return;
     return fetch(`${API_BASE}/Student/${user.id}/section`)
       .then((response) => response.json())
       .then((data) =>
@@ -86,7 +78,6 @@ const MyCoursesPage: React.FC = () => {
   }, []);
 
   const handleRegister = (courseID: number) => {
-    if (!user) return;
     // Endpoint for registering a course
     // Replace with actual endpoint to register a course
     fetch(`${API_BASE}/Student/${user.id}/section`, {
@@ -102,7 +93,6 @@ const MyCoursesPage: React.FC = () => {
 
   const handleDrop = (courseID: number) => {
     console.log(courseID.toString());
-    if (!user) return;
     // Endpoint for dropping a course
     // Replace with actual endpoint to drop a course
     fetch(`${API_BASE}/Student/${user.id}/section`, {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 // Define the Section type with data types
@@ -40,24 +40,14 @@ const CourseSearchPage: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<
     Section["course"] | null
   >(null);
-  const navigate = useNavigate();
   const userContext = useUser();
 
-  if (!userContext) {
-    return <div>Loading...</div>;
+  if( !userContext?.user ){
+    return <Navigate to="/login"/>;
   }
-
-  const { user } = userContext;
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user]);
 
   // Fetch sections from the API.
   useEffect(() => {
-    if (!user) return;
     axios
       .get<Section[]>(`${API_BASE}/Section`)
       .then((response) => {
@@ -81,7 +71,6 @@ const CourseSearchPage: React.FC = () => {
 
   // Search and filter courses based on the course name and category
   useEffect(() => {
-    if (!user) return;
     const filtered = sections.filter(
       (section) =>
         (section.course.name
