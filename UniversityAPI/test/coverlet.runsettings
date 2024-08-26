@@ -1,0 +1,6 @@
+<Configuration>
+  <CoverletOutputFormat>opencover</CoverletOutputFormat>
+  <Exclude>
+    UniversityAPI.Migrations
+  </Exclude>
+</Configuration>
