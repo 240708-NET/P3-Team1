@@ -34,7 +34,7 @@ namespace UniversityAPI.Migrations
 
                     b.HasIndex("StudentsID");
 
-                    b.ToTable("SectionStudent");
+                    b.ToTable("StudentSections", (string)null);
                 });
 
             modelBuilder.Entity("UniversityAPI.Models.Course", b =>
@@ -119,6 +119,10 @@ namespace UniversityAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("ProfessorID");
+
                     b.ToTable("Sections");
                 });
 
@@ -163,6 +167,25 @@ namespace UniversityAPI.Migrations
                         .HasForeignKey("StudentsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UniversityAPI.Models.Section", b =>
+                {
+                    b.HasOne("UniversityAPI.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UniversityAPI.Models.Professor", "Professor")
+                        .WithMany()
+                        .HasForeignKey("ProfessorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Professor");
                 });
 #pragma warning restore 612, 618
         }

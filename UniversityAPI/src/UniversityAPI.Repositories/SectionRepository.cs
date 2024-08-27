@@ -12,6 +12,17 @@ namespace UniversityAPI.Repositories
             _context = context;
         }
 
+        public override async Task<List<Section>> GetAll()
+        {
+            //Include related entities for all sections
+            return await _context.Sections
+                .Include(section => section.Course)
+                .Include(section => section.Professor)
+                .Include(section => section.Students)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
         public override async Task<Section?> GetById(int id)
         {
             //Include the related entities
@@ -23,11 +34,15 @@ namespace UniversityAPI.Repositories
                 .SingleOrDefaultAsync(section => section.ID == id);
         }
 
-        public async Task<List<Section>> GetSectionsByCourseID(int courseID)
+        public async Task<List<Section>?> GetSectionsByCourseID(int courseID)
         {
-            return await _context.Sections
-                                 .Where(section => section.CourseID == courseID)
-                                 .ToListAsync();
+            // Fetch the sections by course ID
+            var sections = await _context.Sections
+                                        .Where(s => s.CourseID == courseID)
+                                        .ToListAsync();
+
+            // Return the list of sections (can be null if no sections exist)
+            return sections.Any() ? sections : null;
         }
 
                 public async Task<List<Student>?> GetRegisteredStudents(int id)

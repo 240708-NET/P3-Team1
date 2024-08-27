@@ -5,7 +5,7 @@
 namespace UniversityAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class NickChangeMaybe : Migration
+    public partial class UniversityContextChange3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

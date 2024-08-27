@@ -21,10 +21,6 @@ public class StudentController : Controller<Student>
             Student registeredStudent = await ((IStudentServices)_service).Register(student);
             return CreatedAtAction("Register", registeredStudent);
         }
-        catch (RegistrationFailedException)
-        {
-            return StatusCode(500);
-        }
         catch (System.Exception)
         {
             return StatusCode(500);
@@ -87,12 +83,14 @@ public class StudentController : Controller<Student>
         }
     }
 
-    [HttpDelete("{studentId}/section")]
-    public async Task<ActionResult<Student>> DeleteSectionFromStudent([FromRoute] int studentId, [FromBody] int sectionId)
+    [HttpDelete("{studentId}/section/{sectionId}")]
+    public async Task<ActionResult<Student>> DeleteSectionFromStudent([FromRoute] int studentId, [FromRoute] int sectionId)
     {
         try
         {
-            return Ok(await ((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId));
+            var result = await ((IStudentServices)_service).DeleteSectionFromStudent(studentId, sectionId);
+            if (result == null) return NotFound();
+            return Ok(result);
         }
         catch (ResourceNotFoundException)
         {
@@ -103,6 +101,4 @@ public class StudentController : Controller<Student>
             return StatusCode(500);
         }
     }
-
-
 }

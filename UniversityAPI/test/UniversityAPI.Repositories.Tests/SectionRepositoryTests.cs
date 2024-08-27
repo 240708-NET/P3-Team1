@@ -257,6 +257,7 @@ namespace UniversityAPI.Repositories.Tests
 
             //ASSERT
             //Checking we have 2 sections and they are the sections we just created
+            Assert.NotNull(sections);
             Assert.Equal(2, sections.Count); 
             Assert.Contains(sections, s => s.Day == "Tue"); 
             Assert.Contains(sections, s => s.Day == "Thu"); 

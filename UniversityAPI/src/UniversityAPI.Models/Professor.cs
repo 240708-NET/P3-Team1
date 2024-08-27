@@ -23,12 +23,5 @@ namespace UniversityAPI.Models
             LastName = "";
             Password = "";
         }
-
-        public Professor(string firstName, string lastName, string password)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Password = password;
-        }
     }
 }

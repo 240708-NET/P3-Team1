@@ -26,6 +26,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   });
 
   const login = async (user: User) => {
+    console.log(API_BASE);
     await axios
       .post(`${API_BASE}/Student/login`, user)
       .then((res: AxiosResponse) => {

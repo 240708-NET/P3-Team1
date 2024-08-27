@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UniversityAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Modified : Migration
+    public partial class UniversityContextChange : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,7 +86,7 @@ namespace UniversityAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SectionStudent",
+                name: "StudentSections",
                 columns: table => new
                 {
                     SectionsID = table.Column<int>(type: "int", nullable: false),
@@ -94,15 +94,15 @@ namespace UniversityAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SectionStudent", x => new { x.SectionsID, x.StudentsID });
+                    table.PrimaryKey("PK_StudentSections", x => new { x.SectionsID, x.StudentsID });
                     table.ForeignKey(
-                        name: "FK_SectionStudent_Sections_SectionsID",
+                        name: "FK_StudentSections_Sections_SectionsID",
                         column: x => x.SectionsID,
                         principalTable: "Sections",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SectionStudent_Students_StudentsID",
+                        name: "FK_StudentSections_Students_StudentsID",
                         column: x => x.StudentsID,
                         principalTable: "Students",
                         principalColumn: "ID",
@@ -120,8 +120,8 @@ namespace UniversityAPI.Migrations
                 column: "ProfessorID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SectionStudent_StudentsID",
-                table: "SectionStudent",
+                name: "IX_StudentSections_StudentsID",
+                table: "StudentSections",
                 column: "StudentsID");
         }
 
@@ -129,7 +129,7 @@ namespace UniversityAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SectionStudent");
+                name: "StudentSections");
 
             migrationBuilder.DropTable(
                 name: "Sections");
