@@ -3,17 +3,19 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import SectionModal from '../components/SectionModal';
 
 // Define the Section type with data types
+interface Course {
+  id: number;
+  name: string;
+  description?: string;
+  category?: string;
+}
+
 interface Section {
   id: number;
   courseID: number;
-  course: {
-    id: number;
-    name: string;
-    description?: string;
-    category?: string;
-  };
   professorID: number;
   professor: {
     id: number;
@@ -25,108 +27,77 @@ interface Section {
   day: string;
 }
 
-const API_BASE = "http://localhost:5236/api";
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 const CourseSearchPage: React.FC = () => {
   // States for sections, categories, and search queries
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
   const [sections, setSections] = useState<Section[]>([]);
-  const [filteredSections, setFilteredSections] = useState<Section[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCourses, setSelectedCourses] = useState<Set<number>>(
-    new Set()
-  );
-  const [selectedCourse, setSelectedCourse] = useState<
-    Section["course"] | null
-  >(null);
   const userContext = useUser();
 
-  if( !userContext?.user ){
-    return <Navigate to="/login"/>;
+  if (!userContext?.user) {
+    return <Navigate to="/login" />;
   }
 
-  // Fetch sections from the API.
+  // Get all courses.
   useEffect(() => {
     axios
-      .get<Section[]>(`${API_BASE}/Section`)
+      .get<Course[]>(`${API_BASE}/Course`)
       .then((response) => {
-        const sectionData = response.data;
-        setSections(sectionData);
+        const courseData = response.data;
+        setCourses(courseData);
+        setFilteredCourses(courseData);
 
-        // Extract unique categories for the dropdown
         const uniqueCategories: string[] = Array.from(
-          new Set(sectionData.map((section) => section.course.category || ""))
+          new Set(courseData.map((course) => course.category || ""))
         );
         setCategories(uniqueCategories);
-
-        // Set initial filtered sections
-        setFilteredSections(sectionData);
       })
       .catch((error) => {
-        console.error("Error fetching sections:", error);
-        alert("Failed to fetch sections");
+        console.error("Error fetching courses:", error);
+        alert("Failed to fetch courses");
       });
   }, []);
 
   // Search and filter courses based on the course name and category
   useEffect(() => {
-    const filtered = sections.filter(
-      (section) =>
-        (section.course.name
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-          section.id.toString().includes(searchQuery)) &&
-        (selectedCategory === "" ||
-          section.course.category === selectedCategory)
+    const filtered = courses.filter(
+      (course) =>
+        (course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          course.id.toString().includes(searchQuery)) &&
+        (selectedCategory === "" || course.category === selectedCategory)
     );
-    setFilteredSections(filtered);
-  }, [searchQuery, selectedCategory, sections]);
+    setFilteredCourses(filtered);
+  }, [searchQuery, selectedCategory, courses]);
 
-  // Handle selecting or deselecting courses on the checkbox
-  const handleCheckboxChange = (id: number) => {
-    setSelectedCourses((prevSelectedCourses) => {
-      const newSelectedCourses = new Set(prevSelectedCourses);
-      if (newSelectedCourses.has(id)) {
-        newSelectedCourses.delete(id);
-      } else {
-        newSelectedCourses.add(id);
-      }
-      return newSelectedCourses;
-    });
+
+  //Get all sections with the given courseID.
+  const fetchSectionsByCourse = (courseID: number) => {
+    axios
+      .get<Section[]>(`${API_BASE}/Section`)
+      .then((response) => {
+        const filteredSections = response.data.filter(section => section.courseID === courseID);
+        setSections(filteredSections);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+        alert("Failed to fetch sections");
+      });
   };
 
-  // Clicking on a course name will display its description
-  const handleCourseClick = (course: Section["course"]) => {
+  //Handles the event when a course is clicked.
+  const handleCourseClick = (course: Course) => {
     setSelectedCourse(course);
+    fetchSectionsByCourse(course.id);
   };
 
-  // Register button will display the Sections in the console for now.
-  const handleRegister = () => {
-    const selectedSections = sections.filter((section) =>
-      selectedCourses.has(section.id)
-    );
-    console.log("Selected sections:");
-    selectedSections.forEach((section) => {
-      console.log(section);
-    });
-  };
-
-  // Function to format time by excluding seconds and converting to 12-hour format with AM/PM
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(":").map(Number);
-    const period = hours >= 12 ? "PM" : "AM";
-    const adjustedHours = hours % 12 || 12;
-    return `${adjustedHours}:${minutes.toString().padStart(2, "0")} ${period}`;
-  };
-
-  // Function to get the first three letters of the day or days
-  const getShortDay = (day: string) => {
-    // Convert multiple days to their short forms
-    return day
-      .split(",")
-      .map((d) => d.trim().slice(0, 3))
-      .join(", ");
+  const handleCloseModal = () => {
+    setSelectedCourse(null);
   };
 
   return (
@@ -139,78 +110,59 @@ const CourseSearchPage: React.FC = () => {
 
         <div className="mx-auto max-w-3xl mb-6 flex flex-row justify-around">
           <div className="flex items-center">
-            <label className="mr-2 text-gray-700">Search:</label>
+            <label htmlFor="search" className="mr-2 text-gray-700 font-medium">Search:</label>
             <input
+              id="search"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400"
+              className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           <div className="flex items-center">
-            <label className="mr-2 text-gray-700">Category:</label>
+            <label htmlFor="category" className="mr-2 text-gray-700 font-medium">Category:</label>
             <select
+              id="category"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="border border-gray-300 w-full rounded-md shadow-sm focus:ring-2 focus:ring-indigo-400 "
+              className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
             >
               <option value="">All</option>
               {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
+                <option key={category} value={category}>{category}</option>
               ))}
             </select>
           </div>
         </div>
 
-        <table className="mx-auto max-w-3xl w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse mb-6 shadow-md">
           <thead>
             <tr>
-              <th className="px-4 py-2 border bg-gray-200">Course ID</th>
-              <th className="px-4 py-2 border bg-gray-200">Course</th>
-              <th className="px-4 py-2 border bg-gray-200">Professor</th>
-              <th className="px-4 py-2 border bg-gray-200">Times</th>
-              <th className="px-4 py-2 border bg-gray-200">Select</th>
+              <th className="px-4 py-2 border bg-gray-200 text-gray-800 font-semibold">Course ID</th>
+              <th className="px-4 py-2 border bg-gray-200 text-gray-800 font-semibold">Course Name</th>
+              <th className="px-4 py-2 border bg-gray-200 text-gray-800 font-semibold">Category</th>
             </tr>
           </thead>
           <tbody>
-            {filteredSections.length > 0 ? (
-              filteredSections.map((section) => (
-                <tr key={section.course.id}>
-                  <td className="px-4 py-2 border">{section.course.id}</td>
+            {filteredCourses.length > 0 ? (
+              filteredCourses.map((course) => (
+                <tr key={course.id} className="hover:bg-gray-100 cursor-pointer">
+                  <td className="px-4 py-2 border">{course.id}</td>
                   <td className="px-4 py-2 border">
                     <button
-                      onClick={() => handleCourseClick(section.course)}
-                      className="text-indigo-600 underline hover:text-indigo-500"
+                      onClick={() => handleCourseClick(course)}
+                      className="text-indigo-600 font-medium hover:text-indigo-500"
                     >
-                      {section.course.name}
+                      {course.name}
                     </button>
                   </td>
-                  <td className="px-4 py-2 border">
-                    {section.professor.firstName} {section.professor.lastName}
-                  </td>
-                  <td className="px-4 py-2 border">
-                    <span className="font-bold text-gray-800">
-                      {getShortDay(section.day)}
-                    </span>{" "}
-                    {formatTime(section.startTime)}-
-                    {formatTime(section.endTime)}
-                  </td>
-                  <td className="px-4 py-2 border text-center">
-                    <input
-                      type="checkbox"
-                      checked={selectedCourses.has(section.id)}
-                      onChange={() => handleCheckboxChange(section.id)}
-                      className="h-4 w-4 text-indigo-600"
-                    />
-                  </td>
+                  <td className="px-4 py-2 border">{course.category || "N/A"}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-700">
-                  No sections available.
+                <td colSpan={3} className="text-center py-4 text-gray-700">
+                  No courses available.
                 </td>
               </tr>
             )}
@@ -218,25 +170,17 @@ const CourseSearchPage: React.FC = () => {
         </table>
 
         {selectedCourse && (
-          <div className="mt-6 p-4 bg-gray-200 rounded-md">
-            <h2 className="text-xl font-semibold text-gray-900">
-              {selectedCourse.name} Description:
-            </h2>
-            <p className="text-gray-700">{selectedCourse.description}</p>
-          </div>
+          <SectionModal
+            sections={sections}
+            selectedCourseName={selectedCourse.name}
+            courseDescription={selectedCourse.description || "No description available"}
+            onClose={handleCloseModal}
+          />
         )}
-
-        <div className="mx-auto mt-6 mb-2 max-w-3xl flex justify-end">
-          <button
-            onClick={handleRegister}
-            className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          >
-            Register
-          </button>
-        </div>
       </div>
     </div>
   );
 };
 
 export default CourseSearchPage;
+
