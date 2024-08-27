@@ -1,0 +1,4 @@
+8/27/2024 Meeting Notes
+-Getting cloud front-end connected to cloud back-end
+-All base user stories are met!
+-Just getting ready for presentation
