@@ -11,8 +11,8 @@ const MyCoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const userContext = useUser();
 
-  if( !userContext?.user ){
-    return <Navigate to="/login"/>;
+  if (!userContext?.user) {
+    return <Navigate to="/login" />;
   }
 
   const { user } = userContext;
@@ -92,24 +92,19 @@ const MyCoursesPage: React.FC = () => {
   };
 
   const handleDrop = (courseID: number) => {
-    console.log(courseID.toString());
     // Endpoint for dropping a course
     // Replace with actual endpoint to drop a course
-    fetch(`${API_BASE}/Student/${user.id}/section`, {
+    fetch(`${API_BASE}/Student/${user.id}/section/${courseID}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: courseID.toString(),
     })
       .catch((error) => console.error("Error dropping course:", error))
       .then(() => fetchCourse());
   };
 
   return (
-    <div className="min-h-screen h-full flex flex-col">
+    <div className="flex flex-col">
       <Navbar />
-      <div className="mx-8 mb-8 h-full shadow-xl rounded-2xl px-16 py-6 bg-white grow">
+      <div className="mx-8 mb-8 h-full shadow-xl rounded-2xl px-16 pb-12 bg-white grow">
         <div className="py-12 text-center text-3xl font-medium leading-normal tracking-tight text-gray-900">
           {user?.firstName} {user?.lastName}'s Courses
         </div>
