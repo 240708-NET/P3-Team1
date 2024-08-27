@@ -26,12 +26,11 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   });
 
   const login = async (user: User) => {
-    console.log(API_BASE);
     await axios
       .post(`${API_BASE}/Student/login`, user)
       .then((res: AxiosResponse) => {
         setUser(res.data);
-        localStorage.setItem("userData", JSON.stringify(user));
+        localStorage.setItem("userData", JSON.stringify(res.data));
       })
       .catch((error: AxiosError) => {
         throw error;
@@ -43,7 +42,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       .post(`${API_BASE}/Student/register`, user)
       .then((res: AxiosResponse) => {
         setUser(res.data);
-        localStorage.setItem("userData", JSON.stringify(user));
+        localStorage.setItem("userData", JSON.stringify(res.data));
         return res.data;
       })
       .catch((error: AxiosError) => {
