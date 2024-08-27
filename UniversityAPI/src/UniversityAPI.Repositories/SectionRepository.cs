@@ -45,9 +45,11 @@ namespace UniversityAPI.Repositories
             return sections.Any() ? sections : null;
         }
 
-                public async Task<List<Student>?> GetRegisteredStudents(int id)
+        public async Task<List<Student>?> GetRegisteredStudents(int id)
         {
-            Section? section = await _context.Sections.FirstOrDefaultAsync(s => s.ID == id);
+            Section? section = await _context.Sections
+                                     .Include(s => s.Students)  //Eagerly load Students
+                                     .FirstOrDefaultAsync(s => s.ID == id);
             if (section == null)
             {
                 return null;
@@ -71,7 +73,9 @@ namespace UniversityAPI.Repositories
         public async Task<Section?> DeleteStudentFromSection(int sectionId, int studentId)
         {
             var student = await _context.Students.FirstOrDefaultAsync(s => s.ID == studentId);
-            var section = await _context.Sections.FirstOrDefaultAsync(s => s.ID == sectionId);
+            var section = await _context.Sections
+                                .Include(s => s.Students)  //Ensure Students are loaded
+                                .FirstOrDefaultAsync(s => s.ID == sectionId);
             if (student == null || section == null)
             {
                 return null;

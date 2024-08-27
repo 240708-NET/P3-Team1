@@ -1,0 +1,19 @@
+8/26/2024 Meeting Notes
+
+Merge Process:
+-Integrating all components into the front-end and back-end
+-Sequential merges: front-end and back-end → dev → main
+-Final testing of the application within the Azure cloud environment
+
+Code Review:
+-Reviewing and addressing pending pull requests
+
+Front-End:
+-Resolving build check errors and type-checking issues
+
+Back-End
+-Josh is resolving nullability warnings
+-Nick has enhanced unit test coverage
+
+Ongoing Work:
+-Continuous merging of updates throughout the day into the dev branch
