@@ -38,5 +38,9 @@ namespace UniversityAPI.Models
             Day = "";
             Students = new List<Student>();
         }
+
+        public bool Overlaps(Section section){
+            return Day == section.Day && (StartTime.IsBetween(section.StartTime, section.EndTime) || section.StartTime.IsBetween(StartTime,EndTime));
+        }
     }
 }
