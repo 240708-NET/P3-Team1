@@ -27,9 +27,9 @@ function CourseModal({ course, open, onClose }: CourseModalProps) {
             transition
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[closed]:translate-y-0 data-[closed]:scale-95 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in my-8 w-full max-w-lg"
           >
-            <div className="m-8 flex flex-col space-y-4">
-              <DialogTitle className="text-lg font-semibold leading-6 text-gray-900 flex space-x-3">
-                <div>{course.sectionID}</div>
+            <div className="m-8 flex flex-col gap-4">
+              <DialogTitle className="text-lg font-semibold leading-6 text-gray-900 flex gap-3">
+                <div>{course.id}</div>
                 <div>{course.name}</div>
               </DialogTitle>
               <p className="text-base text-gray-500 indent-8">

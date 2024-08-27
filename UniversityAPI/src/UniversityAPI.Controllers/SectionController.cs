@@ -13,19 +13,15 @@ public class SectionController : Controller<Section>
     public SectionController(ISectionServices sectionServices) : base(sectionServices) { }
 
     [HttpGet("{sectionId}/student")]
-    public async Task<ActionResult<List<Student>>> GetRegisteredStudents([FromRoute] int id)
+    public async Task<ActionResult<List<Student>>> GetRegisteredStudents([FromRoute] int sectionId)
     {
         try
         {
-            return Ok(await ((ISectionServices)_service).GetRegisteredStudents(id));
+            return Ok(await ((ISectionServices)_service).GetRegisteredStudents(sectionId));
         }
         catch (SectionNotFoundException)
         {
             return NotFound();
-        }
-        catch (RepositoryException)
-        {
-            return StatusCode(500);
         }
         catch (System.Exception)
         {

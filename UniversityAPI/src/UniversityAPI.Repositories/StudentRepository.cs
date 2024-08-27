@@ -20,7 +20,6 @@ namespace UniversityAPI.Repositories
                          .ThenInclude(section => section.Course)
                          .Include(s => s.Sections)
                          .ThenInclude(section => section.Professor) 
-                         .AsNoTracking()
                          .SingleOrDefaultAsync(s => s.ID == studentId);
         }
 
@@ -56,14 +55,24 @@ namespace UniversityAPI.Repositories
 
         public async Task<Student?> DeleteSectionFromStudent(int studentId, int sectionId)
         {
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.ID == studentId);
-            var section = await _context.Sections.FirstOrDefaultAsync(s => s.ID == sectionId);
-            if (student == null || section == null)
+            var student = await _context.Students
+                .Include(s => s.Sections)
+                .FirstOrDefaultAsync(s => s.ID == studentId);
+
+            if (student == null)
             {
                 return null;
             }
+
+            var section = student.Sections.FirstOrDefault(s => s.ID == sectionId);
+            if (section == null)
+            {
+                return null;
+            }
+
             student.Sections.Remove(section);
             await _context.SaveChangesAsync();
+
             return student;
         }
     }

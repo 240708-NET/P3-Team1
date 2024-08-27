@@ -8,7 +8,7 @@ interface CardProps {
   onDrop: (sectionID: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
+const Card: React.FC<CardProps> = ({ course, onDrop }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleClick() {
@@ -19,41 +19,29 @@ const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
     setIsModalOpen(false);
   }
 
-  const handleRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onRegister(course.id);
-  };
-
   const handleDrop = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    if (course.sectionID) {
-      onDrop(course.sectionID);
+    if (course.id) {
+      onDrop(course.id);
     }
   };
 
   return (
     <>
-      <div className="p-4 border rounded-lg shadow-sm" onClick={handleClick}>
-        <h3 className="text-xl font-semibold text-orange-600">{course.name}</h3>
-        <p className="text-gray-500 text-sm">{course.category}</p>
-
-        <div className="mt-4">
-          {course.isRegistered ? (
-            <button
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-400"
-              onClick={handleDrop}
-            >
-              Drop Course
-            </button>
-          ) : (
-            <button
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-400"
-              onClick={handleRegister}
-            >
-              Register
-            </button>
-          )}
+      <div
+        className="px-4 py-2 flex border justify-between bg-gray-50 hover:bg-white cursor-pointer"
+        onClick={handleClick}
+      >
+        <div className="w-full flex items-center">
+          <div className="basis-1/2 text-xl">{course.name}</div>
+          <div className="basis-1/2 text-sm font-light">{course.category}</div>
         </div>
+        <button
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-400"
+          onClick={handleDrop}
+        >
+          Drop
+        </button>
       </div>
       <CourseModal
         course={course}

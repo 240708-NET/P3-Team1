@@ -12,8 +12,8 @@ using UniversityAPI.Models;
 namespace UniversityAPI.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20240823160800_NoVirtual2")]
-    partial class NoVirtual2
+    [Migration("20240826200516_UniversityContextChange3")]
+    partial class UniversityContextChange3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace UniversityAPI.Migrations
 
                     b.HasIndex("StudentsID");
 
-                    b.ToTable("SectionStudent");
+                    b.ToTable("StudentSections", (string)null);
                 });
 
             modelBuilder.Entity("UniversityAPI.Models.Course", b =>

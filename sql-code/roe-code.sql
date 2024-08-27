@@ -1,5 +1,5 @@
 
-USE ReevatureOnlineEniversity;
+USE UniversityDB;
 
 
 -- TRUNCATE TABLE Courses;

@@ -34,7 +34,7 @@ namespace UniversityAPI.Migrations
 
                     b.HasIndex("StudentsID");
 
-                    b.ToTable("SectionStudent");
+                    b.ToTable("StudentSections", (string)null);
                 });
 
             modelBuilder.Entity("UniversityAPI.Models.Course", b =>
