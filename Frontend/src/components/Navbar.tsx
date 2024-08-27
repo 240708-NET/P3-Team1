@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
         <button
           onClick={logout}
           type="button"
-          className="px-3 py-1.5 font-medium"
+          className="px-3 py-1.5 font-bold"
         >
           Log Out
         </button>

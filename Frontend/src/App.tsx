@@ -27,7 +27,7 @@ function App() {
   ]);
 
   return (
-    <div className="bg-sky-200">
+    <div>
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>
