@@ -35,13 +35,13 @@ INSERT INTO Courses ([name],[description],[category]) VALUES ('Eldritch Geometry
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Martial Tax Evasion: Blackbelt Level','ROE believes very strongly in the importance in instilling its students with a robust understanding of self defense. This course will instill in you enough experience to hold your own on the New York Stock Exchange floor. Lemme tell you, those accountants can throw a mean left hook when the market goes bear. This course makes sure you know how to dodge those punches. No need to look into it further, don''t worry about it.','Business');
 INSERT INTO Courses ([name],[description],[category]) VALUES ('Underwater Macrame','Remember the 70''s? Disco was all the rage, there definitely wasn''t any political or social upheaval, and indoor decor was at its all time brownest. Ruling over that brownness was macrame, the one true artform. But the greatest weakness of macrame was that you couldn''t do it underwater. Well we aim to change that. Please bring snorkels.','Creative Arts');
 
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Physical Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VvVV','Physical Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Creative Arts');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVVv','Creative Arts');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
-INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Physical Science');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VvVV','Physical Science');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Creative Arts');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVVv','Creative Arts');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
+-- INSERT INTO Courses ([name],[description],[category]) VALUES ('VVV','VVV','Natural Science');
 
 
 INSERT INTO Professors ([FirstName],[LastName],[password]) VALUES ('Crudelia','Onswitch','123');
@@ -282,15 +282,25 @@ INSERT INTO Sections ([CourseID],[ProfessorID],[StartTime],[EndTime],[Day]) VALU
 
 
 
---- Bobson's Sections
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (6,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (7,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (8,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (9,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (10,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (11,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (12,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (13,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (14,1);
-INSERT INTO SectionStudent ([SectionsID],[StudentsID]) VALUES (15,1);
+-- --- Bobson's Sections
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (6,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (7,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (8,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (9,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (10,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (11,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (12,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (13,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (14,1);
+-- INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (15,1);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (6,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (7,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (8,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (9,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (10,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (11,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (12,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (13,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (14,4);
+INSERT INTO StudentSections ([SectionsID],[StudentsID]) VALUES (15,4);
 
