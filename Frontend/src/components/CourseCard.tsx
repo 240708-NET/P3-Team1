@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import CourseModal from "./CourseModal";
 import { Course } from "../types";
 
@@ -8,7 +8,7 @@ interface CardProps {
   onDrop: (sectionID: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
+const Card: React.FC<CardProps> = ({ course, onDrop }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleClick() {
@@ -19,15 +19,10 @@ const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
     setIsModalOpen(false);
   }
 
-  const handleRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    onRegister(course.id);
-  };
-
   const handleDrop = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    if (course.sectionID) {
-      onDrop(course.sectionID);
+    if (course.id) {
+      onDrop(course.id);
     }
   };
 
@@ -37,9 +32,9 @@ const Card: React.FC<CardProps> = ({ course, onRegister, onDrop }) => {
         className="px-4 py-2 flex border justify-between bg-gray-50 hover:bg-white cursor-pointer"
         onClick={handleClick}
       >
-        <div className="flex gap-8 items-center">
-          <div className="text-xl">{course.name}</div>
-          <div className="text-sm font-light">{course.category}</div>
+        <div className="w-full flex items-center">
+          <div className="basis-1/2 text-xl">{course.name}</div>
+          <div className="basis-1/2 text-sm font-light">{course.category}</div>
         </div>
         <button
           className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-400"

@@ -4,7 +4,6 @@ import CourseSearchPage from "./pages/CourseSearchPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProvider from "./context/UserContext";
-
 import "./App.css";
 
 function App() {
