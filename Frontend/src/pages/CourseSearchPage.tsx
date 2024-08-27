@@ -110,8 +110,9 @@ const CourseSearchPage: React.FC = () => {
 
         <div className="mx-auto max-w-3xl mb-6 flex flex-row justify-around">
           <div className="flex items-center">
-            <label className="mr-2 text-gray-700 font-medium">Search:</label>
+            <label htmlFor="search" className="mr-2 text-gray-700 font-medium">Search:</label>
             <input
+              id="search"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -119,8 +120,9 @@ const CourseSearchPage: React.FC = () => {
             />
           </div>
           <div className="flex items-center">
-            <label className="mr-2 text-gray-700 font-medium">Category:</label>
+            <label htmlFor="category" className="mr-2 text-gray-700 font-medium">Category:</label>
             <select
+              id="category"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="border border-gray-300 p-2 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"

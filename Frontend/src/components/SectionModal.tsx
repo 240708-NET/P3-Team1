@@ -84,8 +84,8 @@ const SectionModal: React.FC<SectionModalProps> = ({
                     },
                 }
             );
+            console.log(response);
 
-            //console.log('Section added to student:', response.data);
             alert(`Successfully registered for Section: ${section.id}!`);
         } catch (error) {
             console.error('Error registering', error);
