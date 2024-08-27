@@ -9,12 +9,14 @@ namespace UniversityAPI.Tests.Services
     public class StudentServiceTests
     {
         private readonly Mock<IStudentRepository> _repositoryMock;
+        private readonly Mock<ISectionRepository> _sectionRepositoryMock;
         private readonly StudentService _studentService;
 
         public StudentServiceTests()
         {
             _repositoryMock = new Mock<IStudentRepository>();
-            _studentService = new StudentService(_repositoryMock.Object);
+            _sectionRepositoryMock = new Mock<ISectionRepository>();
+            _studentService = new StudentService(_repositoryMock.Object, _sectionRepositoryMock.Object);
         }
 
         [Fact]
@@ -112,6 +114,10 @@ namespace UniversityAPI.Tests.Services
             int studentId = 1;
             int sectionId = 101;
             var student = new Student { ID = studentId };
+            var section = new Section { ID = sectionId };
+
+            _repositoryMock.Setup(repo => repo.GetById(studentId)).ReturnsAsync(student);
+            _sectionRepositoryMock.Setup(repo => repo.GetById(sectionId)).ReturnsAsync(section);
 
             _repositoryMock.Setup(repo => repo.AddSectionToStudent(studentId, sectionId)).ReturnsAsync(student);
 
