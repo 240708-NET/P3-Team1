@@ -26,7 +26,7 @@
    }
    ```
 
-3. Run the database migrations
+3. Run the database migrations.
 
    ```sh
    cd P3-Team1/UniversityAPI/src
@@ -41,7 +41,7 @@
 
 ### Usage
 
-1. Create and start the containers
+1. Create and start the containers.
 
    ```sh
    cd P3-Team1
