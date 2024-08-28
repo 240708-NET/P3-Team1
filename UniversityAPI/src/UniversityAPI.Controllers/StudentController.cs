@@ -73,6 +73,10 @@ public class StudentController : Controller<Student>
         {
             return Ok(await ((IStudentServices)_service).AddSectionToStudent(studentId, sectionId));
         }
+        catch(SectionOverlapException)
+        {
+            return StatusCode(409);
+        }
         catch (ResourceNotFoundException)
         {
             return NotFound();

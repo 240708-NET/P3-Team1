@@ -9,34 +9,26 @@ const Navbar: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const { user, logout } = userContext;
+  const { logout } = userContext;
 
   return (
     <div className="mx-8 min-h-16 flex justify-end gap-2 items-center">
       <Link to={"/login"}>
         <button
-          type="button"
           onClick={logout}
-          className="px-3 py-1.5 font-medium"
+          type="button"
+          className="px-3 py-1.5 font-bold"
         >
-          {user ? "Log out" : "Login"}
+          Log Out
         </button>
       </Link>
       <Link to={"/search"}>
-        <button
-          type="button"
-          onClick={logout}
-          className="px-3 py-1.5 font-medium"
-        >
+        <button type="button" className="px-3 py-1.5 font-medium">
           Search Courses
         </button>
       </Link>
       <Link to={"/"}>
-        <button
-          type="button"
-          onClick={logout}
-          className="px-3 py-1.5 font-medium"
-        >
+        <button type="button" className="px-3 py-1.5 font-medium">
           My Courses
         </button>
       </Link>

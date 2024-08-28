@@ -4,7 +4,6 @@ import CourseSearchPage from "./pages/CourseSearchPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProvider from "./context/UserContext";
-
 import "./App.css";
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
   ]);
 
   return (
-    <div className="bg-sky-200">
+    <div>
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>
