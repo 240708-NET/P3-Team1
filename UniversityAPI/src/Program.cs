@@ -56,7 +56,6 @@ public static class Program
                     .AllowCredentials()
                     );
 
-        // app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
