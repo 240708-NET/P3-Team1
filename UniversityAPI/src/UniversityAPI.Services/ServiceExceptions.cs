@@ -72,6 +72,12 @@ namespace UniversityAPI.Services
         public StudentAlreadyRegisteredException(string message) : base(message) { }
     }
 
+    public class SectionOverlapException : ServiceException
+    {
+        public SectionOverlapException() : base() {}
+        public SectionOverlapException(string message) : base(message) { }
+    }
+
     [ExcludeFromCodeCoverage]
     public class RepositoryException : ServiceException
     {

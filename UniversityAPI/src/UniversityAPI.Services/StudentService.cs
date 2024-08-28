@@ -5,7 +5,12 @@ namespace UniversityAPI.Services
 {
     public class StudentService : Service<Student>, IStudentServices
     {
-        public StudentService(IStudentRepository repository) : base(repository) { }
+        private ISectionRepository _sectionRepository;
+
+        public StudentService(IStudentRepository repository, ISectionRepository sectionRepository) : base(repository) {
+            _sectionRepository = sectionRepository;
+         }
+
         public async Task<List<Section>> GetRegisteredSections(int studentId)
         {
             // Fetch the student along with their sections
@@ -45,9 +50,21 @@ namespace UniversityAPI.Services
 
         public async Task<Student> AddSectionToStudent(int studentId, int sectionId)
         {
-            Student? student = await ((IStudentRepository)_repository).AddSectionToStudent(studentId, sectionId);
-            if (student == null)
+            System.Console.WriteLine("Adding section!!!!!!");
+            Student? student = await ((IStudentRepository)_repository).GetById(studentId);
+            Section? section = await _sectionRepository.GetById(sectionId);
+            if (student == null || section == null)
             {
+                throw new ResourceNotFoundException();
+            }
+            System.Console.WriteLine("Checking overlap!!");
+            if (student.Sections.Any(x => x.Overlaps(section))){
+                System.Console.WriteLine("Overlaps");
+                throw new SectionOverlapException();
+            }
+            student = await ((IStudentRepository)_repository).AddSectionToStudent(studentId, sectionId);
+            System.Console.WriteLine("something else???");
+            if (student == null){
                 throw new ResourceNotFoundException();
             }
             return student;

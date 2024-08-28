@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -87,9 +87,13 @@ const SectionModal: React.FC<SectionModalProps> = ({
             console.log(response);
 
             alert(`Successfully registered for Section: ${section.id}!`);
-        } catch (error) {
-            console.error('Error registering', error);
-            alert('Failed to register for section.');
+        } catch (error : any) {
+            if(error.response.status == 409){
+                alert('This section overlaps with your existing sections.');
+            }else{
+                console.error('Error registering', error);
+                alert('Failed to register for section.');
+            }
         }
     };
 
