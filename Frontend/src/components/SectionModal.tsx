@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -37,9 +37,27 @@ const SectionModal: React.FC<SectionModalProps> = ({
     if (!userContext?.user) {
         return <Navigate to="/login" />;
     }
-    console.log(userContext.user);
 
+    const convertTo12HourFormat = (time: string) => {
+        let [hours, minutes] = time.split(':').map(Number);
+        const period = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
+    };
 
+    const isOverlapping = (section1: Section, section2: Section) => {
+        // Check if sections are on the same day
+        if (section1.day !== section2.day) return false;
+
+        // Convert start and end times to Date objects 
+        const start1 = new Date(`1970-01-01T${section1.startTime}`);
+        const end1 = new Date(`1970-01-01T${section1.endTime}`);
+        const start2 = new Date(`1970-01-01T${section2.startTime}`);
+        const end2 = new Date(`1970-01-01T${section2.endTime}`);
+
+        // Check if the section times overlap
+        return start1 < end2 && start2 < end1;
+    };
 
     const handleRegister = async (section: Section) => {
         try {
@@ -49,12 +67,12 @@ const SectionModal: React.FC<SectionModalProps> = ({
                 return;
             }
 
-            // Get the registered sections for student.
+            // Get the registered sections for student
             const { data: registeredSections } = await axios.get<Section[]>(
                 `${API_BASE}/student/${userContext.user.id}/section`
             );
 
-            // Check if already registered for section.
+            // Check if already registered for the section
             const isAlreadyRegisteredForSection = registeredSections.some(
                 (s) => s.id === section.id
             );
@@ -64,7 +82,7 @@ const SectionModal: React.FC<SectionModalProps> = ({
                 return;
             }
 
-            // Check if already registered for the same course.
+            // Check if already registered for the same course
             const isAlreadyRegisteredForCourse = registeredSections.some(
                 (s) => s.courseID === section.courseID
             );
@@ -74,7 +92,17 @@ const SectionModal: React.FC<SectionModalProps> = ({
                 return;
             }
 
-            // Register section 
+            // Check for time and day overlap with existing sections
+            const hasOverlap = registeredSections.some(
+                (s) => isOverlapping(s, section)
+            );
+
+            if (hasOverlap) {
+                alert('This section overlaps with your existing sections.');
+                return;
+            }
+
+            // Register section
             const response = await axios.post(
                 `${API_BASE}/Student/${userContext.user.id}/section`,
                 section.id,
@@ -87,22 +115,10 @@ const SectionModal: React.FC<SectionModalProps> = ({
             console.log(response);
 
             alert(`Successfully registered for Section: ${section.id}!`);
-        } catch (error : any) {
-            if(error.response.status == 409){
-                alert('This section overlaps with your existing sections.');
-            }else{
-                console.error('Error registering', error);
-                alert('Failed to register for section.');
-            }
+        } catch (error: any) {
+            console.error('Error registering', error);
+            alert('Failed to register for section.');
         }
-    };
-
-    // Convert time to 12-hour format.
-    const convertTo12HourFormat = (time: string) => {
-        let [hours, minutes] = time.split(':').map(Number);
-        const period = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12 || 12;
-        return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
     };
 
     return (

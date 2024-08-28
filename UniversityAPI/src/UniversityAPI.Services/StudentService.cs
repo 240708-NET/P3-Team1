@@ -5,7 +5,7 @@ namespace UniversityAPI.Services
 {
     public class StudentService : Service<Student>, IStudentServices
     {
-        private ISectionRepository _sectionRepository;
+        private readonly ISectionRepository _sectionRepository;
 
         public StudentService(IStudentRepository repository, ISectionRepository sectionRepository) : base(repository) {
             _sectionRepository = sectionRepository;
