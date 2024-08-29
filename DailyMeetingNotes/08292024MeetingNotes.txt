@@ -1,0 +1,10 @@
+8/29/2024 Meeting Notes
+-Practiced presentation
+-Critiques from Richard:
+--Shorten presentation
+--Highlight containerization/DevOps
+--Filler words
+--Inflection
+--Don't need to explain inheritance and other OOP concepts explicitly, just use the terms
+--Don't need to explain lazy loading vs eager loading
+--Use we as opposed to I, being inclusive to team
